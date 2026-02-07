@@ -12,7 +12,7 @@
     "updated_date": "2026-02-05",
     "image_url": "image/jettsCentral.jpg",
     "tags": ["24hr", "cardio", "weight", "aircon"],
-    "contact": "02-123-4567"
+    "contact": "02 123 4567"
   },
   {
     "id": 2,
@@ -27,7 +27,7 @@
     "updated_date": "2026-02-05",
     "image_url": "image/baam.jpg",
     "tags": ["24hr", "cardio", "weight", "aircon"],
-    "contact": "02-123-4567"
+    "contact": "02 123 4567"
   }
   ,
   {
@@ -40,7 +40,10 @@
     "lat": 13.827064231452221,
     "lng":  100.08058546431168,
     "price": "1,200 บาท/เดือน",
-    "updated_date": "2026-02-15"
+    "updated_date": "2026-02-15",
+     "image_url": "image/goodgym.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": " 086 366 6464"
   },
   {
     "id": 4,
@@ -52,7 +55,10 @@
     "lat": 13.82050520680794, 
     "lng": 100.00134449937599,
     "price": "150 บาท/ครั้ง",
-    "updated_date": "2026-02-12"
+    "updated_date": "2026-02-12",
+     "image_url": "image/Kaofang.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "080 0759 515"
   },
   {
     "id": 5,
@@ -64,22 +70,13 @@
     "lat": 13.826201028125489,
     "lng":  100.069718354978,
     "price": "990 บาท/เดือน",
-    "updated_date": "2026-02-10"
+    "updated_date": "2026-02-10",
+     "image_url": "image/fitness21.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "034 106 321"
   },
   {
     "id": 6,
-    "name": {
-      "th": "เฮลท์ คลับ ฟิตเนส (สาขานครปฐม)",
-      "en": "Health Club Fitness Nakhon Pathom",
-      "cn": "Health Club 健身 (佛统分店)"
-    },
-    "lat": 13.821192601052074, 
-    "lng": 100.07109164595109,
-    "price": "1,500 บาท/เดือน",
-    "updated_date": "2026-02-08"
-  },
-  {
-    "id": 7,
     "name": {
       "th": "ศูนย์ออกกำลังกาย ม.ศิลปากร",
       "en": "FITNESS SU.ED.CENTER",
@@ -88,22 +85,14 @@
     "lat": 13.827969863324281, 
     "lng": 100.040449154753,
     "price": "50 บาท/ครั้ง (นศ.)",
-    "updated_date": "2026-02-18"
+    "updated_date": "2026-02-18",
+     "image_url": "image/silpakorn.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "034 241 240 "
   },
+  
   {
-    "id": 8,
-    "name": {
-      "th": "เฮลท์ คลับ ฟิตเนส (สาขากำแพงแสน)",
-      "en": "Health Club Fitness Kamphaeng Saen",
-      "cn": "Health Club 健身 (甘烹森分店)"
-    },
-    "lat": 14.006289102648765, 
-    "lng": 99.98901162918318,
-    "price": "1,200 บาท/เดือน",
-    "updated_date": "2026-02-05"
-  },
-  {
-    "id": 9,
+    "id": 7,
     "name": {
       "th": "มี ฟิตเนส (ศาลายา)",
       "en": "Me Fitness Salaya",
@@ -112,10 +101,13 @@
     "lat": 13.814806409023252,
     "lng":  100.32002818461416,
     "price": "1,390 บาท/เดือน",
-    "updated_date": "2026-02-14"
+    "updated_date": "2026-02-14",
+     "image_url": "image/mefitness.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "092 252 0490"
   },
   {
-    "id": 10,
+    "id": 8,
     "name": {
       "th": "บูสท์ฟิต ยิม (ไร่ขิง)",
       "en": "Boostfitz GYM Rai Khing",
@@ -124,10 +116,13 @@
     "lat": 13.777463592367344, 
     "lng": 100.30015487082552,
     "price": "80 บาท/วัน",
-    "updated_date": "2026-02-11"
+    "updated_date": "2026-02-11",
+     "image_url": "image/bootsfitgym.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "082 974 1710"
   },
   {
-    "id": 11,
+    "id": 9,
     "name": {
       "th": "เฮลท์ คลับ ฟิตเนส (สาขานครชัยศรี)",
       "en": "Health Club Fitness Nakhon Chai Si",
@@ -136,22 +131,13 @@
     "lat": 13.829666279829787,
     "lng":  100.16232113690259,
     "price": "1,200 บาท/เดือน",
-    "updated_date": "2026-02-09"
+    "updated_date": "2026-02-09",
+     "image_url": "image/healthclub.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": " 061 579 4191"
   },
   {
-    "id": 12,
-    "name": {
-      "th": "เฮลท์ คลับ แอนด์ พูลบาร์ เอ็มจี (สามพราน)",
-      "en": "Health Club Fitness & Pool Bar MG",
-      "cn": "Health Club 健身与泳池 (攀吧)"
-    },
-    "lat": 13.75478825490259, 
-    "lng": 100.26167047945967,
-    "price": "1,800 บาท/เดือน",
-    "updated_date": "2026-02-07"
-  },
-  {
-    "id": 13,
+    "id": 10,
     "name": {
       "th": "ฟิต แอนด์ โค ฟิตเนส เซ็นเตอร์ (ท่าตำหนัก)",
       "en": "FIT & Co. Fitness Center",
@@ -160,10 +146,13 @@
     "lat": 13.78946729223753,
     "lng": 100.18667934199209,
     "price": "1,000 บาท/เดือน",
-    "updated_date": "2026-02-15"
+    "updated_date": "2026-02-15",
+     "image_url": "image/fitandco.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "095 918 6318"
   },
   {
-    "id": 14,
+    "id": 11,
     "name": {
       "th": "พีอีเอส ฟิตเนส (กำแพงแสน)",
       "en": "PES Fitness Kamphaeng Saen",
@@ -172,10 +161,13 @@
     "lat": 14.034866002751366,
     "lng":  99.9724860126875,
     "price": "900 บาท/เดือน",
-    "updated_date": "2026-02-01"
+    "updated_date": "2026-02-01",
+     "image_url": "image/pes.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "034 351 898"
   },
   {
-    "id": 15,
+    "id": 12,
     "name": {
       "th": "เจ็ทส์ ฟิตเนส 24 ชม. (เดอะ โฟร์ท สาย 4)",
       "en": "Jetts 24 Hour Fitness - The Fourth",
@@ -184,10 +176,13 @@
     "lat": 13.780131134538422,
     "lng": 100.33063867124423,
     "price": "1,600 บาท/เดือน",
-    "updated_date": "2026-02-16"
+    "updated_date": "2026-02-16",
+     "image_url": "image/jetts4.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "095 536 9869"
   },
   {
-    "id": 16,
+    "id": 13,
     "name": {
       "th": "โคตรฟิต ยิม (ศาลายา)",
       "en": "KOTR FIT GYM Salaya",
@@ -196,23 +191,13 @@
     "lat": 13.830808642401355, 
     "lng": 100.32140147556132,
     "price": "1,290 บาท/เดือน",
-    "updated_date": "2026-02-13"
+    "updated_date": "2026-02-13",
+     "image_url": "image/kortfitgym.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "-"
   },
   {
-    "id": 17,
-    "name": {
-      "th": "เวลซาวน่า ฟิตเนส นครปฐม",
-      "en": "Well Sauna Fitness",
-      "cn": "Well 桑拿与健身"
-    },
-    "lat": 13.818996045615737, 
-    "lng": 100.05055025467288,
-    "price": "150 บาท/ครั้ง",
-
-    "updated_date": "2026-02-10"
-  },
-  {
-    "id": 18,
+    "id": 14,
     "name": {
       "th": "ฟิตคลับ เฮลท์ แอนด์ ฟิตเนส (ดอนตูม)",
       "en": "FitClub Health and Fitness",
@@ -221,10 +206,13 @@
     "lat": 13.97266698297983, 
     "lng": 100.08411529296897,
     "price": "800 บาท/เดือน",
-    "updated_date": "2026-02-05"
+    "updated_date": "2026-02-05",
+     "image_url": "image/fitclub.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "099 261 4256"
   },
   {
-    "id": 19,
+    "id": 15,
     "name": {
       "th": "ฟิตส์ ยิม (ถนนยิงเป้า)",
       "en": "Fits Gym Ying Pao Rd.",
@@ -233,10 +221,13 @@
     "lat": 13.808080027687042, 
     "lng": 100.0469865159291,
     "price": "1,100 บาท/เดือน",
-    "updated_date": "2026-02-14"
+    "updated_date": "2026-02-14",
+     "image_url": "image/fitgym.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "097 147 9995"
   },
   {
-    "id": 20,
+    "id": 17,
     "name": {
       "th": "สตรอง ฟิตเนส นครปฐม",
       "en": "Strong Fitness Nakhon Pathom",
@@ -245,7 +236,10 @@
     "lat": 13.808816684037499,
     "lng":  100.04372264188851,
     "price": "900 บาท/เดือน",
-    "updated_date": "2026-02-12"
+    "updated_date": "2026-02-12",
+     "image_url": "image/strongfitness.jpg",
+    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "contact": "098 827 4191"
   }
 
 ]
