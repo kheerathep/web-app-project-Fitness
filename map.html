@@ -53,20 +53,20 @@
             <div class="flex-1">
                 <label class="group flex h-10 w-full items-center rounded-full bg-gray-50 px-4 transition focus-within:ring-2 focus-within:ring-primary/20 border border-border-light focus-within:border-primary">
                     <span class="material-symbols-outlined text-text-subtle group-focus-within:text-primary">search</span>
-                    <input class="h-full w-full bg-transparent px-3 text-black placeholder-text-subtle border-none focus:ring-0 text-sm outline-none" placeholder="Search gyms in Nakhon Pathom..." type="text"/>
+                    <input  id="search-input" class="h-full w-full bg-transparent px-3 text-black placeholder-text-subtle border-none focus:ring-0 text-sm outline-none" placeholder="Search gyms in Nakhon Pathom..." type="text"/>
                 </label>
             </div>
         </div>
 
-        <div class="flex items-center gap-4 shrink-0">
+        <div class="flex items-center gap-4 shrink-0" id="changeLang">
             <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
-                <button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm">
+                <button id="btn-en" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm">
                 <span>EN</span>
                 </button>
-                <button class="flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
+                <button id="btn-th" class="flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
                     <span>TH</span>
                 </button>
-                <button class="flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
+                <button id="btn-cn" class="flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
                     <span>CN</span>
                 </button>
             </div>
@@ -74,31 +74,35 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden relative">
-        <aside class="flex w-full lg:w-[500px] flex-col border-r border-border-light bg-background-light z-10 shrink-0 h-full">
-            <div class="flex flex-col gap-4 border-b border-border-light p-6 bg-background-light/95 backdrop-blur-sm z-10">
-                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-                    <button class="whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20">All</button>
-                    <button class="whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary hover:text-primary transition shadow-sm">
-                            24/7
-                        </button>
-                </div>
+    
+    <aside id="sidebar" class="flex w-full lg:w-[500px] flex-col border-r border-border-light bg-background-light z-10 shrink-0 h-full transition-all duration-300 ease-in-out transform origin-left">
+        <div class="flex flex-col gap-4 border-b border-border-light p-6 bg-background-light/95 backdrop-blur-sm z-10">
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                <button class="whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20">All</button>
+                <button class="whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary hover:text-primary transition shadow-sm">24/7</button>
             </div>
-            
-            <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" id="gym-list">
-                <div class="text-center text-gray-400 mt-10">Loading data...</div>
-            </div>
-        </aside>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" id="gym-list">
+            <div class="text-center text-gray-400 mt-10">Loading data...</div>
+        </div>
+    </aside>
 
-        <main class="relative hidden lg:block flex-1 h-full bg-gray-200">
-            <div id="map" class="h-full w-full z-0"></div>
-            
-            <div class="absolute right-2 bottom-20 flex flex-col gap-2 z-10">
-                <button onclick="map.panTo({lat: 13.8196, lng: 100.0389}); map.setZoom(13);" class="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-lg hover:bg-gray-800 transition">
-                    <span class="material-symbols-outlined">my_location</span>
-                </button>
-            </div>
-        </main>
-    </div>
+    <main class="relative hidden lg:block flex-1 h-full bg-gray-200">
+        
+        <button id="toggle-sidebar" class="absolute left-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white text-text-subtle shadow-md hover:text-primary hover:scale-110 transition cursor-pointer" title="Toggle Sidebar">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+
+        <div id="map" class="h-full w-full z-0"></div>
+        
+        <div class="absolute right-2 bottom-20 flex flex-col gap-2 z-10">
+            <button onclick="map.panTo({lat: 13.8196, lng: 100.0389}); map.setZoom(13);" class="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-lg hover:bg-gray-800 transition">
+                <span class="material-symbols-outlined">my_location</span>
+            </button>
+        </div>
+    </main>
+</div>
 
     <script src="js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyh9N7zJ4LPkW9aDAM-XiYdcR-WUDRy14&callback=initMap" async defer></script>

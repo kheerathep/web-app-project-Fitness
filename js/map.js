@@ -1,28 +1,8 @@
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                "primary": "#dc2626", // Vibrant red
-                "primary-hover": "#b91c1c",
-                "background-light": "#ffffff",
-                "background-off": "#f3f4f6", // Light gray
-                "background-card": "#ffffff",
-                "border-light": "#e5e7eb",
-                "text-main": "#000000",
-                "text-subtle": "#6b7280"
-            },
-            fontFamily: {
-                "display": ["Manrope", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
-        },
-    },
-}
+// --- กำหนดตัวแปร Global ---
 let map;
 let markers = []; 
 let fitnessData = []; 
-let currentLang = 'th';
+let currentLang = 'en'; // เริ่มต้นเป็นภาษาอังกฤษตาม HTML
 
 const dictionary = {
     "th": { "price": "ราคา", "updated": "อัปเดตเมื่อ", "search": "ค้นหาฟิตเนส...", "results": "ผลลัพธ์" },
@@ -30,12 +10,45 @@ const dictionary = {
     "cn": { "price": "价格", "updated": "更新日期", "search": "搜索健身房...", "results": "结果" }
 };
 
-// 1. เริ่มต้นแผนที่
+// --- 1. เริ่มต้นทำงานเมื่อเว็บโหลดเสร็จ (สำคัญมาก ส่วนนี้คือที่ขาดไป) ---
+document.addEventListener("DOMContentLoaded", () => {
+    // ผูกปุ่มเปลี่ยนภาษา
+    document.getElementById('btn-th').addEventListener('click', () => changeLang('th'));
+    document.getElementById('btn-en').addEventListener('click', () => changeLang('en'));
+    document.getElementById('btn-cn').addEventListener('click', () => changeLang('cn'));
+
+    // ผูกช่องค้นหา
+    document.getElementById('search-input').addEventListener('keyup', handleSearch);
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const icon = toggleBtn.querySelector('span');
+    let isOpen = true;
+
+    if(toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            isOpen = !isOpen; // สลับสถานะ
+
+            if (isOpen) {
+                // เปิด Sidebar
+                sidebar.classList.remove('-ml-[500px]'); // ดึงกลับมา
+                icon.innerText = 'chevron_left'; // เปลี่ยนลูกศรชี้ซ้าย
+            } else {
+                // ปิด Sidebar (Map เต็มจอ)
+                sidebar.classList.add('-ml-[500px]'); // ดันออกไปทางซ้ายจนสุด
+                icon.innerText = 'chevron_right'; // เปลี่ยนลูกศรชี้ขวา
+            }
+            
+            // สั่งให้ Google Map รับรู้ว่าขนาดจอเปลี่ยน (ป้องกันแผนที่เบี้ยว)
+            setTimeout(() => {
+                if(map) google.maps.event.trigger(map, "resize");
+            }, 300);
+        });
+    }
+});
+
+// --- 2. ฟังก์ชัน Google Maps ---
 function initMap() {
-    // พิกัดกลางนครปฐม
     const centerPoint = { lat: 13.8196, lng: 100.0389 };
-    
-    // ปรับ style แผนที่ให้ดูคลีนๆ เข้ากับธีมเว็บ
     const mapStyle = [
         { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] }
     ];
@@ -49,91 +62,74 @@ function initMap() {
         styles: mapStyle
     });
 
-    loadData(); // เรียกดึงข้อมูลทันที
+    loadData();
+    
 }
 
-// 2. ดึงข้อมูล JSON
+// --- 3. ดึงข้อมูล ---
 function loadData() {
     fetch('data/data.json')
         .then(response => response.json())
         .then(json => {
             fitnessData = json;
-            renderAll(); // วาดทุกอย่าง
+            renderAll(); 
         })
         .catch(error => {
             console.error("Error:", error);
-            document.getElementById('gym-list').innerHTML = `<div class="text-red-500 text-center p-4">Error loading data. Open with Live Server!</div>`;
+            // สร้างข้อมูลจำลองถ้าโหลดไฟล์ไม่ได้ (เผื่อทดสอบ)
+            fitnessData = [];
+            renderSidePanel();
         });
 }
 
-// 3. ฟังก์ชันรวม (วาดหมุด + วาดลิสต์ด้านซ้าย)
+// --- 4. ฟังก์ชันวาดหน้าจอ ---
 function renderAll() {
-    renderMarkers();
-    renderSidePanel();
+    renderMarkers(fitnessData); // วาดหมุดทั้งหมด
+    renderSidePanel(fitnessData); // วาดลิสต์ทั้งหมด
 }
 
-// 4. วาดหมุดบนแผนที่
-function renderMarkers() {
+function renderMarkers(data) {
     // ลบหมุดเก่า
     markers.forEach(m => m.setMap(null));
     markers = [];
 
-    fitnessData.forEach(item => {
+    data.forEach(item => {
         const name = item.name[currentLang] || item.name['en'];
-        
-        // สร้าง InfoWindow แบบเรียบง่าย
         const contentString = `
             <div style="font-family: 'Manrope', sans-serif; padding: 5px;">
                 <h3 style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">${name}</h3>
                 <p style="color: #ef4444; font-weight: bold;">${item.price}</p>
-                <p style="font-size: 12px; color: #666;">${dictionary[currentLang].updated}: ${item.updated_date}</p>
             </div>
         `;
-
         const infoWindow = new google.maps.InfoWindow({ content: contentString });
-
         const marker = new google.maps.Marker({
             position: { lat: item.lat, lng: item.lng },
             map: map,
             title: name,
-            // ใช้ไอคอนสีแดงมาตรฐาน หรือจะเปลี่ยนรูปก็ได้
         });
-
-        marker.addListener("click", () => {
-            infoWindow.open(map, marker);
-        });
-
+        marker.addListener("click", () => infoWindow.open(map, marker));
         markers.push(marker);
     });
 }
 
-// 5. วาดรายการด้านซ้าย (Side Panel) ให้เหมือนดีไซน์ใหม่
-function renderSidePanel() {
+function renderSidePanel(data) {
     const listContainer = document.getElementById('gym-list');
     listContainer.innerHTML = ''; 
 
     // หัวข้อจำนวนผลลัพธ์
     const countHeader = document.createElement('div');
     countHeader.className = "text-sm font-bold text-text-subtle uppercase tracking-wider mb-2";
-    countHeader.innerText = `${fitnessData.length} ${dictionary[currentLang].results}`;
+    countHeader.innerText = `${data.length} ${dictionary[currentLang].results}`;
     listContainer.appendChild(countHeader);
 
-    fitnessData.forEach((item, index) => {
+    data.forEach((item) => {
         const name = item.name[currentLang] || item.name['en'];
         
-        // ⭐ ส่วนจัดการรูปภาพ (Image Logic) ⭐
         let imageHTML = '';
-        if (item.image_url && item.image_url !== "") {
-            // กรณีมีรูป: ให้ใส่ tag <img>
-            // object-cover คือคำสั่งให้รูปเต็มกรอบโดยไม่เบี้ยว
-            imageHTML = `<img src="${item.image_url}" class="h-full w-full object-cover transition duration-300 group-hover:scale-110" alt="${name}">`;
+        if (item.image_url) {
+            imageHTML = `<img src="${item.image_url}" class="h-full w-full object-cover" alt="${name}">`;
         } else {
-            // กรณีไม่มีรูป: ให้แสดงไอคอนสีเทาๆ เหมือนเดิม
-            imageHTML = `
-                <div class="flex items-center justify-center h-full text-gray-400 bg-gray-200">
-                    <span class="material-symbols-outlined text-4xl">fitness_center</span>
-                </div>
-            `;
+            imageHTML = `<div class="flex items-center justify-center h-full text-gray-400 bg-gray-200"><span class="material-symbols-outlined text-4xl">fitness_center</span></div>`;
         }
 
         const card = document.createElement('div');
@@ -143,24 +139,17 @@ function renderSidePanel() {
             <div class="relative h-40 sm:h-32 w-full sm:w-32 shrink-0 overflow-hidden rounded-xl bg-gray-100">
                 ${imageHTML}
             </div>
-
             <div class="flex flex-1 flex-col justify-between py-1">
                 <div>
-                    <div class="flex justify-between items-start">
-                        <h3 class="font-bold text-lg text-black leading-tight group-hover:text-primary transition-colors">${name}</h3>
-                    </div>
-                    
+                    <h3 class="font-bold text-lg text-black leading-tight group-hover:text-primary transition-colors">${name}</h3>
                     <div class="mt-1 flex items-center gap-1 text-xs text-text-subtle">
                         <span class="material-symbols-outlined text-[14px] text-primary">location_on</span>
                         ${item.district || 'Nakhon Pathom'}
                     </div>
                 </div>
-
                 <div class="mt-3 flex items-end justify-between">
                     <div class="text-xs text-text-subtle">${dictionary[currentLang].updated}: ${item.updated_date}</div>
-                    <div class="flex flex-col items-end">
-                        <span class="text-lg font-bold text-primary">${item.price}</span>
-                    </div>
+                    <div class="text-lg font-bold text-primary">${item.price}</div>
                 </div>
             </div>
         `;
@@ -168,48 +157,41 @@ function renderSidePanel() {
         card.addEventListener('click', () => {
             map.panTo({ lat: item.lat, lng: item.lng });
             map.setZoom(15);
-            if(markers[index]) {
-                google.maps.event.trigger(markers[index], 'click');
-            }
         });
 
         listContainer.appendChild(card);
     });
 }
 
-// 6. ฟังก์ชันเปลี่ยนภาษา
+// --- 5. ฟังก์ชันเปลี่ยนภาษา ---
 function changeLang(lang) {
     currentLang = lang;
-    
-    // ปรับสไตล์ปุ่ม
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('bg-white', 'text-black', 'shadow-sm');
-        btn.classList.add('text-text-subtle');
-    });
+
+    // Reset สไตล์ปุ่มกด (กำหนด class ใหม่โดยตรงเพื่อให้ชัวร์ที่สุด)
+    const inactiveClass = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle cursor-pointer";
+    const activeClass = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm cursor-default";
+
+    // รีเซ็ตทุกปุ่มเป็น inactive
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.className = inactiveClass);
+
+    // ตั้งค่าปุ่มที่ถูกกดเป็น active
     const activeBtn = document.getElementById('btn-' + lang);
-    activeBtn.classList.remove('text-text-subtle');
-    activeBtn.classList.add('bg-white', 'text-black', 'shadow-sm');
+    if(activeBtn) activeBtn.className = activeClass;
 
-    // เปลี่ยน Placeholder ช่องค้นหา
-    document.getElementById('search-input').placeholder = dictionary[lang].search;
+    // เปลี่ยน Placeholder
+    const searchInput = document.getElementById('search-input');
+    if(searchInput) searchInput.placeholder = dictionary[lang].search;
 
-    renderAll(); // วาดใหม่ทั้งหมด
+    renderAll(); // วาดข้อมูลใหม่เป็นภาษาที่เลือก
 }
 
-// 7. ฟังก์ชันค้นหา (แถมให้)
-document.getElementById('search-input').addEventListener('keyup', (e) => {
+// --- 6. ฟังก์ชันค้นหา ---
+function handleSearch(e) {
     const term = e.target.value.toLowerCase();
-
-    // กรองข้อมูล (Filter)
     const filteredData = fitnessData.filter(item => {
-        // ค้นหาจาก ชื่อ (ไทย/อังกฤษ)
-        const nameMatch = item.name.th.includes(term) || item.name.en.toLowerCase().includes(term);
-        // ค้นหาจาก Tags (เช่น พิมพ์ว่า pool)
-        const tagMatch = item.tags && item.tags.some(tag => tag.includes(term));
-        
-        return nameMatch || tagMatch;
+        const nameMatch = (item.name.th && item.name.th.includes(term)) || 
+                          (item.name.en && item.name.en.toLowerCase().includes(term));
+        return nameMatch;
     });
-
-    console.log("เจอผลลัพธ์:", filteredData.length);
-    // TODO: เรียกฟังก์ชัน renderSidePanel(filteredData) เพื่อวาดหน้าจอใหม่
-});
+    renderSidePanel(filteredData);
+}
