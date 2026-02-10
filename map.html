@@ -37,49 +37,49 @@
     </style>
 </head>
 <body class="bg-background-light text-text-main font-display overflow-hidden h-screen flex flex-col">
-    <header class="flex shrink-0 items-center justify-between border-b border-border-light px-6 py-4 bg-background-light z-20 gap-8">
-        <a class="flex items-center gap-3 shrink-0 hover:opacity-80 transition-opacity" href="index.html">
-            <div class="flex items-center justify-center size-10 rounded-full bg-black text-white">
-                <span class="material-symbols-outlined text-2xl">fitness_center</span>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight text-black">NakhonFit</h1>
-        </a>
-
-        <div class="flex flex-1 items-center gap-6 max-w-2xl">
-            <nav class="flex items-center gap-1 font-bold text-xs tracking-widest uppercase">
-                <a class="px-4 py-2 text-text-subtle hover:text-black transition-colors" href="index.html">Home</a>
-                <a class="px-4 py-2 text-primary border-b-2 border-primary" href="map.html">Map</a>
-            </nav>
-            <div class="flex-1">
-                <label class="group flex h-10 w-full items-center rounded-full bg-gray-50 px-4 transition focus-within:ring-2 focus-within:ring-primary/20 border border-border-light focus-within:border-primary">
-                    <span class="material-symbols-outlined text-text-subtle group-focus-within:text-primary">search</span>
-                    <input  id="search-input" class="h-full w-full bg-transparent px-3 text-black placeholder-text-subtle border-none focus:ring-0 text-sm outline-none" placeholder="Search gyms in Nakhon Pathom..." type="text"/>
-                </label>
-            </div>
+   <header class="flex shrink-0 items-center justify-between border-b border-border-light px-6 py-4 bg-background-light z-20 gap-8">
+    <a class="flex items-center gap-3 shrink-0 hover:opacity-80 transition-opacity" href="index.html">
+        <div class="flex items-center justify-center size-10 rounded-full bg-black text-white">
+            <span class="material-symbols-outlined text-2xl">fitness_center</span>
         </div>
+        <h1 class="text-xl font-bold tracking-tight text-black">NakhonFit</h1>
+    </a>
 
-        <div class="flex items-center gap-4 shrink-0" id="changeLang">
-            <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
-                <button id="btn-en" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm">
+    <div class="flex flex-1 items-center gap-6 max-w-2xl">
+        <nav class="flex items-center gap-1 font-bold text-xs tracking-widest uppercase">
+            <a id="nav-home" class="px-4 py-2 text-text-subtle hover:text-black transition-colors" href="index.html">Home</a>
+            <a id="nav-map" class="px-4 py-2 text-primary border-b-2 border-primary" href="map.html">Map</a>
+        </nav>
+        <div class="flex-1">
+            <label class="group flex h-10 w-full items-center rounded-full bg-gray-50 px-4 transition focus-within:ring-2 focus-within:ring-primary/20 border border-border-light focus-within:border-primary">
+                <span class="material-symbols-outlined text-text-subtle group-focus-within:text-primary">search</span>
+                <input id="search-input" class="h-full w-full bg-transparent px-3 text-black placeholder-text-subtle border-none focus:ring-0 text-sm outline-none" placeholder="Search gyms in Nakhon Pathom..." type="text"/>
+            </label>
+        </div>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+        <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
+            <button id="btn-en" onclick="changeLang('en')" class="lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm">
                 <span>EN</span>
-                </button>
-                <button id="btn-th" class="flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
-                    <span>TH</span>
-                </button>
-                <button id="btn-cn" class="flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
-                    <span>CN</span>
-                </button>
-            </div>
+            </button>
+            <button id="btn-th" onclick="changeLang('th')" class="lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
+                <span>TH</span>
+            </button>
+            <button id="btn-cn" onclick="changeLang('cn')" class="lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
+                <span>CN</span>
+            </button>
         </div>
-    </header>
+    </div>
+</header>
 
     <div class="flex flex-1 overflow-hidden relative">
     
     <aside id="sidebar" class="flex w-full lg:w-[500px] flex-col border-r border-border-light bg-background-light z-10 shrink-0 h-full transition-all duration-300 ease-in-out transform origin-left">
         <div class="flex flex-col gap-4 border-b border-border-light p-6 bg-background-light/95 backdrop-blur-sm z-10">
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-                <button class="whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20">All</button>
-                <button class="whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary hover:text-primary transition shadow-sm">24/7</button>
+                <button id ="filter-all"class="whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20">All</button>
+                <button id ="filter-24"class="whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary hover:text-primary transition shadow-sm">24/7</button>
             </div>
         </div>
         
