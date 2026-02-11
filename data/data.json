@@ -8,7 +8,11 @@
     },
     "lat": 13.80607210362295,  
     "lng": 100.04886413872049,
-    "price": "1,600 บาท/เดือน (โดยประมาณ)",
+    "price": {
+      "th": "1,600 บาท/เดือน ",
+      "en": "1,600 THB/Month ",
+      "cn": "1,600 泰铢/月"
+    },
     "updated_date": "2026-02-05",
     "image_url": "image/jettsCentral.jpg",
     "tags": ["24hr", "cardio", "weight", "aircon"],
@@ -23,10 +27,14 @@
     },
     "lat": 13.817220375424778, 
     "lng": 100.0369147161529,
-    "price": "999 บาท/เดือน (ราคาเริ่มต้น)",
+    "price": {
+      "th": "999 บาท/เดือน (ราคาเริ่มต้น)",
+      "en": "999 THB/Month (Starting)",
+      "cn": "999 泰铢/月 (起)"
+    },
     "updated_date": "2026-02-05",
     "image_url": "image/baam.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "02 123 4567"
   }
   ,
@@ -39,10 +47,14 @@
     },
     "lat": 13.827064231452221,
     "lng":  100.08058546431168,
-    "price": "1,200 บาท/เดือน",
+    "price": {
+      "th": "1,200 บาท/เดือน",
+      "en": "1,200 THB/Month",
+      "cn": "1,200 泰铢/月"
+    },
     "updated_date": "2026-02-15",
      "image_url": "image/goodgym.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": " 086 366 6464"
   },
   {
@@ -54,10 +66,14 @@
     },
     "lat": 13.82050520680794, 
     "lng": 100.00134449937599,
-    "price": "150 บาท/ครั้ง",
+    "price": {
+      "th": "150 บาท/ครั้ง",
+      "en": "150 THB/Visit",
+      "cn": "150 泰铢/次"
+    },
     "updated_date": "2026-02-12",
      "image_url": "image/Kaofang.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "080 0759 515"
   },
   {
@@ -69,10 +85,14 @@
     },
     "lat": 13.826201028125489,
     "lng":  100.069718354978,
-    "price": "990 บาท/เดือน",
+   "price": {
+      "th": "990 บาท/เดือน",
+      "en": "990 THB/Month",
+      "cn": "990 泰铢/月"
+    },
     "updated_date": "2026-02-10",
      "image_url": "image/fitness21.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "034 106 321"
   },
   {
@@ -82,12 +102,16 @@
       "en": "FITNESS SU.ED.CENTER",
       "cn": "艺术大学健身中心"
     },
-    "lat": 13.827969863324281, 
-    "lng": 100.040449154753,
-    "price": "50 บาท/ครั้ง (นศ.)",
+    "lat": 13.818693138312758, 
+    "lng": 100.04429285273166,
+    "price": {
+      "th": "50 บาท/ครั้ง (นศ.)",
+      "en": "50 THB/Visit (Student)",
+      "cn": "50 泰铢/次 (学生)"
+    },
     "updated_date": "2026-02-18",
      "image_url": "image/silpakorn.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "034 241 240 "
   },
   
@@ -100,10 +124,14 @@
     },
     "lat": 13.814806409023252,
     "lng":  100.32002818461416,
-    "price": "1,390 บาท/เดือน",
+    "price": {
+      "th": "1,390 บาท/เดือน",
+      "en": "1,390 THB/Month",
+      "cn": "1,390 泰铢/月"
+    },
     "updated_date": "2026-02-14",
      "image_url": "image/mefitness.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "092 252 0490"
   },
   {
@@ -115,10 +143,14 @@
     },
     "lat": 13.777463592367344, 
     "lng": 100.30015487082552,
-    "price": "80 บาท/วัน",
+    "price": {
+      "th": "80 บาท/วัน",
+      "en": "80 THB/Day",
+      "cn": "80 泰铢/天"
+    },
     "updated_date": "2026-02-11",
      "image_url": "image/bootsfitgym.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "082 974 1710"
   },
   {
@@ -130,10 +162,14 @@
     },
     "lat": 13.829666279829787,
     "lng":  100.16232113690259,
-    "price": "1,200 บาท/เดือน",
+    "price": {
+      "th": "1,200 บาท/เดือน",
+      "en": "1,200 THB/Month",
+      "cn": "1,200 泰铢/月"
+    },
     "updated_date": "2026-02-09",
      "image_url": "image/healthclub.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": " 061 579 4191"
   },
   {
@@ -145,10 +181,14 @@
     },
     "lat": 13.78946729223753,
     "lng": 100.18667934199209,
-    "price": "1,000 บาท/เดือน",
+    "price": {
+      "th": "1,000 บาท/เดือน",
+      "en": "1,000 THB/Month",
+      "cn": "1,000 泰铢/月"
+    },
     "updated_date": "2026-02-15",
      "image_url": "image/fitandco.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "095 918 6318"
   },
   {
@@ -160,10 +200,14 @@
     },
     "lat": 14.034866002751366,
     "lng":  99.9724860126875,
-    "price": "900 บาท/เดือน",
+    "price": {
+      "th": "900 บาท/เดือน",
+      "en": "900 THB/Month",
+      "cn": "900 泰铢/月"
+    },
     "updated_date": "2026-02-01",
      "image_url": "image/pes.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "034 351 898"
   },
   {
@@ -175,7 +219,11 @@
     },
     "lat": 13.780131134538422,
     "lng": 100.33063867124423,
-    "price": "1,600 บาท/เดือน",
+    "price": {
+      "th": "1,600 บาท/เดือน",
+      "en": "1,600 THB/Month",
+      "cn": "1,600 泰铢/月"
+    },
     "updated_date": "2026-02-16",
      "image_url": "image/jetts4.jpg",
     "tags": ["24hr", "cardio", "weight", "aircon"],
@@ -190,10 +238,14 @@
     },
     "lat": 13.830808642401355, 
     "lng": 100.32140147556132,
-    "price": "1,290 บาท/เดือน",
+    "price": {
+      "th": "1,290 บาท/เดือน",
+      "en": "1,290 THB/Month",
+      "cn": "1,290 泰铢/月"
+    },
     "updated_date": "2026-02-13",
      "image_url": "image/kortfitgym.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "-"
   },
   {
@@ -205,10 +257,14 @@
     },
     "lat": 13.97266698297983, 
     "lng": 100.08411529296897,
-    "price": "800 บาท/เดือน",
+    "price": {
+      "th": "800 บาท/เดือน",
+      "en": "800 THB/Month",
+      "cn": "800 泰铢/月"
+    },
     "updated_date": "2026-02-05",
      "image_url": "image/fitclub.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "099 261 4256"
   },
   {
@@ -220,14 +276,18 @@
     },
     "lat": 13.808080027687042, 
     "lng": 100.0469865159291,
-    "price": "1,100 บาท/เดือน",
+    "price": {
+      "th": "1,100 บาท/เดือน",
+      "en": "1,100 THB/Month",
+      "cn": "1,100 泰铢/月"
+    },
     "updated_date": "2026-02-14",
      "image_url": "image/fitgym.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "097 147 9995"
   },
   {
-    "id": 17,
+    "id": 16,
     "name": {
       "th": "สตรอง ฟิตเนส นครปฐม",
       "en": "Strong Fitness Nakhon Pathom",
@@ -235,10 +295,14 @@
     },
     "lat": 13.808816684037499,
     "lng":  100.04372264188851,
-    "price": "900 บาท/เดือน",
+    "price": {
+      "th": "900 บาท/เดือน",
+      "en": "900 THB/Month",
+      "cn": "900 泰铢/月"
+    },
     "updated_date": "2026-02-12",
      "image_url": "image/strongfitness.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [ "cardio", "weight", "aircon"],
     "contact": "098 827 4191"
   }
 

@@ -1,20 +1,31 @@
 let map;
-let markers = []; 
-let fitnessData = []; 
+let markers = [];
+let fitnessData = [];
 let currentLang = 'th'; // เริ่มต้นภาษาไทย
 
 const dictionary = {
-    "th": { 
+    "th": {
         "price": "ราคา", "updated": "อัปเดตเมื่อ", "search": "ค้นหาฟิตเนส...", "results": "ผลลัพธ์",
-        "nav_home": "หน้าหลัก", "nav_map": "แผนที่" 
+        "nav_home": "หน้าหลัก", "nav_map": "แผนที่", "updated": "อัปเดตเมื่อ", "loading": "กำลังโหลดข้อมูล...",
+        "error": "เกิดข้อผิดพลาดในการโหลดข้อมมูล",
+        "filter_all": "ทั้งหมด", // เพิ่ม
+        "filter_24": "เปิด 24 ชม." // เพิ่ม
     },
-    "en": { 
+    "en": {
         "price": "Price", "updated": "Updated", "search": "Search gyms...", "results": "Results Found",
-        "nav_home": "Home", "nav_map": "Map"
+        "nav_home": "Home", "nav_map": "Map", "updated": "Updated",
+        "loading": "Loading data...",
+        "error": "Error loading data",
+        "filter_all": "All", // เพิ่ม
+        "filter_24": "Open 24/7" // เพิ่ม
     },
-    "cn": { 
+    "cn": {
         "price": "价格", "updated": "更新日期", "search": "搜索健身房...", "results": "结果",
-        "nav_home": "首页", "nav_map": "地图" 
+        "nav_home": "首页", "nav_map": "地图","updated": "更新日期",
+        "loading": "正在加载数据...",
+        "error": "加载数据错误",
+        "filter_all": "全部", // เพิ่ม
+        "filter_24": "24小时营业" // เพิ่ม
     }
 };
 
@@ -40,7 +51,7 @@ function loadData() {
         .catch(error => {
             console.error("Error:", error);
             const list = document.getElementById('gym-list');
-            if(list) list.innerHTML = `<div class="text-red-500 text-center p-4">Error loading data.</div>`;
+            if (list) list.innerHTML = `<div class="text-red-500 text-center p-4">Error loading data.</div>`;
         });
 }
 
@@ -54,8 +65,9 @@ function renderMarkers(data) {
     markers.forEach(m => m.setMap(null));
     markers = [];
     data.forEach(item => {
+        // ดึงชื่อตามภาษาที่เลือก ถ้าไม่มีให้ใช้ภาษาอังกฤษ
         const name = item.name[currentLang] || item.name['en'];
-        const contentString = `<div style="padding:5px"><b>${name}</b><br>${item.price}</div>`;
+        const contentString = `<div style="padding:5px"><b>${name}</b><br>${item.price[currentLang]}</div>`;
         const infoWindow = new google.maps.InfoWindow({ content: contentString });
         const marker = new google.maps.Marker({
             position: { lat: item.lat, lng: item.lng },
@@ -69,7 +81,7 @@ function renderMarkers(data) {
 function renderSidePanel(data) {
     const listContainer = document.getElementById('gym-list');
     if (!listContainer) return;
-    listContainer.innerHTML = ''; 
+    listContainer.innerHTML = '';
 
     const countHeader = document.createElement('div');
     countHeader.className = "text-sm font-bold text-text-subtle uppercase tracking-wider mb-2";
@@ -79,20 +91,20 @@ function renderSidePanel(data) {
     data.forEach((item, index) => {
         const name = item.name[currentLang] || item.name['en'];
         let imageHTML = item.image_url ? `<img src="${item.image_url}" class="h-full w-full object-cover">` : `<div class="flex items-center justify-center h-full bg-gray-200"><span class="material-symbols-outlined">fitness_center</span></div>`;
-        
+
         const card = document.createElement('div');
         card.className = "flex gap-4 rounded-2xl bg-white p-3 cursor-pointer border border-border-light hover:border-primary mb-4 shadow-sm group hover:shadow-md transition";
         card.innerHTML = `
             <div class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-gray-100">${imageHTML}</div>
             <div class="flex flex-1 flex-col justify-between">
                 <h3 class="font-bold group-hover:text-primary transition">${name}</h3>
-                <div class="text-sm text-primary font-bold">${item.price}</div>
+                <div class="text-sm text-primary font-bold">${item.price[currentLang]}</div>
             </div>
         `;
         card.addEventListener('click', () => {
             map.panTo({ lat: item.lat, lng: item.lng });
             map.setZoom(15);
-            if(markers[index]) google.maps.event.trigger(markers[index], 'click');
+            if (markers[index]) google.maps.event.trigger(markers[index], 'click');
         });
         listContainer.appendChild(card);
     });
@@ -101,22 +113,26 @@ function renderSidePanel(data) {
 // ฟังก์ชันเปลี่ยนภาษา (รวม Logic แก้ไขให้ครบแล้ว)
 function changeLang(lang) {
     currentLang = lang;
-    
+
     // 1. เปลี่ยนสีปุ่ม
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle";
     });
     const activeBtn = document.getElementById('btn-' + lang);
-    if(activeBtn) activeBtn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm";
+    if (activeBtn) activeBtn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm";
 
     // 2. เปลี่ยนข้อความในเว็บ (รวม Home/Map)
     const searchInput = document.getElementById('search-input');
-    if(searchInput) searchInput.placeholder = dictionary[lang].search;
+    if (searchInput) searchInput.placeholder = dictionary[lang].search;
 
     const navHome = document.getElementById("nav-home");
     const navMap = document.getElementById("nav-map");
-    if(navHome) navHome.innerText = dictionary[lang].nav_home;
-    if(navMap) navMap.innerText = dictionary[lang].nav_map;
+    const filterAll = document.getElementById("filter-all");
+    const filter24 =document.getElementById("filter-24");
+    if(filterAll) filterAll.innerText = dictionary[lang].filter_all;
+    if(filter24) filter24.innerText = dictionary[lang].filter_24;
+    if (navHome) navHome.innerText = dictionary[lang].nav_home;
+    if (navMap) navMap.innerText = dictionary[lang].nav_map;
 
     // 3. วาดการ์ดและหมุดใหม่
     renderAll(fitnessData);
@@ -125,7 +141,7 @@ function changeLang(lang) {
 // Search & Filter Listeners
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById('search-input');
-    if(searchInput) {
+    if (searchInput) {
         searchInput.addEventListener('keyup', (e) => {
             const term = e.target.value.toLowerCase();
             const filtered = fitnessData.filter(i => i.name.th.includes(term) || i.name.en.toLowerCase().includes(term));
@@ -134,12 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const toggleBtn = document.getElementById('toggle-sidebar');
-    if(toggleBtn) {
+    if (toggleBtn) {
         toggleBtn.addEventListener('click', () => {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-ml-[500px]');
             const icon = toggleBtn.querySelector('span');
-            
+
             // เช็คว่า sidebar ถูกซ่อนหรือไม่
             if (sidebar.classList.contains('-ml-[500px]')) {
                 icon.innerText = 'chevron_right';
@@ -150,13 +166,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function filterGyms(type){
+function filterGyms(type) {
+   // กรองข้อมูล
     let filtered = type === 'all' ? fitnessData : fitnessData.filter(i => i.tags && i.tags.includes('24hr'));
     renderAll(filtered);
     
-    document.getElementById('filter-all').className = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm";
-    document.getElementById('filter-24').className = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm";
+    // เปลี่ยน Style ปุ่ม Filter ให้รู้ว่าอันไหน Active
+    const btnAll = document.getElementById('filter-all');
+    const btn24 = document.getElementById('filter-24');
     
-    const activeId = type === 'all' ? 'filter-all' : 'filter-24';
-    document.getElementById(activeId).className = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20";
+    const inactiveClass = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm cursor-pointer";
+    const activeClass = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20 cursor-default";
+
+    if(type === 'all') {
+        btnAll.className = activeClass;
+        btn24.className = inactiveClass;
+    } else {
+        btnAll.className = inactiveClass;
+        btn24.className = activeClass;
+    }mentById(activeId).className = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20";
+
 }
