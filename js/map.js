@@ -1,111 +1,65 @@
-// --- กำหนดตัวแปร Global ---
 let map;
 let markers = []; 
 let fitnessData = []; 
-let currentLang = 'en'; // เริ่มต้นเป็นภาษาอังกฤษตาม HTML
+let currentLang = 'th'; // เริ่มต้นภาษาไทย
 
 const dictionary = {
-    "th": { "price": "ราคา", "updated": "อัปเดตเมื่อ", "search": "ค้นหาฟิตเนส...", "results": "ผลลัพธ์" },
-    "en": { "price": "Price", "updated": "Updated", "search": "Search gyms...", "results": "Results Found" },
-    "cn": { "price": "价格", "updated": "更新日期", "search": "搜索健身房...", "results": "结果" }
+    "th": { 
+        "price": "ราคา", "updated": "อัปเดตเมื่อ", "search": "ค้นหาฟิตเนส...", "results": "ผลลัพธ์",
+        "nav_home": "หน้าหลัก", "nav_map": "แผนที่" 
+    },
+    "en": { 
+        "price": "Price", "updated": "Updated", "search": "Search gyms...", "results": "Results Found",
+        "nav_home": "Home", "nav_map": "Map"
+    },
+    "cn": { 
+        "price": "价格", "updated": "更新日期", "search": "搜索健身房...", "results": "结果",
+        "nav_home": "首页", "nav_map": "地图" 
+    }
 };
 
-// --- 1. เริ่มต้นทำงานเมื่อเว็บโหลดเสร็จ (สำคัญมาก ส่วนนี้คือที่ขาดไป) ---
-document.addEventListener("DOMContentLoaded", () => {
-    // ผูกปุ่มเปลี่ยนภาษา
-    document.getElementById('btn-th').addEventListener('click', () => changeLang('th'));
-    document.getElementById('btn-en').addEventListener('click', () => changeLang('en'));
-    document.getElementById('btn-cn').addEventListener('click', () => changeLang('cn'));
-
-    // ผูกช่องค้นหา
-    document.getElementById('search-input').addEventListener('keyup', handleSearch);
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggle-sidebar');
-    const icon = toggleBtn.querySelector('span');
-    let isOpen = true;
-
-    if(toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            isOpen = !isOpen; // สลับสถานะ
-
-            if (isOpen) {
-                // เปิด Sidebar
-                sidebar.classList.remove('-ml-[500px]'); // ดึงกลับมา
-                icon.innerText = 'chevron_left'; // เปลี่ยนลูกศรชี้ซ้าย
-            } else {
-                // ปิด Sidebar (Map เต็มจอ)
-                sidebar.classList.add('-ml-[500px]'); // ดันออกไปทางซ้ายจนสุด
-                icon.innerText = 'chevron_right'; // เปลี่ยนลูกศรชี้ขวา
-            }
-            
-            // สั่งให้ Google Map รับรู้ว่าขนาดจอเปลี่ยน (ป้องกันแผนที่เบี้ยว)
-            setTimeout(() => {
-                if(map) google.maps.event.trigger(map, "resize");
-            }, 300);
-        });
-    }
-});
-
-// --- 2. ฟังก์ชัน Google Maps ---
 function initMap() {
     const centerPoint = { lat: 13.8196, lng: 100.0389 };
-    const mapStyle = [
-        { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] }
-    ];
+    const mapStyle = [{ "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] }];
 
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
-        center: centerPoint,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        styles: mapStyle
+        zoom: 12, center: centerPoint, mapTypeControl: false, streetViewControl: false, fullscreenControl: false, styles: mapStyle
     });
 
     loadData();
-    
 }
 
-// --- 3. ดึงข้อมูล ---
 function loadData() {
     fetch('data/data.json')
         .then(response => response.json())
         .then(json => {
             fitnessData = json;
-            renderAll(); 
+            // หลังจากโหลดข้อมูลเสร็จ ให้ตั้งค่าภาษาเริ่มต้นทันที เพื่อให้หน้าเว็บตรงกับ currentLang
+            changeLang(currentLang);
         })
         .catch(error => {
             console.error("Error:", error);
-            // สร้างข้อมูลจำลองถ้าโหลดไฟล์ไม่ได้ (เผื่อทดสอบ)
-            fitnessData = [];
-            renderSidePanel();
+            const list = document.getElementById('gym-list');
+            if(list) list.innerHTML = `<div class="text-red-500 text-center p-4">Error loading data.</div>`;
         });
 }
 
-// --- 4. ฟังก์ชันวาดหน้าจอ ---
-function renderAll() {
-    renderMarkers(fitnessData); // วาดหมุดทั้งหมด
-    renderSidePanel(fitnessData); // วาดลิสต์ทั้งหมด
+function renderAll(dataToRender) {
+    const data = dataToRender || fitnessData;
+    renderMarkers(data);
+    renderSidePanel(data);
 }
 
 function renderMarkers(data) {
-    // ลบหมุดเก่า
     markers.forEach(m => m.setMap(null));
     markers = [];
-
     data.forEach(item => {
         const name = item.name[currentLang] || item.name['en'];
-        const contentString = `
-            <div style="font-family: 'Manrope', sans-serif; padding: 5px;">
-                <h3 style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">${name}</h3>
-                <p style="color: #ef4444; font-weight: bold;">${item.price}</p>
-            </div>
-        `;
+        const contentString = `<div style="padding:5px"><b>${name}</b><br>${item.price}</div>`;
         const infoWindow = new google.maps.InfoWindow({ content: contentString });
         const marker = new google.maps.Marker({
             position: { lat: item.lat, lng: item.lng },
-            map: map,
-            title: name,
+            map: map, title: name
         });
         marker.addListener("click", () => infoWindow.open(map, marker));
         markers.push(marker);
@@ -114,84 +68,95 @@ function renderMarkers(data) {
 
 function renderSidePanel(data) {
     const listContainer = document.getElementById('gym-list');
+    if (!listContainer) return;
     listContainer.innerHTML = ''; 
 
-    // หัวข้อจำนวนผลลัพธ์
     const countHeader = document.createElement('div');
     countHeader.className = "text-sm font-bold text-text-subtle uppercase tracking-wider mb-2";
     countHeader.innerText = `${data.length} ${dictionary[currentLang].results}`;
     listContainer.appendChild(countHeader);
 
-    data.forEach((item) => {
+    data.forEach((item, index) => {
         const name = item.name[currentLang] || item.name['en'];
+        let imageHTML = item.image_url ? `<img src="${item.image_url}" class="h-full w-full object-cover">` : `<div class="flex items-center justify-center h-full bg-gray-200"><span class="material-symbols-outlined">fitness_center</span></div>`;
         
-        let imageHTML = '';
-        if (item.image_url) {
-            imageHTML = `<img src="${item.image_url}" class="h-full w-full object-cover" alt="${name}">`;
-        } else {
-            imageHTML = `<div class="flex items-center justify-center h-full text-gray-400 bg-gray-200"><span class="material-symbols-outlined text-4xl">fitness_center</span></div>`;
-        }
-
         const card = document.createElement('div');
-        card.className = "group flex flex-col sm:flex-row gap-4 rounded-2xl bg-white p-3 transition hover:shadow-lg hover:-translate-y-1 cursor-pointer border border-border-light hover:border-primary/20 mb-4";
-        
+        card.className = "flex gap-4 rounded-2xl bg-white p-3 cursor-pointer border border-border-light hover:border-primary mb-4 shadow-sm group hover:shadow-md transition";
         card.innerHTML = `
-            <div class="relative h-40 sm:h-32 w-full sm:w-32 shrink-0 overflow-hidden rounded-xl bg-gray-100">
-                ${imageHTML}
-            </div>
-            <div class="flex flex-1 flex-col justify-between py-1">
-                <div>
-                    <h3 class="font-bold text-lg text-black leading-tight group-hover:text-primary transition-colors">${name}</h3>
-                    <div class="mt-1 flex items-center gap-1 text-xs text-text-subtle">
-                        <span class="material-symbols-outlined text-[14px] text-primary">location_on</span>
-                        ${item.district || 'Nakhon Pathom'}
-                    </div>
-                </div>
-                <div class="mt-3 flex items-end justify-between">
-                    <div class="text-xs text-text-subtle">${dictionary[currentLang].updated}: ${item.updated_date}</div>
-                    <div class="text-lg font-bold text-primary">${item.price}</div>
-                </div>
+            <div class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-gray-100">${imageHTML}</div>
+            <div class="flex flex-1 flex-col justify-between">
+                <h3 class="font-bold group-hover:text-primary transition">${name}</h3>
+                <div class="text-sm text-primary font-bold">${item.price}</div>
             </div>
         `;
-
         card.addEventListener('click', () => {
             map.panTo({ lat: item.lat, lng: item.lng });
             map.setZoom(15);
+            if(markers[index]) google.maps.event.trigger(markers[index], 'click');
         });
-
         listContainer.appendChild(card);
     });
 }
 
-// --- 5. ฟังก์ชันเปลี่ยนภาษา ---
+// ฟังก์ชันเปลี่ยนภาษา (รวม Logic แก้ไขให้ครบแล้ว)
 function changeLang(lang) {
     currentLang = lang;
-
-    // Reset สไตล์ปุ่มกด (กำหนด class ใหม่โดยตรงเพื่อให้ชัวร์ที่สุด)
-    const inactiveClass = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle cursor-pointer";
-    const activeClass = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm cursor-default";
-
-    // รีเซ็ตทุกปุ่มเป็น inactive
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.className = inactiveClass);
-
-    // ตั้งค่าปุ่มที่ถูกกดเป็น active
+    
+    // 1. เปลี่ยนสีปุ่ม
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle";
+    });
     const activeBtn = document.getElementById('btn-' + lang);
-    if(activeBtn) activeBtn.className = activeClass;
+    if(activeBtn) activeBtn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm";
 
-    // เปลี่ยน Placeholder
+    // 2. เปลี่ยนข้อความในเว็บ (รวม Home/Map)
     const searchInput = document.getElementById('search-input');
     if(searchInput) searchInput.placeholder = dictionary[lang].search;
 
-    renderAll(); // วาดข้อมูลใหม่เป็นภาษาที่เลือก
+    const navHome = document.getElementById("nav-home");
+    const navMap = document.getElementById("nav-map");
+    if(navHome) navHome.innerText = dictionary[lang].nav_home;
+    if(navMap) navMap.innerText = dictionary[lang].nav_map;
+
+    // 3. วาดการ์ดและหมุดใหม่
+    renderAll(fitnessData);
 }
 
-// --- 6. ฟังก์ชันค้นหา ---
-function handleSearch(e) {
-    const term = e.target.value.toLowerCase();
-    const filteredData = fitnessData.filter(item => {
-        const nameMatch = (item.name.th && item.name.th.includes(term)) || 
-                          (item.name.en && item.name.en.toLowerCase().includes(term));
-        return nameMatch;
-    });
-    renderSidePanel(filteredData);
+// Search & Filter Listeners
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById('search-input');
+    if(searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = fitnessData.filter(i => i.name.th.includes(term) || i.name.en.toLowerCase().includes(term));
+            renderAll(filtered);
+        });
+    }
+
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    if(toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-ml-[500px]');
+            const icon = toggleBtn.querySelector('span');
+            
+            // เช็คว่า sidebar ถูกซ่อนหรือไม่
+            if (sidebar.classList.contains('-ml-[500px]')) {
+                icon.innerText = 'chevron_right';
+            } else {
+                icon.innerText = 'chevron_left';
+            }
+        });
+    }
+});
+
+function filterGyms(type){
+    let filtered = type === 'all' ? fitnessData : fitnessData.filter(i => i.tags && i.tags.includes('24hr'));
+    renderAll(filtered);
+    
+    document.getElementById('filter-all').className = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm";
+    document.getElementById('filter-24').className = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm";
+    
+    const activeId = type === 'all' ? 'filter-all' : 'filter-24';
+    document.getElementById(activeId).className = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20";
 }
