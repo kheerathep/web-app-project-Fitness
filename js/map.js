@@ -1,31 +1,32 @@
 let map;
 let markers = [];
 let fitnessData = [];
-let currentLang = 'th'; // เริ่มต้นภาษาไทย
+let currentLang = 'th';
 
 const dictionary = {
     "th": {
         "price": "ราคา", "updated": "อัปเดตเมื่อ", "search": "ค้นหาฟิตเนส...", "results": "ผลลัพธ์",
-        "nav_home": "หน้าหลัก", "nav_map": "แผนที่", "updated": "อัปเดตเมื่อ", "loading": "กำลังโหลดข้อมูล...",
-        "error": "เกิดข้อผิดพลาดในการโหลดข้อมมูล",
-        "filter_all": "ทั้งหมด", // เพิ่ม
-        "filter_24": "เปิด 24 ชม." // เพิ่ม
+        "nav_home": "หน้าหลัก", "nav_map": "แผนที่", "loading": "กำลังโหลดข้อมูล...",
+        "error": "เกิดข้อผิดพลาดในการโหลดข้อมูล",
+        "filter_all": "ทั้งหมด",
+        "filter_24": "เปิด 24 ชม.",
+        "lbl_direction": "นำทาง", "lbl_website": "เว็บไซต์"
     },
     "en": {
         "price": "Price", "updated": "Updated", "search": "Search gyms...", "results": "Results Found",
-        "nav_home": "Home", "nav_map": "Map", "updated": "Updated",
-        "loading": "Loading data...",
+        "nav_home": "Home", "nav_map": "Map", "loading": "Loading data...",
         "error": "Error loading data",
-        "filter_all": "All", // เพิ่ม
-        "filter_24": "Open 24/7" // เพิ่ม
+        "filter_all": "All",
+        "filter_24": "Open 24/7",
+        "lbl_direction": "Directions", "lbl_website": "Website"
     },
     "cn": {
         "price": "价格", "updated": "更新日期", "search": "搜索健身房...", "results": "结果",
-        "nav_home": "首页", "nav_map": "地图","updated": "更新日期",
-        "loading": "正在加载数据...",
+        "nav_home": "首页", "nav_map": "地图", "loading": "正在加载数据...",
         "error": "加载数据错误",
-        "filter_all": "全部", // เพิ่ม
-        "filter_24": "24小时营业" // เพิ่ม
+        "filter_all": "全部",
+        "filter_24": "24小时营业",
+        "lbl_direction": "导航", "lbl_website": "网站"
     }
 };
 
@@ -45,7 +46,6 @@ function loadData() {
         .then(response => response.json())
         .then(json => {
             fitnessData = json;
-            // หลังจากโหลดข้อมูลเสร็จ ให้ตั้งค่าภาษาเริ่มต้นทันที เพื่อให้หน้าเว็บตรงกับ currentLang
             changeLang(currentLang);
         })
         .catch(error => {
@@ -65,15 +65,19 @@ function renderMarkers(data) {
     markers.forEach(m => m.setMap(null));
     markers = [];
     data.forEach(item => {
-        // ดึงชื่อตามภาษาที่เลือก ถ้าไม่มีให้ใช้ภาษาอังกฤษ
         const name = item.name[currentLang] || item.name['en'];
-        const contentString = `<div style="padding:5px"><b>${name}</b><br>${item.price[currentLang]}</div>`;
-        const infoWindow = new google.maps.InfoWindow({ content: contentString });
+
         const marker = new google.maps.Marker({
             position: { lat: item.lat, lng: item.lng },
             map: map, title: name
         });
-        marker.addListener("click", () => infoWindow.open(map, marker));
+
+        marker.addListener("click", () => {
+            map.panTo({ lat: item.lat, lng: item.lng });
+            map.setZoom(16);
+            showGymDetail(item);
+        });
+
         markers.push(marker);
     });
 }
@@ -103,48 +107,180 @@ function renderSidePanel(data) {
         `;
         card.addEventListener('click', () => {
             map.panTo({ lat: item.lat, lng: item.lng });
-            map.setZoom(15);
-            if (markers[index]) google.maps.event.trigger(markers[index], 'click');
+            map.setZoom(16);
+            showGymDetail(item); 
         });
         listContainer.appendChild(card);
     });
 }
 
-// ฟังก์ชันเปลี่ยนภาษา (รวม Logic แก้ไขให้ครบแล้ว)
 function changeLang(lang) {
     currentLang = lang;
 
-    // 1. เปลี่ยนสีปุ่ม
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle";
     });
     const activeBtn = document.getElementById('btn-' + lang);
     if (activeBtn) activeBtn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm";
 
-    // 2. เปลี่ยนข้อความในเว็บ (รวม Home/Map)
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.placeholder = dictionary[lang].search;
 
     const navHome = document.getElementById("nav-home");
     const navMap = document.getElementById("nav-map");
     const filterAll = document.getElementById("filter-all");
-    const filter24 =document.getElementById("filter-24");
-    if(filterAll) filterAll.innerText = dictionary[lang].filter_all;
-    if(filter24) filter24.innerText = dictionary[lang].filter_24;
+    const filter24 = document.getElementById("filter-24");
+
+    if (filterAll) filterAll.innerText = dictionary[lang].filter_all;
+    if (filter24) filter24.innerText = dictionary[lang].filter_24;
     if (navHome) navHome.innerText = dictionary[lang].nav_home;
     if (navMap) navMap.innerText = dictionary[lang].nav_map;
 
-    // 3. วาดการ์ดและหมุดใหม่
+    const lblDir = document.getElementById('lbl-direction');
+    const lblWeb = document.getElementById('lbl-website');
+    if (lblDir) lblDir.innerText = dictionary[lang].lbl_direction;
+    if (lblWeb) lblWeb.innerText = dictionary[lang].lbl_website;
+
     renderAll(fitnessData);
 }
 
-// Search & Filter Listeners
+function showGymDetail(item) {
+    // 1. ดึงข้อมูล
+    const name = item.name[currentLang] || item.name['en'];
+    const price = item.price[currentLang] || item.price['en'];
+
+    // 2. ใส่ข้อมูลลง HTML
+    document.getElementById('detail-name').innerText = name;
+    document.getElementById('detail-price').innerText = price;
+    document.getElementById('detail-img').src = item.image_url || 'https://via.placeholder.com/600x400?text=No+Image';
+
+    // Tags
+    const tagsContainer = document.getElementById('detail-tags');
+    tagsContainer.innerHTML = '';
+    if (item.tags) {
+        item.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = "bg-gray-100 px-2 py-1 rounded-md";
+            span.innerText = tag;
+            tagsContainer.appendChild(span);
+        });
+    }
+
+    // 3. จัดการเบอร์โทรศัพท์ (แก้ไขจุดที่ผิด)
+    // ใช้ ID "phone-container" เพื่อหา HTML element
+    const phoneContainer = document.getElementById('phone-container'); 
+    const phoneLink = document.getElementById('detail-phone');
+    
+    if (phoneContainer && phoneLink) {
+        // ใช้ key "contact" จาก JSON ตามที่คุณใช้
+        if (item.contact) {
+            phoneContainer.classList.remove('hidden');
+            phoneContainer.classList.add('flex');
+            phoneLink.innerText = item.contact;
+            phoneLink.href = `tel:${item.contact}`; 
+        } else {
+            phoneContainer.classList.add('hidden');
+            phoneContainer.classList.remove('flex');
+        }
+    }
+
+    // 4. ปุ่ม Direction / Website
+    const dirBtn = document.getElementById('btn-direction');
+    const webBtn = document.getElementById('btn-website');
+    const lblDir = document.getElementById('lbl-direction');
+    const lblWeb = document.getElementById('lbl-website');
+    
+    if (lblDir) lblDir.innerText = dictionary[currentLang].lbl_direction;
+
+    if (dirBtn && webBtn) {
+        // [แก้ไข] ลิงก์แผนที่ให้ถูกต้อง ใช้ Backtick ` และ ${}
+        dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}`;
+
+        const iconWeb = webBtn.querySelector('.material-symbols-outlined');
+
+        if (item.website) {
+            webBtn.href = item.website;
+            webBtn.classList.remove('hidden');
+            webBtn.classList.add('flex');
+            
+            if (item.website.includes('facebook.com') || item.website.includes('fb.com')) {
+                lblWeb.innerText = "Facebook";
+                webBtn.className = "flex items-center justify-center gap-2 rounded-xl bg-[#1877F2] text-white px-4 py-2.5 text-sm font-bold hover:bg-[#1465d1] transition";
+                if(iconWeb) iconWeb.innerText = "public"; 
+            }
+            else if (item.website.includes('instagram.com')) {
+                lblWeb.innerText = "Instagram";
+                webBtn.className = "flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2.5 text-sm font-bold hover:opacity-90 transition";
+                if(iconWeb) iconWeb.innerText = "photo_camera"; 
+            }
+            else {
+                lblWeb.innerText = dictionary[currentLang].lbl_website || "Website";
+                webBtn.className = "flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-bold text-black hover:border-black transition";
+                if(iconWeb) iconWeb.innerText = "public";
+            }
+        } else {
+             webBtn.classList.add('hidden');
+             webBtn.classList.remove('flex');
+        }
+    }
+
+    // 5. วันที่อัปเดต
+    const updatedDiv = document.getElementById('detail-updated');
+    if (updatedDiv) {
+        if (item.updated_date) { 
+            const label = dictionary[currentLang].updated || "Updated";
+            updatedDiv.innerText = `${label}: ${item.updated_date}`;
+            updatedDiv.classList.remove('hidden');
+        } else {
+            updatedDiv.classList.add('hidden');
+        }
+    }
+
+    // 6. แสดง Panel
+    const panel = document.getElementById('floating-panel');
+    if (panel) {
+        panel.classList.remove('hidden');
+        panel.classList.add('flex');
+    }
+}
+
+function filterGyms(type) {
+    let filtered = type === 'all' ? fitnessData : fitnessData.filter(i => i.tags && i.tags.includes('24hr'));
+    renderAll(filtered);
+
+    const btnAll = document.getElementById('filter-all');
+    const btn24 = document.getElementById('filter-24');
+
+    const inactiveClass = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm cursor-pointer";
+    const activeClass = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20 cursor-default";
+
+    if (type === 'all') {
+        if (btnAll) btnAll.className = activeClass;
+        if (btn24) btn24.className = inactiveClass;
+    } else {
+        if (btnAll) btnAll.className = inactiveClass;
+        if (btn24) btn24.className = activeClass;
+    }
+}
+
+function closeDetail() {
+    const panel = document.getElementById('floating-panel');
+    if (panel) {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+    }
+}
+
+// Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('keyup', (e) => {
             const term = e.target.value.toLowerCase();
-            const filtered = fitnessData.filter(i => i.name.th.includes(term) || i.name.en.toLowerCase().includes(term));
+            const filtered = fitnessData.filter(i =>
+                (i.name.th && i.name.th.includes(term)) ||
+                (i.name.en && i.name.en.toLowerCase().includes(term))
+            );
             renderAll(filtered);
         });
     }
@@ -155,8 +291,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('-ml-[500px]');
             const icon = toggleBtn.querySelector('span');
-
-            // เช็คว่า sidebar ถูกซ่อนหรือไม่
             if (sidebar.classList.contains('-ml-[500px]')) {
                 icon.innerText = 'chevron_right';
             } else {
@@ -164,26 +298,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
 
-function filterGyms(type) {
-   // กรองข้อมูล
-    let filtered = type === 'all' ? fitnessData : fitnessData.filter(i => i.tags && i.tags.includes('24hr'));
-    renderAll(filtered);
-    
-    // เปลี่ยน Style ปุ่ม Filter ให้รู้ว่าอันไหน Active
+    // เพิ่ม Event Listener ให้ปุ่ม Filter
     const btnAll = document.getElementById('filter-all');
     const btn24 = document.getElementById('filter-24');
-    
-    const inactiveClass = "whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary transition shadow-sm cursor-pointer";
-    const activeClass = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20 cursor-default";
-
-    if(type === 'all') {
-        btnAll.className = activeClass;
-        btn24.className = inactiveClass;
-    } else {
-        btnAll.className = inactiveClass;
-        btn24.className = activeClass;
-    }mentById(activeId).className = "whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20";
-
-}
+    if (btnAll) btnAll.addEventListener('click', () => filterGyms('all'));
+    if (btn24) btn24.addEventListener('click', () => filterGyms('24hr'));
+});

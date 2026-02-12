@@ -74,16 +74,17 @@
     <div class="flex flex-1 overflow-hidden relative">
     
     <aside id="sidebar" class="flex w-full lg:w-[500px] flex-col border-r border-border-light bg-background-light z-10 shrink-0 h-full transition-all duration-300 ease-in-out transform origin-left">
-        <div class="flex flex-col gap-4 border-b border-border-light p-6 bg-background-light/95 backdrop-blur-sm z-10">
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-                <button id ="filter-all"class="whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20">All</button>
-                <button id ="filter-24"class="whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary hover:text-primary transition shadow-sm">24/7</button>
-            </div>
-            
-            <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" id="gym-list">
-                <div class="text-center text-gray-400 mt-10">Loading data...</div>
-            </div>
-        </aside>
+    
+    <div class="flex flex-col gap-4 border-b border-border-light p-6 bg-background-light/95 backdrop-blur-sm z-10 shrink-0">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+            <button id="filter-all" class="whitespace-nowrap rounded-full bg-primary text-white px-4 py-1.5 text-sm font-bold shadow-md shadow-red-500/20">All</button>
+            <button id="filter-24" class="whitespace-nowrap rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:border-primary hover:text-primary transition shadow-sm">24/7</button>
+        </div>
+    </div> <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" id="gym-list">
+        <div class="text-center text-gray-400 mt-10">Loading data...</div>
+    </div>
+
+</aside>
 
         <main class="relative hidden lg:block flex-1 h-full bg-gray-200">
             <button id="toggle-sidebar" class="absolute left-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white text-text-subtle shadow-md hover:text-primary hover:scale-110 transition cursor-pointer" title="Toggle Sidebar">
@@ -97,7 +98,40 @@
                     <span class="material-symbols-outlined">my_location</span>
                 </button>
             </div>
-        </main>
+
+            <div id="floating-panel" class="hidden absolute left-4 bottom-4 z-10 w-[calc(100%-2rem)] max-w-sm flex-col gap-3 rounded-2xl bg-white p-4 shadow-xl ring-1 ring-black/5 md:left-auto md:right-4 md:top-4 md:bottom-auto animate-fade-in">
+                <div class="relative h-40 w-full overflow-hidden rounded-xl bg-gray-100">
+                    <img id="detail-img" src="" class="h-full w-full object-cover">
+                    <button onclick="closeDetail()" class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black transition backdrop-blur-md">
+                        <span class="material-symbols-outlined text-lg">close</span>
+                    </button>
+                </div>
+                
+                <div>
+                    <h3 id="detail-name" class="text-lg font-bold text-gray-900 leading-tight"></h3>
+                    <p id="detail-price" class="text-primary font-bold mt-1"></p>
+                    <div id="detail-tags" class="flex flex-wrap gap-2 mt-2 text-xs text-gray-500"></div>
+                </div>
+
+                <div id="phone-container" class="hidden items-center gap-2 mt-2 text-sm text-gray-600">
+                    <span class="material-symbols-outlined text-[18px]">call</span>
+                    <a id="detail-phone" href="#" class="hover:text-primary hover:underline transition"></a>
+                </div>
+
+                <div id="map-actions" class="grid grid-cols-2 gap-2 mt-2">
+                    <a id="btn-direction" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl bg-black px-4 py-2.5 text-sm font-bold text-white hover:bg-gray-800 transition">
+                        <span class="material-symbols-outlined text-[18px]">directions</span>
+                        <span id="lbl-direction">Direction</span>
+                    </a>
+                    <a id="btn-website" href="#" target="_blank" class="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-bold text-black hover:border-black transition">
+                        <span class="material-symbols-outlined text-[18px]">public</span>
+                        <span id="lbl-website">Website</span>
+                    </a>
+                </div>
+
+                <div id="detail-updated" class="text-[10px] text-gray-400 text-center mt-3 border-t border-gray-100 pt-2"></div>
+            </div>
+            </main>
     </div>
 
     <script src="js/map.js"></script>
