@@ -47,12 +47,36 @@ function loadData() {
         .then(json => {
             fitnessData = json;
             changeLang(currentLang);
+            applyQuery();
         })
         .catch(error => {
             console.error("Error:", error);
             const list = document.getElementById('gym-list');
             if (list) list.innerHTML = `<div class="text-red-500 text-center p-4">Error loading data.</div>`;
         });
+}
+
+// if URL contains ?q=term, prepopulate search and show first gym
+function applyQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (!q) return;
+    const term = q.toLowerCase();
+    const input = document.getElementById('search-input');
+    if (input) input.value = q;
+
+    const filtered = fitnessData.filter(i =>
+        (i.name.th && i.name.th.toLowerCase().includes(term)) ||
+        (i.name.en && i.name.en.toLowerCase().includes(term))
+    );
+    renderAll(filtered);
+
+    if (filtered.length > 0) {
+        const item = filtered[0];
+        map.panTo({ lat: item.lat, lng: item.lng });
+        map.setZoom(16);
+        showGymDetail(item);
+    }
 }
 
 function renderAll(dataToRender) {

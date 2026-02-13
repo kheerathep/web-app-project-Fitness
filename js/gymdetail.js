@@ -21,3 +21,4 @@ tailwind.config = {
         },
     },
 };
+let currentLang = 'th';
