@@ -14,7 +14,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-    <script src="js/home.js"></script>
+    <script src="js/home.js?v=3"></script>
     <link rel="stylesheet" href="css/home.css">
 </head>
 
@@ -98,8 +98,8 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex justify-between items-end mb-10">
                     <div>
-                        <h2 class="text-3xl font-black text-black mb-2 uppercase tracking-tight">Trending Now</h2>
-                        <p class="text-text-subtle font-medium">Most popular spots in Nakhon Pathom this week</p>
+                        <h2 data-lang="trending_now" class="text-3xl font-black text-black mb-2 uppercase tracking-tight">Trending Now</h2>
+                        <p data-lang="trending_now_desc" class="text-text-subtle font-medium">Most popular spots in Nakhon Pathom this week</p>
                     </div>
                     <a class="flex items-center gap-2 text-primary font-bold text-sm hover:opacity-80 transition-opacity"
                         href="map.html">
@@ -107,104 +107,7 @@
                     </a>
                 </div>
                 <div id="trending-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div
-                        class="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div class="relative h-64 overflow-hidden">
-                            <span
-                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-black px-3 py-1.5 rounded uppercase tracking-wider z-10">Most
-                                Popular</span>
-                            <img alt="Power Up Gym interior with weight machines"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQcmn747tMxOjUQcYl1S4RlJ6Nwc98W4ztGgGQlz1zjkb4a5s6xZQpLdwjlJDQID-2SX4NA9d92cW3GSaBdeym2UsA-nRK1fvs0uuPSnNnfkeTAE7NucA-9wevxH9Ktbro4jlCmq9OyGq41DyT1gT1zw7AZVbtFtZ2kNPO3CUAotKSzOg29F4Hd9lGYisZD3eaeMAhur0UOm1drj8OmQpm7yT2FE9uDAxHyMmYozLbLcM3etoVv2D2L0DDgXZoa6NkH9rw8fA8utNq" />
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-black text-black">Power Up Gym</h4>
-                                <div
-                                    class="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-lg border border-yellow-100">
-                                    <span class="material-symbols-outlined text-yellow-500 text-base fill-1">star</span>
-                                    <span class="text-sm font-bold text-black">4.8</span>
-                                </div>
-                            </div>
-                            <p class="text-text-subtle text-sm font-medium mb-6">Muang, Nakhon Pathom</p>
-                            <div class="mt-auto flex items-end justify-between">
-                                <div>
-                                    <p class="text-xs text-text-subtle font-medium mb-1">Starting from</p>
-                                    <p class="text-primary font-black text-xl">฿500<span
-                                            class="text-sm text-text-subtle font-normal">/mo</span></p>
-                                </div>
-                                <button
-                                    class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
-                                    Book
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div class="relative h-64 overflow-hidden">
-                            <span
-                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-black px-3 py-1.5 rounded uppercase tracking-wider z-10">Premium</span>
-                            <img alt="Nakhon Wellness yoga studio"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnAPdmS8_6pt-hhX0dO66roEXI-tzvqMiPnlKe9BAMnyyxf8Bi0VisxEhc1ALC8oLW7XbtnWULoQUKuaRYGhscRiXDm48Qn4Z6WwbufOaAJ9vWKhCDJDLb_Vx2b4WJgENjToQcY4xDMokDPHsJQ_Epp9Vv3EmF9pPhoNRd0jzoyKRtlx7oUwI5IbUWELqYy9ouRsFWeBiURYKDzwqpju-N4kIJO9Xmr9rmrAI-J4Xn0m10hVwSe64rtlvCaCiIXgc3D7p6IiOgp3ti" />
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-black text-black">Nakhon Wellness</h4>
-                                <div
-                                    class="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-lg border border-yellow-100">
-                                    <span class="material-symbols-outlined text-yellow-500 text-base fill-1">star</span>
-                                    <span class="text-sm font-bold text-black">4.9</span>
-                                </div>
-                            </div>
-                            <p class="text-text-subtle text-sm font-medium mb-6">Kamphaeng Saen</p>
-                            <div class="mt-auto flex items-end justify-between">
-                                <div>
-                                    <p class="text-xs text-text-subtle font-medium mb-1">Starting from</p>
-                                    <p class="text-primary font-black text-xl">฿1,200<span
-                                            class="text-sm text-text-subtle font-normal">/mo</span></p>
-                                </div>
-                                <button
-                                    class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
-                                    Book
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div class="relative h-64 overflow-hidden">
-                            <span
-                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-black px-3 py-1.5 rounded uppercase tracking-wider z-10">Open
-                                24/7</span>
-                            <img alt="Iron Temple heavy lifting gym"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5V3OhLrmqfC0cW58QhJ80QBi1dFQv7RhGhcdINun-H-Cp_dHxT-N9VXEP3bwsSfvfSD0SEn-tspvChLVcvkZnqZQ2cw3cv-JxSoItNSJrPbsR0r4JA7kb-_xKh0l0w6nM2cJTZE9H3aEpGyhvosP6pX6dPPmO2CFEXVxAbp-RNNmtpoPZ3_gtPqD66FFVdBGvq1Hd0zpqmtmE1-TlJUpUaTkaGKP45NmRXMXddN4Myr7BgF-HDNZnlQyQ8Ia5UwEghplvwqmoXtlc" />
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-black text-black">Iron Temple</h4>
-                                <div
-                                    class="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-lg border border-yellow-100">
-                                    <span class="material-symbols-outlined text-yellow-500 text-base fill-1">star</span>
-                                    <span class="text-sm font-bold text-black">4.7</span>
-                                </div>
-                            </div>
-                            <p class="text-text-subtle text-sm font-medium mb-6">Sanam Chandra</p>
-                            <div class="mt-auto flex items-end justify-between">
-                                <div>
-                                    <p class="text-xs text-text-subtle font-medium mb-1">Starting from</p>
-                                    <p class="text-primary font-black text-xl">฿750<span
-                                            class="text-sm text-text-subtle font-normal">/mo</span></p>
-                                </div>
-                                <button
-                                    class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
-                                    Book
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -219,33 +122,33 @@
                         </div>
                         <h1 class="text-xl font-black tracking-tighter text-black">NakhonFit</h1>
                     </div>
-                    <p class="text-text-subtle text-sm leading-relaxed">
+                    <p data-lang="footer_desc" class="text-text-subtle text-sm leading-relaxed">
                         The ultimate fitness companion for Nakhon Pathom residents. Compare prices, find deals, and
                         reach your goals.
                     </p>
                 </div>
                 <div>
-                    <h5 class="font-black text-black mb-6 uppercase tracking-widest text-xs">Platform</h5>
+                    <h5 data-lang="platform" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Platform</h5>
                     <ul class="space-y-4">
-                        <li><a class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="search_gyms" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Search Gyms</a></li>
-                        <li><a class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="interactive_map" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Interactive Map</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-black mb-6 uppercase tracking-widest text-xs">Company</h5>
+                    <h5 data-lang="company" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Company</h5>
                     <ul class="space-y-4">
-                        <li><a class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="about_us" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">About Us</a></li>
-                        <li><a class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="contact_support" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Contact Support</a></li>
-                        <li><a class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="privacy_policy" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-black mb-6 uppercase tracking-widest text-xs">Social</h5>
+                    <h5 data-lang="social" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Social</h5>
                     <div class="flex gap-4">
                         <a class="size-10 rounded-full bg-gray-50 flex items-center justify-center text-black hover:bg-primary hover:text-white transition-all"
                             href="#">
@@ -263,7 +166,7 @@
                 </div>
             </div>
             <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-text-subtle text-xs font-bold">© 2024 FitFind Nakhon Pathom. All rights reserved.</p>
+                <p class="text-text-subtle text-xs font-bold">© 2024 FitFind Nakhon Pathom. All rights reserved. (v2)</p>
                 <div class="flex gap-6">
                     <span
                         class="text-text-subtle text-xs font-bold cursor-pointer hover:text-black transition-colors">Terms

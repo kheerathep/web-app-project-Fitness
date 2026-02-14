@@ -23,27 +23,79 @@ const dictionary = {
         "price": "ราคา",  "search": "ค้นหาฟิตเนส...", "search_hero": "ค้นหาตามชื่อหรือพื้นที่...",
         "nav_home": "หน้าหลัก", "nav_map": "แผนที่", 
         "hero_sub": "ค้นหาฟิตเนสที่ใช่ในนครปฐม",
-        "btn_explore": "สำรวจแผนที่"
+        "btn_explore": "สำรวจแผนที่",
+        "trending_now": "กำลังเป็นกระแส",
+        "trending_now_desc": "สถานที่ยอดนิยมในนครปฐมสัปดาห์นี้",
+        "footer_desc": "คู่มือฟิตเนสที่ดีที่สุดสำหรับชาวนครปฐม เปรียบเทียบราคา ค้นหาข้อเสนอ และบรรลุเป้าหมายของคุณ",
+        "platform": "แพลตฟอร์ม",
+        "search_gyms": "ค้นหาโรงยิม",
+        "interactive_map": "แผนที่แบบโต้ตอบ",
+        "company": "บริษัท",
+        "about_us": "เกี่ยวกับเรา",
+        "contact_support": "ติดต่อฝ่ายสนับสนุน",
+        "privacy_policy": "นโยบายความเป็นส่วนตัว",
+        "social": "โซเชียล"
     },
     "en": {
         "price": "Price",  "search": "Search gyms...", "search_hero": "Search by name or area...",
         "nav_home": "Home", "nav_map": "Map",
         "hero_sub": "Find your perfect gym in Nakhon Pathom",
-        "btn_explore": "Explore Map"
+        "btn_explore": "Explore Map",
+        "trending_now": "TRENDING NOW",
+        "trending_now_desc": "Most popular spots in Nakhon Pathom this week",
+        "footer_desc": "The ultimate fitness companion for Nakhon Pathom residents. Compare prices, find deals, and reach your goals.",
+        "platform": "PLATFORM",
+        "search_gyms": "Search Gyms",
+        "interactive_map": "Interactive Map",
+        "company": "COMPANY",
+        "about_us": "About Us",
+        "contact_support": "Contact Support",
+        "privacy_policy": "Privacy Policy",
+        "social": "SOCIAL"
     },
     "cn": {
         "price": "价格",  "search": "搜索健身房...", "search_hero": "按名称或地区搜索...",
         "nav_home": "首页", "nav_map": "地图",
         "hero_sub": "在那空拍他姆找到理想的健身房",
-        "btn_explore": "探索地图"
+        "btn_explore": "探索地图",
+        "trending_now": "现在流行",
+        "trending_now_desc": "本周那空巴吞最受欢迎的景点",
+        "footer_desc": "那空巴吞居民的终极健身伴侣。比较价格、寻找优惠并实现您的目标。",
+        "platform": "平台",
+        "search_gyms": "搜索健身房",
+        "interactive_map": "互动地图",
+        "company": "公司",
+        "about_us": "关于我们",
+        "contact_support": "联系支持",
+        "privacy_policy": "隐私政策",
+        "social": "社交"
     }
 };
 let homepageData = [];
+
+function buildUrl(path) {
+    return new URL(path, window.location.href).toString();
+}
+
+function resolveImageUrl(path) {
+    if (!path) return "https://via.placeholder.com/800x500?text=No+Image";
+    if (/^https?:\/\//i.test(path)) return path;
+    return buildUrl(path.replace(/\\/g, "/"));
+}
 
 function getStartingFromLabel() {
     if (currentLang === "th") return "\u0E40\u0E23\u0E34\u0E48\u0E21\u0E15\u0E49\u0E19\u0E17\u0E35\u0E48";
     if (currentLang === "cn") return "\u8D77\u4EF7";
     return "Starting from";
+}
+
+function applyTranslations(lang) {
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        if (dictionary[lang] && dictionary[lang][key]) {
+            element.innerText = dictionary[lang][key];
+        }
+    });
 }
 
 function changeLang(lang) {
@@ -73,6 +125,8 @@ function changeLang(lang) {
     const heroSub = document.getElementById('hero-sub');
     if (heroSub) heroSub.innerText = dictionary[lang].hero_sub;
 
+    applyTranslations(lang);
+
     if (homepageData.length > 0) {
         renderTrendingSection(homepageData);
     }
@@ -85,8 +139,7 @@ function setupExploreButton() {
     if (btn && heroSearch) {
         btn.addEventListener('click', () => {
             const query = heroSearch.value.trim();
-            const url = new URL(window.location.href);
-            url.pathname = 'map.html';
+            const url = new URL(buildUrl("map.html"));
             if (query) url.searchParams.set('q', query);
             window.location.href = url.toString();
         });
@@ -125,9 +178,10 @@ function renderTrendingSection(data) {
         const name = getLangValue(item.name, currentLang) || "Gym";
         const location = getLocationText(item);
         const price = getPriceText(item);
-        const image = item.image_url || "https://via.placeholder.com/800x500?text=No+Image";
+        const image = resolveImageUrl(item.image_url);
         const rating = item.rating || item.score || "4.8";
-        const query = encodeURIComponent(getLangValue(item.name, "en") || name);
+        const mapUrl = new URL(buildUrl("map.html"));
+        mapUrl.searchParams.set("q", getLangValue(item.name, "en") || name);
 
         return `
             <div class="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
@@ -149,7 +203,7 @@ function renderTrendingSection(data) {
                             <p class="text-xs text-text-subtle font-medium mb-1">${getStartingFromLabel()}</p>
                             <p class="text-primary font-black text-xl">${price}</p>
                         </div>
-                        <a href="map.html?q=${query}" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
+                        <a href="${mapUrl.toString()}" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
                             View
                         </a>
                     </div>
@@ -160,21 +214,30 @@ function renderTrendingSection(data) {
 }
 
 function loadHomepageData() {
-    return fetch("data/datahomepage.json")
-        .then((response) => {
-            if (!response.ok) throw new Error("Failed to load data/datahomepage.json");
-            return response.json();
-        })
-        .then((data) => {
-            if (!Array.isArray(data) || data.length === 0) {
-                throw new Error("Empty data in data/datahomepage.json");
-            }
-            homepageData = data;
-            renderTrendingSection(homepageData);
-        })
-        .catch((error) => {
-            console.error("Homepage data load error:", error);
-        });
+    const sources = ["data/datahomepage.json", "data/data.json"];
+    const trySource = (index) => {
+        if (index >= sources.length) {
+            throw new Error("Failed to load homepage data from all sources");
+        }
+        const source = sources[index];
+        return fetch(buildUrl(source))
+            .then((response) => {
+                if (!response.ok) throw new Error(`Failed to load ${source}`);
+                return response.json();
+            })
+            .then((data) => {
+                if (!Array.isArray(data) || data.length === 0) {
+                    throw new Error(`Empty data in ${source}`);
+                }
+                homepageData = data;
+                renderTrendingSection(homepageData);
+            })
+            .catch(() => trySource(index + 1));
+    };
+
+    return trySource(0).catch((error) => {
+        console.error("Homepage data load error:", error);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

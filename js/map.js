@@ -3,6 +3,16 @@ let markers = [];
 let fitnessData = [];
 let currentLang = 'th';
 
+function buildUrl(path) {
+    return new URL(path, window.location.href).toString();
+}
+
+function resolveImageUrl(path) {
+    if (!path) return 'https://via.placeholder.com/600x400?text=No+Image';
+    if (/^https?:\/\//i.test(path)) return path;
+    return buildUrl(path.replace(/\\/g, '/'));
+}
+
 const dictionary = {
     "th": {
         "price": "ราคา", "updated": "อัปเดตเมื่อ", "search": "ค้นหาฟิตเนส...", "results": "ผลลัพธ์",
@@ -42,8 +52,11 @@ function initMap() {
 }
 
 function loadData() {
-    fetch('data/data.json')
-        .then(response => response.json())
+    fetch(buildUrl('data/data.json'))
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load data/data.json');
+            return response.json();
+        })
         .then(json => {
             fitnessData = json;
             changeLang(currentLang);
@@ -67,7 +80,8 @@ function applyQuery() {
 
     const filtered = fitnessData.filter(i =>
         (i.name.th && i.name.th.toLowerCase().includes(term)) ||
-        (i.name.en && i.name.en.toLowerCase().includes(term))
+        (i.name.en && i.name.en.toLowerCase().includes(term)) ||
+        (i.name.cn && i.name.cn.toLowerCase().includes(term))
     );
     renderAll(filtered);
 
@@ -118,7 +132,7 @@ function renderSidePanel(data) {
 
     data.forEach((item, index) => {
         const name = item.name[currentLang] || item.name['en'];
-        let imageHTML = item.image_url ? `<img src="${item.image_url}" class="h-full w-full object-cover">` : `<div class="flex items-center justify-center h-full bg-gray-200"><span class="material-symbols-outlined">fitness_center</span></div>`;
+        let imageHTML = item.image_url ? `<img src="${resolveImageUrl(item.image_url)}" class="h-full w-full object-cover">` : `<div class="flex items-center justify-center h-full bg-gray-200"><span class="material-symbols-outlined">fitness_center</span></div>`;
 
         const card = document.createElement('div');
         card.className = "flex gap-4 rounded-2xl bg-white p-3 cursor-pointer border border-border-light hover:border-primary mb-4 shadow-sm group hover:shadow-md transition";
@@ -176,7 +190,7 @@ function showGymDetail(item) {
     // 2. ใส่ข้อมูลลง HTML
     document.getElementById('detail-name').innerText = name;
     document.getElementById('detail-price').innerText = price;
-    document.getElementById('detail-img').src = item.image_url || 'https://via.placeholder.com/600x400?text=No+Image';
+    document.getElementById('detail-img').src = resolveImageUrl(item.image_url);
 
     // Tags
     const tagsContainer = document.getElementById('detail-tags');
@@ -302,8 +316,9 @@ document.addEventListener("DOMContentLoaded", () => {
         searchInput.addEventListener('keyup', (e) => {
             const term = e.target.value.toLowerCase();
             const filtered = fitnessData.filter(i =>
-                (i.name.th && i.name.th.includes(term)) ||
-                (i.name.en && i.name.en.toLowerCase().includes(term))
+                (i.name.th && i.name.th.toLowerCase().includes(term)) ||
+                (i.name.en && i.name.en.toLowerCase().includes(term)) ||
+                (i.name.cn && i.name.cn.toLowerCase().includes(term))
             );
             renderAll(filtered);
         });
