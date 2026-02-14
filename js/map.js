@@ -20,7 +20,7 @@ const dictionary = {
         "error": "เกิดข้อผิดพลาดในการโหลดข้อมูล",
         "filter_all": "ทั้งหมด",
         "filter_24": "เปิด 24 ชม.",
-        "lbl_direction": "นำทาง", "lbl_website": "เว็บไซต์"
+        "lbl_direction": "ดูรายละเอียด", "lbl_website": "เว็บไซต์"
     },
     "en": {
         "price": "Price", "updated": "Updated", "search": "Search gyms...", "results": "Results Found",
@@ -28,7 +28,7 @@ const dictionary = {
         "error": "Error loading data",
         "filter_all": "All",
         "filter_24": "Open 24/7",
-        "lbl_direction": "Directions", "lbl_website": "Website"
+        "lbl_direction": "View Details", "lbl_website": "Website"
     },
     "cn": {
         "price": "价格", "updated": "更新日期", "search": "搜索健身房...", "results": "结果",
@@ -36,7 +36,7 @@ const dictionary = {
         "error": "加载数据错误",
         "filter_all": "全部",
         "filter_24": "24小时营业",
-        "lbl_direction": "导航", "lbl_website": "网站"
+        "lbl_direction": "查看详情", "lbl_website": "网站"
     }
 };
 
@@ -183,16 +183,13 @@ function changeLang(lang) {
 }
 
 function showGymDetail(item) {
-    // 1. ดึงข้อมูล
     const name = item.name[currentLang] || item.name['en'];
     const price = item.price[currentLang] || item.price['en'];
 
-    // 2. ใส่ข้อมูลลง HTML
     document.getElementById('detail-name').innerText = name;
     document.getElementById('detail-price').innerText = price;
     document.getElementById('detail-img').src = resolveImageUrl(item.image_url);
 
-    // Tags
     const tagsContainer = document.getElementById('detail-tags');
     tagsContainer.innerHTML = '';
     if (item.tags) {
@@ -204,13 +201,10 @@ function showGymDetail(item) {
         });
     }
 
-    // 3. จัดการเบอร์โทรศัพท์ (แก้ไขจุดที่ผิด)
-    // ใช้ ID "phone-container" เพื่อหา HTML element
     const phoneContainer = document.getElementById('phone-container'); 
     const phoneLink = document.getElementById('detail-phone');
     
     if (phoneContainer && phoneLink) {
-        // ใช้ key "contact" จาก JSON ตามที่คุณใช้
         if (item.contact) {
             phoneContainer.classList.remove('hidden');
             phoneContainer.classList.add('flex');
@@ -222,7 +216,6 @@ function showGymDetail(item) {
         }
     }
 
-    // 4. ปุ่ม Direction / Website
     const dirBtn = document.getElementById('btn-direction');
     const webBtn = document.getElementById('btn-website');
     const lblDir = document.getElementById('lbl-direction');
@@ -231,8 +224,7 @@ function showGymDetail(item) {
     if (lblDir) lblDir.innerText = dictionary[currentLang].lbl_direction;
 
     if (dirBtn && webBtn) {
-        // [แก้ไข] ลิงก์แผนที่ให้ถูกต้อง ใช้ Backtick ` และ ${}
-        dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}`;
+        dirBtn.href = `gymdetail.html?id=${item.id}`;
 
         const iconWeb = webBtn.querySelector('.material-symbols-outlined');
 
@@ -262,7 +254,6 @@ function showGymDetail(item) {
         }
     }
 
-    // 5. วันที่อัปเดต
     const updatedDiv = document.getElementById('detail-updated');
     if (updatedDiv) {
         if (item.updated_date) { 
@@ -274,7 +265,6 @@ function showGymDetail(item) {
         }
     }
 
-    // 6. แสดง Panel
     const panel = document.getElementById('floating-panel');
     if (panel) {
         panel.classList.remove('hidden');

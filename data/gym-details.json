@@ -1,0 +1,306 @@
+
+[
+  {
+    "id": 1,
+    "description": {
+      "th": "เจ็ทส์ ฟิตเนส 24 ชั่วโมง สาขาเซ็นทรัL นครปฐม พร้อมด้วยอุปกรณ์ออกกำลังกายครบครัน เดินทางสะดวกใจกลางเมือง",
+      "en": "Jetts 24 Hour Fitness at Central Nakhon Pathom, fully equipped and conveniently located in the city center.",
+      "cn": "位于尚泰佛统购物中心的Jetts 24小时健身房，设备齐全，交通便利。"
+    },
+    "rating": 4.4,
+    "reviews_count": 185,
+    "verified": true,
+    "plans": [
+      { "name": { "th": "รายเดือน", "en": "Monthly", "cn": "月度会员" }, "price": { "th": "1,600 บาท", "en": "฿1,600", "cn": "1600泰铢" }, "perks": ["All clubs access", "No lock-in contract"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "th": "ฟรีเวท", "en": "Free Weights" } },
+      { "icon": "monitor_heart", "name": { "th": "โซนคาร์ดิโอ", "en": "Cardio Zone" } },
+      { "icon": "ac_unit", "name": { "th": "เครื่องปรับอากาศ", "en": "Air Conditioning" } },
+      { "icon": "shower", "name": { "th": "ห้องอาบน้ำ", "en": "Showers" } },
+      { "icon": "local_parking", "name": { "th": "ที่จอดรถ", "en": "Parking" } },
+      { "icon": "wifi", "name": { "th": "Wi-Fi", "en": "Wi-Fi" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 75, "4_star": 15, "3_star": 5, "2_star": 3, "1_star": 2 } },
+    "address": { "th": "ชั้น 2 เซ็นทรัล นครปฐม, 833 ถ. เพชรเกษม, ต.สนามจันทร์, อ.เมืองนครปฐม, นครปฐม 73000", "en": "2nd Floor, Central Nakhon Pathom, 833 Phetkasem Rd, Sanam Chan, Mueang Nakhon Pathom, 73000" },
+    "opening_hours": {
+      "status": { "th": "เปิด 24 ชั่วโมง", "en": "OPEN 24/7", "cn": "24小时营业" },
+      "days": { "Mon - Sun": "24 Hours" }
+    }
+  },
+  {
+    "id": 2,
+    "description": { "en": "A popular fitness center in Nakhon Pathom known for its wide range of equipment and friendly atmosphere." },
+    "rating": 4.7,
+    "reviews_count": 92,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Starting Monthly" }, "price": { "en": "฿999" }, "perks": ["Full access to gym equipment", "Locker rooms"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Weight Training" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Machines" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 80, "4_star": 10, "3_star": 2, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Bam Fitness, Nakhon Pathom" },
+    "opening_hours": {
+      "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 22:00" }
+    }
+  },
+  {
+    "id": 3,
+    "description": { "en": "GOOD’s GYM offers a clean and motivating environment for all fitness levels." },
+    "rating": 4.6,
+    "reviews_count": 75,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,200" }, "perks": ["Access to all equipment", "Group classes"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Modern Equipment" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } },
+      { "icon": "shower", "name": { "en": "Showers" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 70, "4_star": 5, "3_star": 0, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "GOOD’s GYM, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "07:00 - 23:00" } }
+  },
+  {
+    "id": 4,
+    "description": { "en": "A unique garage-style gym with a focus on functional fitness and high-intensity training." },
+    "rating": 4.9,
+    "reviews_count": 55,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Per Visit" }, "price": { "en": "฿150" }, "perks": ["Drop-in access", "All equipment"] }
+    ],
+    "amenities": [
+      { "icon": "sports_gymnastics", "name": { "en": "Functional Training" } },
+      { "icon": "fitness_center", "name": { "en": "Free Weights" } },
+      { "icon": "fan", "name": { "en": "Open Air" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 50, "4_star": 5, "3_star": 0, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Kaofang’z FIT Camp GarageGYM, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "09:00 - 21:00" } }
+  },
+  {
+    "id": 5,
+    "description": { "en": "FITNESS 21 on Tawarawadee Road is a modern facility offering a variety of workout options." },
+    "rating": 4.5,
+    "reviews_count": 110,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿990" }, "perks": ["Full gym access", "Locker and shower"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Weight Machines" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Area" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioned" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 85, "4_star": 20, "3_star": 5, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "FITNESS 21, Tawarawadee Rd, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 23:00" } }
+  },
+  {
+    "id": 6,
+    "description": { "en": "The fitness center at Silpakorn University, open to students and the public, offering affordable fitness solutions." },
+    "rating": 4.3,
+    "reviews_count": 200,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Student Visit" }, "price": { "en": "฿50" }, "perks": ["Gym access", "Basic facilities"] }
+    ],
+    "amenities": [
+      { "icon": "school", "name": { "en": "University Facility" } },
+      { "icon": "fitness_center", "name": { "en": "Weights" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 120, "4_star": 60, "3_star": 15, "2_star": 5, "1_star": 0 } },
+    "address": { "en": "Silpakorn University, Sanam Chan Palace Campus, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Fri": "07:00 - 20:00" } }
+  },
+  {
+    "id": 7,
+    "description": { "en": "One of the largest fitness centers in Salaya, with ample parking and a wide array of equipment." },
+    "rating": 4.6,
+    "reviews_count": 150,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,390" }, "perks": ["Spacious gym floor", "400 parking spots"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Extensive Equipment" } },
+      { "icon": "local_parking", "name": { "en": "Large Parking" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 110, "4_star": 30, "3_star": 8, "2_star": 2, "1_star": 0 } },
+    "address": { "en": "Me Fitness, Salaya, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "06:00 - 24:00" } }
+  },
+  {
+    "id": 8,
+    "description": { "en": "An accessible gym in Rai Khing offering daily passes for flexible workout schedules." },
+    "rating": 4.2,
+    "reviews_count": 45,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Daily" }, "price": { "en": "฿80" }, "perks": ["Full day access"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Weights" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioned" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 30, "4_star": 10, "3_star": 5, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Boostfitz GYM, Rai Khing, Sam Phran" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "09:00 - 22:00" } }
+  },
+  {
+    "id": 9,
+    "description": { "en": "A well-regarded fitness club in Nakhon Chai Si, providing a comprehensive workout experience." },
+    "rating": 4.5,
+    "reviews_count": 88,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,200" }, "perks": ["Full facility access", "Expert trainers"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Complete Equipment" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } },
+      { "icon": "shower", "name": { "en": "Showers" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 70, "4_star": 15, "3_star": 3, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Health Club Fitness, Nakhon Chai Si, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 22:00" } }
+  },
+  {
+    "id": 10,
+    "description": { "en": "FIT & Co. offers a modern and motivating fitness environment in the Tha Tamnak area." },
+    "rating": 4.7,
+    "reviews_count": 120,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,000" }, "perks": ["Modern machines", "Friendly staff"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "New Equipment" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Section" } },
+      { "icon": "ac_unit", "name": { "en": "Air-Conditioned" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 100, "4_star": 15, "3_star": 5, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "FIT & Co. Fitness Center, Tha Tamnak, Nakhon Chai Si" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "07:00 - 23:00" } }
+  },
+  {
+    "id": 11,
+    "description": { "en": "Located in Kamphaeng Saen, PES Fitness is part of Kasetsart University, offering great facilities for students and locals." },
+    "rating": 4.4,
+    "reviews_count": 95,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿900" }, "perks": ["University-grade equipment", "Spacious environment"] }
+    ],
+    "amenities": [
+      { "icon": "school", "name": { "en": "University Gym" } },
+      { "icon": "fitness_center", "name": { "en": "Full Equipment Set" } },
+      { "icon": "sports", "name": { "en": "Sports Facilities" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 75, "4_star": 15, "3_star": 5, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Kasetsart University, Kamphaeng Saen Campus, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sat": "08:00 - 20:00" } }
+  },
+  {
+    "id": 12,
+    "description": { "en": "Another branch of the popular Jetts 24 Hour Fitness chain, located at The Fourth Sai 4." },
+    "rating": 4.5,
+    "reviews_count": 130,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,600" }, "perks": ["24/7 access", "Access to all Jetts clubs"] }
+    ],
+    "amenities": [
+      { "icon": "schedule", "name": { "en": "24hr Access" } },
+      { "icon": "fitness_center", "name": { "en": "State-of-the-art Gear" } },
+      { "icon": "shower", "name": { "en": "Showers & Lockers" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 100, "4_star": 20, "3_star": 8, "2_star": 2, "1_star": 0 } },
+    "address": { "en": "The Fourth, Phutthamonthon Sai 4, Krathum Lom, Sam Phran" },
+    "opening_hours": {
+      "status": { "en": "OPEN 24/7" },
+      "days": { "Mon - Sun": "24 Hours" }
+    }
+  },
+  {
+    "id": 13,
+    "description": { "en": "A hardcore gym in Salaya for serious fitness enthusiasts looking for heavy-duty equipment." },
+    "rating": 4.8,
+    "reviews_count": 80,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,290" }, "perks": ["Heavy weights", "Bodybuilding focused"] }
+    ],
+    "amenities": [
+      { "icon": "fitness_center", "name": { "en": "Heavy-Duty Weights" } },
+      { "icon": "line_weight", "name": { "en": "Powerlifting Area" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 75, "4_star": 5, "3_star": 0, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "KOTR FIT GYM, Salaya, Phutthamonthon" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 23:00" } }
+  },
+  {
+    "id": 14,
+    "description": { "en": "A community-focused health and fitness club in Don Tum, offering affordable membership." },
+    "rating": 4.3,
+    "reviews_count": 60,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿800" }, "perks": ["Friendly atmosphere", "Good value"] }
+    ],
+    "amenities": [
+      { "icon": "groups", "name": { "en": "Community Feel" } },
+      { "icon": "fitness_center", "name": { "en": "Standard Equipment" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioned" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 45, "4_star": 10, "3_star": 5, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "FitClub Health and Fitness, Don Tum, Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "09:00 - 21:00" } }
+  },
+  {
+    "id": 15,
+    "description": { "en": "Fits Gym on Ying Pao Road provides a clean and well-equipped space for your daily workout." },
+    "rating": 4.5,
+    "reviews_count": 95,
+    "verified": true,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿1,100" }, "perks": ["Clean facility", "Good selection of machines"] }
+    ],
+    "amenities": [
+      { "icon": "sanitizer", "name": { "en": "Clean Environment" } },
+      { "icon": "fitness_center", "name": { "en": "Well-Maintained Gear" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 80, "4_star": 10, "3_star": 5, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Fits Gym, Ying Pao Rd, Mueang Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "07:00 - 22:00" } }
+  },
+  {
+    "id": 16,
+    "description": { "en": "Strong Fitness offers a solid workout experience with a variety of equipment for strength training and cardio." },
+    "rating": 4.4,
+    "reviews_count": 78,
+    "verified": false,
+    "plans": [
+      { "name": { "en": "Monthly" }, "price": { "en": "฿900" }, "perks": ["Good for strength training", "Affordable price"] }
+    ],
+    "amenities": [
+      { "icon": "line_weight", "name": { "en": "Strength Training" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Equipment" } },
+      { "icon": "ac_unit", "name": { "en": "Air-Conditioned" } }
+    ],
+    "reviews": { "breakdown": { "5_star": 65, "4_star": 10, "3_star": 3, "2_star": 0, "1_star": 0 } },
+    "address": { "en": "Strong Fitness, Mueang Nakhon Pathom" },
+    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 22:00" } }
+  }
+]
