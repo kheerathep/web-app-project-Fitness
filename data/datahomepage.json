@@ -1,0 +1,56 @@
+﻿[
+  {
+    "id": 1,
+ "name": {
+      "th": "เจ็ทส์ ฟิตเนส (เซ็นทรัล นครปฐม)",
+      "en": "Jetts 24 Hour Fitness - Central Nakhon Pathom",
+      "cn": "Jetts 24小时健身 (尚泰佛统店)"
+    },
+    "price": {
+      "th": "1,600 บาท/เดือน ",
+      "en": "1,600 THB/Month ",
+      "cn": "1,600 泰铢/月"
+    },
+    "location": "Muang, Nakhon Pathom",
+    "rating": "4.4",
+   "image_url": "image/jettsCentral.jpg",
+    "lat": 13.80607210362295,
+    "lng": 100.04886413872049
+  },
+  {
+    "id": 2,
+   "name": {
+      "th": "แบม ฟิตเนส นครปฐม",
+      "en": "BAAM Fitness Nakhon Pathom",
+      "cn": "BAAM 健身 (佛统店)"
+    },
+    "price": {
+      "th": "999 บาท/เดือน (ราคาเริ่มต้น)",
+      "en": "999 THB/Month (Starting)",
+      "cn": "999 泰铢/月 (起)"
+    },
+    "location": "Muang, Nakhon Pathom",
+    "rating": "4.2",
+    "image_url": "image/baam.jpg",
+     "lat": 13.813865868398533,
+    "lng":  100.03799849356542
+  },
+  {
+    "id": 3,
+    "name": {
+      "th": "สตรอง ฟิตเนส นครปฐม",
+      "en": "Strong Fitness Nakhon Pathom",
+      "cn": "Strong 健身房"
+    },
+      "price": {
+      "th": "900 บาท/เดือน",
+      "en": "900 THB/Month",
+      "cn": "900 泰铢/月"
+    },
+    "location": "Muang, Nakhon Pathom",
+    "rating": "4.7",
+    "image_url": "image/strongfitness.jpg",
+    "lat": 13.808221246604225,
+    "lng":  100.04378577085868
+  }
+]
