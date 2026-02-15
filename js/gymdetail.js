@@ -1,8 +1,10 @@
+let gymData = {};
 
-document.addEventListener('DOMContentLoaded', () => {
+// This function will be called by the Google Maps script once it's loaded
+function initGymMap() {
     const params = new URLSearchParams(window.location.search);
     const gymId = params.get('id');
-    const lang = params.get('lang') || 'en'; // Default to English
+    const lang = params.get('lang') || 'th';
 
     if (gymId) {
         Promise.all([
@@ -13,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const detail = details.find(d => d.id == gymId);
 
             if (gym && detail) {
+                gymData.gym = gym;
+                gymData.detail = detail;
+                gymData.lang = lang;
+
+                // Once data is loaded, create the map
+                createMap(gym);
+                // Update the rest of the page content
                 updateGymDetails(gym, detail, lang);
                 setupLangButtons(gymId, lang);
             } else {
@@ -24,7 +33,29 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.innerHTML = '<h1 style="text-align:center; margin-top: 50px;">Error loading gym data</h1>';
         });
     }
-});
+}
+
+function createMap(gym) {
+    const mapElement = document.getElementById('gym-detail-map');
+    if (!mapElement) return;
+
+    const gymLocation = { lat: gym.lat, lng: gym.lng };
+
+    const map = new google.maps.Map(mapElement, {
+        zoom: 15,
+        center: gymLocation,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        styles: [{ "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] }]
+    });
+
+    new google.maps.Marker({
+        position: gymLocation,
+        map: map,
+        title: gym.name[gymData.lang] || gym.name['en']
+    });
+}
 
 function updateGymDetails(gym, detail, lang) {
     const getLang = (obj) => obj[lang] || obj['en'];
@@ -36,7 +67,7 @@ function updateGymDetails(gym, detail, lang) {
 
     // Header section
     document.getElementById('gym-name-header').textContent = getLang(gym.name);
-    document.getElementById('gym-image-header').style.backgroundImage = `url('${gym.image_url}')`;
+    document.getElementById('gym-image-header').style.backgroundImage = `url('${detail.image_url}')`;
     document.getElementById('gym-description').textContent = getLang(detail.description);
     document.getElementById('gym-rating').textContent = detail.rating;
     document.getElementById('gym-reviews-count').textContent = `(${detail.reviews_count} reviews)`;
@@ -143,9 +174,6 @@ function updateGymDetails(gym, detail, lang) {
     document.getElementById('location-address').textContent = getLang(detail.address);
     document.getElementById('open-in-maps').href = `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`;
     document.getElementById('get-directions-btn').href = `https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lng}`;
-    document.getElementById('map-static-image-link').href = `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`;
-    document.getElementById('map-static-image').src = `https://maps.googleapis.com/maps/api/staticmap?center=${gym.lat},${gym.lng}&zoom=15&size=400x200&maptype=roadmap&markers=color:red%7C${gym.lat},${gym.lng}&key=YOUR_API_KEY`; // Replace YOUR_API_KEY
-
 
     // Opening Hours
     const hoursStatus = document.getElementById('opening-hours-status');

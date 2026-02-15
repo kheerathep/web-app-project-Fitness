@@ -38,8 +38,7 @@
     "image_url": "image/baam.jpg",
     "tags": [ "cardio", "weight", "aircon"],
     "contact": "02 123 4567"
-  }
-  ,
+  },
   {
     "id": 3,
     "name": {
@@ -120,7 +119,6 @@
     "tags": [ "cardio", "weight", "aircon"],
     "contact": "034 241 240 "
   },
-  
   {
     "id": 7,
     "name": {

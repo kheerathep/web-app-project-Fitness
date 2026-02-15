@@ -26,7 +26,8 @@
     "opening_hours": {
       "status": { "th": "เปิด 24 ชั่วโมง", "en": "OPEN 24/7", "cn": "24小时营业" },
       "days": { "Mon - Sun": "24 Hours" }
-    }
+    },
+    "image_url": "imagegymdetail/jettsnakhonphathom.jpg"
   },
   {
     "id": 2,
