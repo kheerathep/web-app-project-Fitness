@@ -2,6 +2,7 @@ let map;
 let markers = [];
 let fitnessData = [];
 let currentLang = 'th';
+let currentDetailItem = null;
 
 function buildUrl(path) {
     return new URL(path, window.location.href).toString();
@@ -181,9 +182,14 @@ function changeLang(lang) {
     if (lblWeb) lblWeb.innerText = dictionary[lang].lbl_website;
 
     renderAll(fitnessData);
+
+    if (currentDetailItem) {
+        showGymDetail(currentDetailItem);
+    }
 }
 
 function showGymDetail(item) {
+    currentDetailItem = item;
     const name = item.name[currentLang] || item.name['en'];
     const price = item.price[currentLang] || item.price['en'];
 
@@ -293,6 +299,7 @@ function filterGyms(type) {
 }
 
 function closeDetail() {
+    currentDetailItem = null;
     const panel = document.getElementById('floating-panel');
     if (panel) {
         panel.classList.add('hidden');
