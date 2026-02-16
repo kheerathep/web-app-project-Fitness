@@ -224,7 +224,7 @@ function showGymDetail(item) {
     if (lblDir) lblDir.innerText = dictionary[currentLang].lbl_direction;
 
     if (dirBtn && webBtn) {
-        dirBtn.href = `gymdetail.html?id=${item.id}`;
+        dirBtn.href = `gymdetail.html?id=${item.id}&lang=${currentLang}`;
 
         const iconWeb = webBtn.querySelector('.material-symbols-outlined');
 
