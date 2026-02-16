@@ -65,7 +65,7 @@ function loadData() {
         .catch(error => {
             console.error("Error:", error);
             const list = document.getElementById('gym-list');
-            if (list) list.innerHTML = `<div class="text-red-500 text-center p-4">Error loading data.</div>`;
+            if (list) list.innerHTML = `<div class=\"text-red-500 text-center p-4\">Error loading data.</div>`;
         });
 }
 
@@ -107,7 +107,8 @@ function renderMarkers(data) {
 
         const marker = new google.maps.Marker({
             position: { lat: item.lat, lng: item.lng },
-            map: map, title: name
+            map: map,
+            title: name
         });
 
         marker.addListener("click", () => {
@@ -132,15 +133,15 @@ function renderSidePanel(data) {
 
     data.forEach((item, index) => {
         const name = item.name[currentLang] || item.name['en'];
-        let imageHTML = item.image_url ? `<img src="${resolveImageUrl(item.image_url)}" class="h-full w-full object-cover">` : `<div class="flex items-center justify-center h-full bg-gray-200"><span class="material-symbols-outlined">fitness_center</span></div>`;
+        let imageHTML = item.image_url ? `<img src=\"${resolveImageUrl(item.image_url)}\" class=\"h-full w-full object-cover\">` : `<div class=\"flex items-center justify-center h-full bg-gray-200\"><span class=\"material-symbols-outlined\">fitness_center</span></div>`;
 
         const card = document.createElement('div');
         card.className = "flex gap-4 rounded-2xl bg-white p-3 cursor-pointer border border-border-light hover:border-primary mb-4 shadow-sm group hover:shadow-md transition";
         card.innerHTML = `
-            <div class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-gray-100">${imageHTML}</div>
-            <div class="flex flex-1 flex-col justify-between">
-                <h3 class="font-bold group-hover:text-primary transition">${name}</h3>
-                <div class="text-sm text-primary font-bold">${item.price[currentLang]}</div>
+            <div class=\"h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-gray-100\">${imageHTML}</div>
+            <div class=\"flex flex-1 flex-col justify-between\">
+                <h3 class=\"font-bold group-hover:text-primary transition\">${name}</h3>
+                <div class=\"text-sm text-primary font-bold\">${item.price[currentLang]}</div>
             </div>
         `;
         card.addEventListener('click', () => {

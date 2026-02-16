@@ -269,8 +269,16 @@ function updateGymDetails(gym, detail, lang) {
     document.getElementById('contact-website').textContent = getLang(gym.name);
     document.getElementById('location-name').textContent = getLang(gym.name);
     document.getElementById('location-address').textContent = getLang(detail.address);
-    document.getElementById('open-in-maps').innerHTML = `<span class="material-symbols-outlined text-[20px]">near_me</span> ${getLang('Open in Maps')}`;
-    document.getElementById('get-directions-btn').innerHTML = `<span class="material-symbols-outlined">directions</span><span>${getLang('Get Directions')}</span>`;
+    
+    const openInMapsBtn = document.getElementById('open-in-maps');
+    openInMapsBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">near_me</span> ${getLang('Open in Maps')}`;
+    openInMapsBtn.href = `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`;
+    openInMapsBtn.target = '_blank';
+
+    const getDirectionsBtn = document.getElementById('get-directions-btn');
+    getDirectionsBtn.innerHTML = `<span class="material-symbols-outlined">directions</span><span>${getLang('Get Directions')}</span>`;
+    getDirectionsBtn.href = `https://www.google.com/maps/search/?api=1&query=${gym.lat},${gym.lng}`;
+    getDirectionsBtn.target = '_blank';
 
 
     // Opening Hours
