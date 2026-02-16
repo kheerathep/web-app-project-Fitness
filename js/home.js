@@ -84,8 +84,8 @@ function resolveImageUrl(path) {
 }
 
 function getStartingFromLabel() {
-    if (currentLang === "th") return "\u0E40\u0E23\u0E34\u0E48\u0E21\u0E15\u0E49\u0E19\u0E17\u0E35\u0E48";
-    if (currentLang === "cn") return "\u8D77\u4EF7";
+    if (currentLang === "th") return "เริ่มต้นที่";
+    if (currentLang === "cn") return "起价";
     return "Starting from";
 }
 
@@ -155,8 +155,8 @@ function getLangValue(value, lang) {
 function getLocationText(item) {
     const location = item.location || item.district || item.area || "Nakhon Pathom";
     if (location === "Muang, Nakhon Pathom") {
-        if (currentLang === "th") return "\u0E40\u0E21\u0E37\u0E2D\u0E07, \u0E19\u0E04\u0E23\u0E1B\u0E10\u0E21";
-        if (currentLang === "cn") return "\u4F5B\u7EDF\u5E9C\u5E02\u533A";
+        if (currentLang === "th") return "เมือง, นครปฐม";
+        if (currentLang === "cn") return "佛统府市区";
     }
     return location;
 }

@@ -3,7 +3,7 @@
   {
     "id": 1,
     "description": {
-      "th": "เจ็ทส์ ฟิตเนส 24 ชั่วโมง สาขาเซ็นทรัL นครปฐม พร้อมด้วยอุปกรณ์ออกกำลังกายครบครัน เดินทางสะดวกใจกลางเมือง",
+      "th": "เจ็ทส์ ฟิตเนส 24 ชั่วโมง สาขาเซ็นทรัล นครปฐม พร้อมด้วยอุปกรณ์ออกกำลังกายครบครัน เดินทางสะดวกใจกลางเมือง",
       "en": "Jetts 24 Hour Fitness at Central Nakhon Pathom, fully equipped and conveniently located in the city center.",
       "cn": "位于尚泰佛统购物中心的Jetts 24小时健身房，设备齐全，交通便利。"
     },
@@ -11,297 +11,667 @@
     "reviews_count": 185,
     "verified": true,
     "plans": [
-      { "name": { "th": "รายเดือน", "en": "Monthly", "cn": "月度会员" }, "price": { "th": "1,600 บาท", "en": "฿1,600", "cn": "1600泰铢" }, "perks": ["All clubs access", "No lock-in contract"] }
+      { 
+        "name": { "th": "รายเดือน", "en": "Monthly", "cn": "月度会员" }, 
+        "price": { "th": "1,600 บาท", "en": "฿1,600", "cn": "1600泰铢" }, 
+        "perks": [
+          { "th": "เข้าใช้ได้ทุกสาขา", "en": "All clubs access", "cn": "所有俱乐部通用" },
+          { "th": "ไม่มีสัญญาผูกมัด", "en": "No lock-in contract", "cn": "无锁定合同" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "th": "ฟรีเวท", "en": "Free Weights" } },
-      { "icon": "monitor_heart", "name": { "th": "โซนคาร์ดิโอ", "en": "Cardio Zone" } },
-      { "icon": "ac_unit", "name": { "th": "เครื่องปรับอากาศ", "en": "Air Conditioning" } },
-      { "icon": "shower", "name": { "th": "ห้องอาบน้ำ", "en": "Showers" } },
-      { "icon": "local_parking", "name": { "th": "ที่จอดรถ", "en": "Parking" } },
-      { "icon": "wifi", "name": { "th": "Wi-Fi", "en": "Wi-Fi" } }
+      { "icon": "fitness_center", "name": { "th": "ฟรีเวท", "en": "Free Weights", "cn": "自由重量" } },
+      { "icon": "monitor_heart", "name": { "th": "โซนคาร์ดิโอ", "en": "Cardio Zone", "cn": "有氧区" } },
+      { "icon": "ac_unit", "name": { "th": "เครื่องปรับอากาศ", "en": "Air Conditioning", "cn": "空调" } },
+      { "icon": "shower", "name": { "th": "ห้องอาบน้ำ", "en": "Showers", "cn": "淋浴" } },
+      { "icon": "local_parking", "name": { "th": "ที่จอดรถ", "en": "Parking", "cn": "停車處" } },
+      { "icon": "wifi", "name": { "th": "Wi-Fi", "en": "Wi-Fi", "cn": "无线上网" } }
     ],
     "reviews": { "breakdown": { "5_star": 75, "4_star": 15, "3_star": 5, "2_star": 3, "1_star": 2 } },
-    "address": { "th": "ชั้น 2 เซ็นทรัล นครปฐม, 833 ถ. เพชรเกษม, ต.สนามจันทร์, อ.เมืองนครปฐม, นครปฐม 73000", "en": "2nd Floor, Central Nakhon Pathom, 833 Phetkasem Rd, Sanam Chan, Mueang Nakhon Pathom, 73000" },
+    "address": { 
+      "th": "ชั้น 2 เซ็นทรัล นครปฐม, 833 ถ. เพชรเกษม, ต.สนามจันทร์, อ.เมืองนครปฐม, นครปฐม 73000", 
+      "en": "2nd Floor, Central Nakhon Pathom, 833 Phetkasem Rd, Sanam Chan, Mueang Nakhon Pathom, 73000",
+      "cn": "佛统中央百货商场2楼，833 Phetkasem路，Sanam Chan，佛统府治县，73000"
+    },
     "opening_hours": {
       "status": { "th": "เปิด 24 ชั่วโมง", "en": "OPEN 24/7", "cn": "24小时营业" },
-      "days": { "Mon - Sun": "24 Hours" }
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": { "th": "24 ชั่วโมง", "en": "24 Hours", "cn": "24小时" }
+        }
+      ]
     },
     "image_url": "imagegymdetail/jettsnakhonphathom.jpg"
   },
   {
     "id": 2,
-    "description": { "en": "A popular fitness center in Nakhon Pathom known for its wide range of equipment and friendly atmosphere." },
+    "description": { 
+      "en": "A popular fitness center in Nakhon Pathom known for its wide range of equipment and friendly atmosphere.",
+      "th": "ฟิตเนสยอดนิยมในนครปฐม มีชื่อเสียงด้านอุปกรณ์ที่หลากหลายและบรรยากาศที่เป็นกันเอง",
+      "cn": "佛统府一家备受欢迎的健身中心，以其齐全的设备和友好的氛围而闻名。"
+    },
     "rating": 4.7,
     "reviews_count": 92,
     "verified": false,
     "plans": [
-      { "name": { "en": "Starting Monthly" }, "price": { "en": "฿999" }, "perks": ["Full access to gym equipment", "Locker rooms"] }
+      { 
+        "name": { "en": "Starting Monthly", "th": "เริ่มต้นรายเดือน", "cn": "月度会员起" }, 
+        "price": { "en": "฿999", "th": "฿999", "cn": "999泰铢" }, 
+        "perks": [
+          { "en": "Full access to gym equipment", "th": "ใช้อุปกรณ์ได้เต็มรูปแบบ", "cn": "完全使用健身器材" },
+          { "en": "Locker rooms", "th": "ห้องล็อกเกอร์", "cn": "更衣室" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Weight Training" } },
-      { "icon": "monitor_heart", "name": { "en": "Cardio Machines" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+      { "icon": "fitness_center", "name": { "en": "Weight Training", "th": "เวทเทรนนิ่ง", "cn": "重量训练" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Machines", "th": "เครื่องคาร์ดิโอ", "cn": "有氧器械" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 80, "4_star": 10, "3_star": 2, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Bam Fitness, Nakhon Pathom" },
+    "address": { 
+      "en": "Bam Fitness, Nakhon Pathom",
+      "th": "แบมฟิตเนส, นครปฐม",
+      "cn": "Bam Fitness, 佛统府"
+    },
     "opening_hours": {
-      "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 22:00" }
-    }
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "08:00 - 22:00"
+        }
+      ]
+    },
+    "image_url" :"imagegymdetail/bam.jpg"
   },
   {
     "id": 3,
-    "description": { "en": "GOOD’s GYM offers a clean and motivating environment for all fitness levels." },
+    "description": { 
+      "en": "GOOD’s GYM offers a clean and motivating environment for all fitness levels.",
+      "th": "GOOD's GYM มีสภาพแวดล้อมที่สะอาดและสร้างแรงบันดาลใจสำหรับทุกระดับความฟิต",
+      "cn": "GOOD's GYM 为所有健身水平的人提供一个干净且激励人心的环境。"
+    },
     "rating": 4.6,
     "reviews_count": 75,
     "verified": true,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,200" }, "perks": ["Access to all equipment", "Group classes"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,200", "th": "฿1,200", "cn": "1200泰铢" }, 
+        "perks": [
+          { "en": "Access to all equipment", "th": "ใช้อุปกรณ์ได้ทุกชนิด", "cn": "使用所有设备" }, 
+          { "en": "Group classes", "th": "คลาสกลุ่ม", "cn": "团体课程" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Modern Equipment" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } },
-      { "icon": "shower", "name": { "en": "Showers" } }
+      { "icon": "fitness_center", "name": { "en": "Modern Equipment", "th": "อุปกรณ์ที่ทันสมัย", "cn": "现代化设备" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning", "th": "เครื่องปรับอากาศ", "cn": "空调" } },
+      { "icon": "shower", "name": { "en": "Showers", "th": "ห้องอาบน้ำ", "cn": "淋浴" } }
     ],
     "reviews": { "breakdown": { "5_star": 70, "4_star": 5, "3_star": 0, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "GOOD’s GYM, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "07:00 - 23:00" } }
+    "address": { 
+      "en": "GOOD’s GYM, Nakhon Pathom",
+      "th": "กู๊ดส์ยิม, นครปฐม",
+      "cn": "GOOD’s GYM, 佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "07:00 - 23:00"
+        }
+      ]
+    },
+    "image_url" :"imagegymdetail/GOOD’s GYM, Nakhon Pathom.jpg"
   },
   {
     "id": 4,
-    "description": { "en": "A unique garage-style gym with a focus on functional fitness and high-intensity training." },
+    "description": { 
+      "en": "A unique garage-style gym with a focus on functional fitness and high-intensity training.",
+      "th": "ยิมสไตล์โรงรถที่ไม่เหมือนใคร เน้นการออกกำลังกายแบบฟังก์ชันนอลและการฝึกซ้อมความเข้มข้นสูง",
+      "cn": "一家独特的车库风格健身房，专注于功能性健身和高强度训练。"
+    },
     "rating": 4.9,
     "reviews_count": 55,
     "verified": true,
     "plans": [
-      { "name": { "en": "Per Visit" }, "price": { "en": "฿150" }, "perks": ["Drop-in access", "All equipment"] }
+      { 
+        "name": { "en": "Per Visit", "th": "ต่อครั้ง", "cn": "单次入场" }, 
+        "price": { "en": "฿150", "th": "฿150", "cn": "150泰铢" }, 
+        "perks": [
+          { "en": "Drop-in access", "th": "เข้าใช้บริการได้เลย", "cn": "随时入场" }, 
+          { "en": "All equipment", "th": "อุปกรณ์ครบครัน", "cn": "所有设备" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "sports_gymnastics", "name": { "en": "Functional Training" } },
-      { "icon": "fitness_center", "name": { "en": "Free Weights" } },
-      { "icon": "fan", "name": { "en": "Open Air" } }
+      { "icon": "sports_gymnastics", "name": { "en": "Functional Training", "th": "ฟังก์ชันนอลเทรนนิ่ง", "cn": "功能性训练" } },
+      { "icon": "fitness_center", "name": { "en": "Free Weights", "th": "ฟรีเวท", "cn": "自由重量" } },
+      { "icon": "fan", "name": { "en": "Open Air", "th": "ที่โล่ง", "cn": "露天" } }
     ],
     "reviews": { "breakdown": { "5_star": 50, "4_star": 5, "3_star": 0, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Kaofang’z FIT Camp GarageGYM, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "09:00 - 21:00" } }
+    "address": { 
+      "en": "Kaofang’z FIT Camp GarageGYM, Nakhon Pathom",
+      "th": "ข้าวฟ่างฟิตแคมป์กาลาจยิม, นครปฐม",
+      "cn": "Kaofang’z FIT Camp GarageGYM, 佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "09:00 - 21:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/Kaofang’z FIT Camp GarageGYM, Nakhon Pathom.jpg"
   },
   {
     "id": 5,
-    "description": { "en": "FITNESS 21 on Tawarawadee Road is a modern facility offering a variety of workout options." },
+    "description": { 
+      "en": "FITNESS 21 on Tawarawadee Road is a modern facility offering a variety of workout options.",
+      "th": "ฟิตเนส 21 บนถนนทวารวดีเป็นสถานที่ที่ทันสมัย มีตัวเลือกการออกกำลังกายที่หลากหลาย",
+      "cn": "位于Tawarawadee路的FITNESS 21是一家提供多种锻炼选择的现代化健身中心。"
+    },
     "rating": 4.5,
     "reviews_count": 110,
     "verified": false,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿990" }, "perks": ["Full gym access", "Locker and shower"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿990", "th": "฿990", "cn": "990泰铢" }, 
+        "perks": [
+          { "en": "Full gym access", "th": "เข้าใช้ยิมได้เต็มรูปแบบ", "cn": "完全健身房通行证" }, 
+          { "en": "Locker and shower", "th": "ล็อกเกอร์และห้องอาบน้ำ", "cn": "储物柜和淋浴" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Weight Machines" } },
-      { "icon": "monitor_heart", "name": { "en": "Cardio Area" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioned" } }
+      { "icon": "fitness_center", "name": { "en": "Weight Machines", "th": "เครื่องเล่นเวท", "cn": "重量器械" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Area", "th": "โซนคาร์ดิโอ", "cn": "有氧区" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioned", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 85, "4_star": 20, "3_star": 5, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "FITNESS 21, Tawarawadee Rd, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 23:00" } }
+    "address": { 
+      "en": "FITNESS 21, Tawarawadee Rd, Nakhon Pathom",
+      "th": "ฟิตเนส 21, ถ.ทวารวดี, นครปฐม",
+      "cn": "FITNESS 21, Tawarawadee路, 佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "08:00 - 23:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/FITNESS 21, Tawarawadee Rd, Nakhon Pathom.jpg"
   },
   {
     "id": 6,
-    "description": { "en": "The fitness center at Silpakorn University, open to students and the public, offering affordable fitness solutions." },
+    "description": { 
+      "en": "The fitness center at Silpakorn University, open to students and the public, offering affordable fitness solutions.",
+      "th": "ศูนย์ฟิตเนสที่มหาวิทยาลัยศิลปากร เปิดให้บริการสำหรับนักศึกษาและบุคคลทั่วไป มีโซลูชันการออกกำลังกายราคาไม่แพง",
+      "cn": "位于Silpakorn大学的健身中心，对学生和公众开放，提供价格实惠的健身解决方案。"
+    },
     "rating": 4.3,
     "reviews_count": 200,
     "verified": true,
     "plans": [
-      { "name": { "en": "Student Visit" }, "price": { "en": "฿50" }, "perks": ["Gym access", "Basic facilities"] }
+      { 
+        "name": { "en": "Student Visit", "th": "สำหรับนักศึกษา (ต่อครั้ง)", "cn": "学生单次" }, 
+        "price": { "en": "฿50", "th": "฿50", "cn": "50泰铢" }, 
+        "perks": [
+          { "en": "Gym access", "th": "เข้าใช้ยิม", "cn": "健身房通行证" }, 
+          { "en": "Basic facilities", "th": "สิ่งอำนวยความสะดวกพื้นฐาน", "cn": "基本设施" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "school", "name": { "en": "University Facility" } },
-      { "icon": "fitness_center", "name": { "en": "Weights" } },
-      { "icon": "monitor_heart", "name": { "en": "Cardio" } }
+      { "icon": "school", "name": { "en": "University Facility", "th": " cơ sở vật chất của trường đại học", "cn": "大学设施" } },
+      { "icon": "fitness_center", "name": { "en": "Weights", "th": "เวท", "cn": "重量" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio", "th": "คาร์ดิโอ", "cn": "有氧运动" } }
     ],
     "reviews": { "breakdown": { "5_star": 120, "4_star": 60, "3_star": 15, "2_star": 5, "1_star": 0 } },
-    "address": { "en": "Silpakorn University, Sanam Chan Palace Campus, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Fri": "07:00 - 20:00" } }
+    "address": { 
+      "en": "Silpakorn University, Sanam Chan Palace Campus, Nakhon Pathom",
+      "th": "มหาวิทยาลัยศิลปากร วิทยาเขตพระราชวังสนามจันทร์ นครปฐม",
+      "cn": "Silpakorn大学，Sanam Chan宫校区，佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - ศุกร์", "en": "Mon - Fri", "cn": "周一至周五" },
+          "time": "07:00 - 20:30"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/Silpakorn University, Sanam Chan Palace Campus, Nakhon Pathom.jpg"
   },
   {
     "id": 7,
-    "description": { "en": "One of the largest fitness centers in Salaya, with ample parking and a wide array of equipment." },
+    "description": { 
+      "en": "One of the largest fitness centers in Salaya, with ample parking and a wide array of equipment.",
+      "th": "หนึ่งในศูนย์ฟิตเนสที่ใหญ่ที่สุดในศาลายา มีที่จอดรถกว้างขวางและอุปกรณ์ออกกำลังกายหลากหลาย",
+      "cn": "Salaya最大的健身中心之一，拥有充足的停车位和各种各样的设备。"
+    },
     "rating": 4.6,
     "reviews_count": 150,
     "verified": false,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,390" }, "perks": ["Spacious gym floor", "400 parking spots"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,390", "th": "฿1,390", "cn": "1390泰铢" }, 
+        "perks": [
+          { "en": "Spacious gym floor", "th": "พื้นที่ยิมกว้างขวาง", "cn": "宽敞的健身楼层" }, 
+          { "en": "400 parking spots", "th": "ที่จอดรถ 400 คัน", "cn": "400个停车位" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Extensive Equipment" } },
-      { "icon": "local_parking", "name": { "en": "Large Parking" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+      { "icon": "fitness_center", "name": { "en": "Extensive Equipment", "th": "อุปกรณ์ครบครัน", "cn": "设备齐全" } },
+      { "icon": "local_parking", "name": { "en": "Large Parking", "th": "ที่จอดรถขนาดใหญ่", "cn": "大型停车场" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 110, "4_star": 30, "3_star": 8, "2_star": 2, "1_star": 0 } },
-    "address": { "en": "Me Fitness, Salaya, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "06:00 - 24:00" } }
+    "address": { 
+      "en": "Me Fitness, Salaya, Nakhon Pathom",
+      "th": "มีฟิตเนส, ศาลายา, นครปฐม",
+      "cn": "Me Fitness, Salaya, 佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "06:00 - 24:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/Me Fitness, Salaya, Nakhon Pathom.jpg"
   },
   {
     "id": 8,
-    "description": { "en": "An accessible gym in Rai Khing offering daily passes for flexible workout schedules." },
+    "description": { 
+      "en": "An accessible gym in Rai Khing offering daily passes for flexible workout schedules.",
+      "th": "ยิมที่เข้าถึงง่ายในไร่ขิง มีบัตรผ่านรายวันสำหรับตารางการออกกำลังกายที่ยืดหยุ่น",
+      "cn": "位于Rai Khing的一家交通便利的健身房，提供日票，方便灵活的锻炼安排。"
+    },
     "rating": 4.2,
     "reviews_count": 45,
     "verified": false,
     "plans": [
-      { "name": { "en": "Daily" }, "price": { "en": "฿80" }, "perks": ["Full day access"] }
+      { 
+        "name": { "en": "Daily", "th": "รายวัน", "cn": "每日" }, 
+        "price": { "en": "฿80", "th": "฿80", "cn": "80泰铢" }, 
+        "perks": [
+          { "en": "Full day access", "th": "เข้าใช้ได้ทั้งวัน", "cn": "全天通行证" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Weights" } },
-      { "icon": "monitor_heart", "name": { "en": "Cardio" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioned" } }
+      { "icon": "fitness_center", "name": { "en": "Weights", "th": "เวท", "cn": "重量" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio", "th": "คาร์ดิโอ", "cn": "有氧运动" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioned", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 30, "4_star": 10, "3_star": 5, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Boostfitz GYM, Rai Khing, Sam Phran" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "09:00 - 22:00" } }
+    "address": { 
+      "en": "Boostfitz GYM, Rai Khing, Sam Phran",
+      "th": "บูสฟิตซ์ยิม, ไร่ขิง, สามพราน",
+      "cn": "Boostfitz GYM, Rai Khing, Sam Phran"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "09:00 - 22:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/Boostfitz GYM, Rai Khing, Sam Phran.jpg"
   },
   {
     "id": 9,
-    "description": { "en": "A well-regarded fitness club in Nakhon Chai Si, providing a comprehensive workout experience." },
+    "description": { 
+      "en": "A well-regarded fitness club in Nakhon Chai Si, providing a comprehensive workout experience.",
+      "th": "ฟิตเนสคลับชื่อดังในนครชัยศรี มอบประสบการณ์การออกกำลังกายที่ครอบคลุม",
+      "cn": "Nakhon Chai Si一家备受推崇的健身俱乐部，提供全面的健身体验。"
+    },
     "rating": 4.5,
     "reviews_count": 88,
     "verified": true,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,200" }, "perks": ["Full facility access", "Expert trainers"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,200", "th": "฿1,200", "cn": "1200泰铢" }, 
+        "perks": [
+          { "en": "Full facility access", "th": "เข้าใช้ได้ทุกส่วน", "cn": "完全设施通行证" }, 
+          { "en": "Expert trainers", "th": "เทรนเนอร์ผู้เชี่ยวชาญ", "cn": "专业教练" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Complete Equipment" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } },
-      { "icon": "shower", "name": { "en": "Showers" } }
+      { "icon": "fitness_center", "name": { "en": "Complete Equipment", "th": "อุปกรณ์ครบครัน", "cn": "设备齐全" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning", "th": "เครื่องปรับอากาศ", "cn": "空调" } },
+      { "icon": "shower", "name": { "en": "Showers", "th": "ห้องอาบน้ำ", "cn": "淋浴" } }
     ],
     "reviews": { "breakdown": { "5_star": 70, "4_star": 15, "3_star": 3, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Health Club Fitness, Nakhon Chai Si, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 22:00" } }
+    "address": { 
+      "en": "Health Club Fitness, Nakhon Chai Si, Nakhon Pathom",
+      "th": "เฮลท์คลับฟิตเนส, นครชัยศรี, นครปฐม",
+      "cn": "Health Club Fitness, Nakhon Chai Si, 佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "08:00 - 22:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/Health Club Fitness, Nakhon Chai Si, Nakhon Pathom.jpg"
   },
   {
     "id": 10,
-    "description": { "en": "FIT & Co. offers a modern and motivating fitness environment in the Tha Tamnak area." },
+    "description": { 
+      "en": "FIT & Co. offers a modern and motivating fitness environment in the Tha Tamnak area.",
+      "th": "FIT & Co. มอบสภาพแวดล้อมการออกกำลังกายที่ทันสมัยและสร้างแรงบันดาลใจในย่านท่าตำหนัก",
+      "cn": "FIT & Co. 在Tha Tamnak地区提供一个现代化且激励人心的健身环境。"
+    },
     "rating": 4.7,
     "reviews_count": 120,
     "verified": true,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,000" }, "perks": ["Modern machines", "Friendly staff"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,000", "th": "฿1,000", "cn": "1000泰铢" }, 
+        "perks": [
+          { "en": "Modern machines", "th": "เครื่องเล่นทันสมัย", "cn": "现代化器械" }, 
+          { "en": "Friendly staff", "th": "พนักงานเป็นกันเอง", "cn": "友好的员工" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "New Equipment" } },
-      { "icon": "monitor_heart", "name": { "en": "Cardio Section" } },
-      { "icon": "ac_unit", "name": { "en": "Air-Conditioned" } }
+      { "icon": "fitness_center", "name": { "en": "New Equipment", "th": "อุปกรณ์ใหม่", "cn": "新设备" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Section", "th": "โซนคาร์ดิโอ", "cn": "有氧区" } },
+      { "icon": "ac_unit", "name": { "en": "Air-Conditioned", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 100, "4_star": 15, "3_star": 5, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "FIT & Co. Fitness Center, Tha Tamnak, Nakhon Chai Si" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "07:00 - 23:00" } }
+    "address": { 
+      "en": "FIT & Co. Fitness Center, Tha Tamnak, Nakhon Chai Si",
+      "th": "ฟิตแอนด์โคฟิตเนสเซ็นเตอร์, ท่าตำหนัก, นครชัยศรี",
+      "cn": "FIT & Co. 健身中心, Tha Tamnak, Nakhon Chai Si"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "07:00 - 23:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/fit & co.jpg"
   },
   {
     "id": 11,
-    "description": { "en": "Located in Kamphaeng Saen, PES Fitness is part of Kasetsart University, offering great facilities for students and locals." },
+    "description": { 
+      "en": "Located in Kamphaeng Saen, PES Fitness is part of Kasetsart University, offering great facilities for students and locals.",
+      "th": "PES Fitness ตั้งอยู่ในกำแพงแสน เป็นส่วนหนึ่งของมหาวิทยาลัยเกษตรศาสตร์ มีสิ่งอำนวยความสะดวกที่ยอดเยี่ยมสำหรับนักศึกษาและคนในท้องถิ่น",
+      "cn": "PES Fitness位于Kamphaeng Saen，是Kasetsart大学的一部分，为学生和当地人提供一流的设施。"
+    },
     "rating": 4.4,
     "reviews_count": 95,
     "verified": true,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿900" }, "perks": ["University-grade equipment", "Spacious environment"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿900", "th": "฿900", "cn": "900泰铢" }, 
+        "perks": [
+          { "en": "University-grade equipment", "th": "อุปกรณ์มาตรฐานมหาวิทยาลัย", "cn": "大学级设备" }, 
+          { "en": "Spacious environment", "th": "สภาพแวดล้อมที่กว้างขวาง", "cn": "宽敞的环境" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "school", "name": { "en": "University Gym" } },
-      { "icon": "fitness_center", "name": { "en": "Full Equipment Set" } },
-      { "icon": "sports", "name": { "en": "Sports Facilities" } }
+      { "icon": "school", "name": { "en": "University Gym", "th": "ยิมมหาวิทยาลัย", "cn": "大学健身房" } },
+      { "icon": "fitness_center", "name": { "en": "Full Equipment Set", "th": "ชุดอุปกรณ์ครบครัน", "cn": "全套设备" } },
+      { "icon": "sports", "name": { "en": "Sports Facilities", "th": "สิ่งอำนวยความสะดวกด้านกีฬา", "cn": "体育设施" } }
     ],
     "reviews": { "breakdown": { "5_star": 75, "4_star": 15, "3_star": 5, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Kasetsart University, Kamphaeng Saen Campus, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sat": "08:00 - 20:00" } }
+    "address": { 
+      "en": "Kasetsart University, Kamphaeng Saen Campus, Nakhon Pathom",
+      "th": "มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน นครปฐม",
+      "cn": "Kasetsart大学，Kamphaeng Saen校区，佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - เสาร์", "en": "Mon - Sat", "cn": "周一至周六" },
+          "time": "08:00 - 20:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/PES_5541.jpg"
   },
   {
     "id": 12,
-    "description": { "en": "Another branch of the popular Jetts 24 Hour Fitness chain, located at The Fourth Sai 4." },
+    "description": { 
+      "en": "Another branch of the popular Jetts 24 Hour Fitness chain, located at The Fourth Sai 4.",
+      "th": "อีกหนึ่งสาขาของเครือฟิตเนสยอดนิยม Jetts 24 Hour Fitness ตั้งอยู่ที่ The Fourth สาย 4",
+      "cn": "受欢迎的Jetts 24小时健身连锁店的另一家分店，位于The Fourth Sai 4。"
+    },
     "rating": 4.5,
     "reviews_count": 130,
     "verified": true,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,600" }, "perks": ["24/7 access", "Access to all Jetts clubs"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,600", "th": "฿1,600", "cn": "1600泰铢" }, 
+        "perks": [
+          { "en": "24/7 access", "th": "เข้าใช้ได้ 24/7", "cn": "24/7 全天候开放" }, 
+          { "en": "Access to all Jetts clubs", "th": "เข้าใช้ได้ทุกสาขาของ Jetts", "cn": "可进入所有Jetts俱乐部" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "schedule", "name": { "en": "24hr Access" } },
-      { "icon": "fitness_center", "name": { "en": "State-of-the-art Gear" } },
-      { "icon": "shower", "name": { "en": "Showers & Lockers" } }
+      { "icon": "schedule", "name": { "en": "24hr Access", "th": "เข้าใช้ได้ 24 ชั่วโมง", "cn": "24小时开放" } },
+      { "icon": "fitness_center", "name": { "en": "State-of-the-art Gear", "th": "อุปกรณ์ที่ทันสมัย", "cn": "顶级设备" } },
+      { "icon": "shower", "name": { "en": "Showers & Lockers", "th": "ห้องอาบน้ำและล็อกเกอร์", "cn": "淋浴和储物柜" } }
     ],
     "reviews": { "breakdown": { "5_star": 100, "4_star": 20, "3_star": 8, "2_star": 2, "1_star": 0 } },
-    "address": { "en": "The Fourth, Phutthamonthon Sai 4, Krathum Lom, Sam Phran" },
+    "address": { 
+      "en": "The Fourth, Phutthamonthon Sai 4, Krathum Lom, Sam Phran",
+      "th": "เดอะโฟร์ท, พุทธมณฑลสาย 4, กระทุ่มล้ม, สามพราน",
+      "cn": "The Fourth, Phutthamonthon Sai 4, Krathum Lom, Sam Phran"
+    },
     "opening_hours": {
-      "status": { "en": "OPEN 24/7" },
-      "days": { "Mon - Sun": "24 Hours" }
-    }
+      "status": { "en": "OPEN 24/7", "th": "เปิด 24/7", "cn": "24/7 开放" },
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": { "th": "24 ชั่วโมง", "en": "24 Hours", "cn": "24小时" }
+        }
+      ]
+    },
+    "image_url": "imagegymdetail/jetts4.jpg"
   },
   {
     "id": 13,
-    "description": { "en": "A hardcore gym in Salaya for serious fitness enthusiasts looking for heavy-duty equipment." },
+    "description": { 
+      "en": "A hardcore gym in Salaya for serious fitness enthusiasts looking for heavy-duty equipment.",
+      "th": "ยิมฮาร์ดคอร์ในศาลายาสำหรับผู้ที่ชื่นชอบการออกกำลังกายอย่างจริงจังที่กำลังมองหาอุปกรณ์สำหรับงานหนัก",
+      "cn": "位于Salaya的一家硬核健身房，适合寻求重型设备的严肃健身爱好者。"
+    },
     "rating": 4.8,
     "reviews_count": 80,
     "verified": false,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,290" }, "perks": ["Heavy weights", "Bodybuilding focused"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,290", "th": "฿1,290", "cn": "1290泰铢" }, 
+        "perks": [
+          { "en": "Heavy weights", "th": "เวทหนัก", "cn": "重型重量" }, 
+          { "en": "Bodybuilding focused", "th": "เน้นการเพาะกาย", "cn": "专注于健美" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "fitness_center", "name": { "en": "Heavy-Duty Weights" } },
-      { "icon": "line_weight", "name": { "en": "Powerlifting Area" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+      { "icon": "fitness_center", "name": { "en": "Heavy-Duty Weights", "th": "เวทสำหรับงานหนัก", "cn": "重型重量" } },
+      { "icon": "line_weight", "name": { "en": "Powerlifting Area", "th": "โซนพาวเวอร์ลิฟติ้ง", "cn": "举重区" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 75, "4_star": 5, "3_star": 0, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "KOTR FIT GYM, Salaya, Phutthamonthon" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 23:00" } }
+    "address": { 
+      "en": "KOTR FIT GYM, Salaya, Phutthamonthon",
+      "th": "KOTR ฟิตยิม, ศาลายา, พุทธมณฑล",
+      "cn": "KOTR FIT GYM, Salaya, Phutthamonthon"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "08:00 - 23:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/KOTR FIT GYM, Salaya, Phutthamonthon.jpg"
   },
   {
     "id": 14,
-    "description": { "en": "A community-focused health and fitness club in Don Tum, offering affordable membership." },
+    "description": { 
+      "en": "A community-focused health and fitness club in Don Tum, offering affordable membership.",
+      "th": "ชมรมสุขภาพและฟิตเนสที่เน้นชุมชนในดอนตูม เสนอการเป็นสมาชิกราคาไม่แพง",
+      "cn": "位于Don Tum的一家以社区为中心的健康和健身俱乐部，提供价格实惠的会员资格。"
+    },
     "rating": 4.3,
     "reviews_count": 60,
     "verified": false,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿800" }, "perks": ["Friendly atmosphere", "Good value"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿800", "th": "฿800", "cn": "800泰铢" }, 
+        "perks": [
+          { "en": "Friendly atmosphere", "th": "บรรยากาศเป็นกันเอง", "cn": "友好的氛围" }, 
+          { "en": "Good value", "th": "คุ้มค่า", "cn": "物超所值" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "groups", "name": { "en": "Community Feel" } },
-      { "icon": "fitness_center", "name": { "en": "Standard Equipment" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioned" } }
+      { "icon": "groups", "name": { "en": "Community Feel", "th": "ความรู้สึกของชุมชน", "cn": "社区感" } },
+      { "icon": "fitness_center", "name": { "en": "Standard Equipment", "th": "อุปกรณ์มาตรฐาน", "cn": "标准设备" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioned", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 45, "4_star": 10, "3_star": 5, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "FitClub Health and Fitness, Don Tum, Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "09:00 - 21:00" } }
+    "address": { 
+      "en": "FitClub Health and Fitness, Don Tum, Nakhon Pathom",
+      "th": "ฟิตคลับเฮลท์แอนด์ฟิตเนส, ดอนตูม, นครปฐม",
+      "cn": "FitClub Health and Fitness, Don Tum, 佛统府"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "09:00 - 21:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/FitClub Health and Fitness, Don Tum, Nakhon Pathom.jpg"
   },
   {
     "id": 15,
-    "description": { "en": "Fits Gym on Ying Pao Road provides a clean and well-equipped space for your daily workout." },
+    "description": { 
+      "en": "Fits Gym on Ying Pao Road provides a clean and well-equipped space for your daily workout.",
+      "th": "ฟิตส์ยิมบนถนนหญิงเปามีพื้นที่ที่สะอาดและมีอุปกรณ์ครบครันสำหรับการออกกำลังกายประจำวันของคุณ",
+      "cn": "位于Ying Pao路的Fits Gym为您提供一个干净且设备齐全的日常锻炼空间。"
+    },
     "rating": 4.5,
     "reviews_count": 95,
     "verified": true,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿1,100" }, "perks": ["Clean facility", "Good selection of machines"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿1,100", "th": "฿1,100", "cn": "1100泰铢" }, 
+        "perks": [
+          { "en": "Clean facility", "th": "สถานที่สะอาด", "cn": "清洁的设施" }, 
+          { "en": "Good selection of machines", "th": "มีเครื่องเล่นให้เลือกมากมาย", "cn": "精选的器械" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "sanitizer", "name": { "en": "Clean Environment" } },
-      { "icon": "fitness_center", "name": { "en": "Well-Maintained Gear" } },
-      { "icon": "ac_unit", "name": { "en": "Air Conditioning" } }
+      { "icon": "sanitizer", "name": { "en": "Clean Environment", "th": "สภาพแวดล้อมที่สะอาด", "cn": "清洁的环境" } },
+      { "icon": "fitness_center", "name": { "en": "Well-Maintained Gear", "th": "อุปกรณ์ที่ได้รับการดูแลอย่างดี", "cn": "维护良好的设备" } },
+      { "icon": "ac_unit", "name": { "en": "Air Conditioning", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 80, "4_star": 10, "3_star": 5, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Fits Gym, Ying Pao Rd, Mueang Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "07:00 - 22:00" } }
+    "address": { 
+      "en": "Fits Gym, Ying Pao Rd, Mueang Nakhon Pathom",
+      "th": "ฟิตส์ยิม, ถ.หญิงเปา, เมืองนครปฐม",
+      "cn": "Fits Gym, Ying Pao路, 佛统府治县"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "07:00 - 22:00"
+        }
+      ]
+    },
+    "image_url" : "imagegymdetail/Fits Gym, Ying Pao Rd, Mueang Nakhon Pathom.jpg"
   },
   {
     "id": 16,
-    "description": { "en": "Strong Fitness offers a solid workout experience with a variety of equipment for strength training and cardio." },
+    "description": { 
+      "en": "Strong Fitness offers a solid workout experience with a variety of equipment for strength training and cardio.",
+      "th": "สตรองฟิตเนสมอบประสบการณ์การออกกำลังกายที่แข็งแกร่งด้วยอุปกรณ์ที่หลากหลายสำหรับการฝึกความแข็งแรงและคาร์ดิโอ",
+      "cn": "Strong Fitness提供扎实的健身体验，配备各种力量训练和有氧运动设备。"
+    },
     "rating": 4.4,
     "reviews_count": 78,
     "verified": false,
     "plans": [
-      { "name": { "en": "Monthly" }, "price": { "en": "฿900" }, "perks": ["Good for strength training", "Affordable price"] }
+      { 
+        "name": { "en": "Monthly", "th": "รายเดือน", "cn": "月度会员" }, 
+        "price": { "en": "฿900", "th": "฿900", "cn": "900泰铢" }, 
+        "perks": [
+          { "en": "Good for strength training", "th": "เหมาะสำหรับการฝึกความแข็งแรง", "cn": "适合力量训练" }, 
+          { "en": "Affordable price", "th": "ราคาย่อมเยา", "cn": "价格实惠" }
+        ] 
+      }
     ],
     "amenities": [
-      { "icon": "line_weight", "name": { "en": "Strength Training" } },
-      { "icon": "monitor_heart", "name": { "en": "Cardio Equipment" } },
-      { "icon": "ac_unit", "name": { "en": "Air-Conditioned" } }
+      { "icon": "line_weight", "name": { "en": "Strength Training", "th": "การฝึกความแข็งแรง", "cn": "力量训练" } },
+      { "icon": "monitor_heart", "name": { "en": "Cardio Equipment", "th": "อุปกรณ์คาร์ดิโอ", "cn": "有氧器材" } },
+      { "icon": "ac_unit", "name": { "en": "Air-Conditioned", "th": "เครื่องปรับอากาศ", "cn": "空调" } }
     ],
     "reviews": { "breakdown": { "5_star": 65, "4_star": 10, "3_star": 3, "2_star": 0, "1_star": 0 } },
-    "address": { "en": "Strong Fitness, Mueang Nakhon Pathom" },
-    "opening_hours": { "status": { "en": "Open" }, "days": { "Mon - Sun": "08:00 - 22:00" } }
+    "address": { 
+      "en": "Strong Fitness, Mueang Nakhon Pathom",
+      "th": "สตรองฟิตเนส, เมืองนครปฐม",
+      "cn": "Strong Fitness, 佛统府治县"
+    },
+    "opening_hours": { 
+      "status": { "en": "Open", "th": "เปิด", "cn": "营业中" }, 
+      "days": [
+        { 
+          "day": { "th": "จันทร์ - อาทิตย์", "en": "Mon - Sun", "cn": "周一至周日" },
+          "time": "08:00 - 22:00"
+        }
+      ]
+    },
+    "image_url" :"imagegymdetail/Strong Fitness, Mueang Nakhon Pathom.jpg"
   }
 ]
