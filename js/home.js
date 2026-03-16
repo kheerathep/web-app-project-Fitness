@@ -23,19 +23,58 @@ const dictionary = {
         "price": "ราคา",  "search": "ค้นหาฟิตเนส...", "search_hero": "ค้นหาตามชื่อหรือพื้นที่...",
         "nav_home": "หน้าหลัก", "nav_map": "แผนที่", 
         "hero_sub": "ค้นหาฟิตเนสที่ใช่ในนครปฐม",
-        "btn_explore": "สำรวจแผนที่"
+        "btn_explore": "สำรวจแผนที่",
+        "trending_now": "กำลังเป็นกระแส",
+        "trending_now_desc": "สถานที่ยอดนิยมในนครปฐมสัปดาห์นี้",
+        "view": "ดูเพิ่มเติม",
+        "view_all": "ดูทั้งหมด",
+        "footer_desc": "คู่มือฟิตเนสที่ดีที่สุดสำหรับชาวนครปฐม เปรียบเทียบราคา ค้นหาข้อเสนอ และบรรลุเป้าหมายของคุณ",
+        "platform": "แพลตฟอร์ม",
+        "search_gyms": "ค้นหาโรงยิม",
+        "interactive_map": "แผนที่แบบโต้ตอบ",
+        "company": "บริษัท",
+        "about_us": "เกี่ยวกับเรา",
+        "contact_support": "ติดต่อฝ่ายสนับสนุน",
+        "privacy_policy": "นโยบายความเป็นส่วนตัว",
+        "social": "โซเชียล"
     },
     "en": {
         "price": "Price",  "search": "Search gyms...", "search_hero": "Search by name or area...",
         "nav_home": "Home", "nav_map": "Map",
         "hero_sub": "Find your perfect gym in Nakhon Pathom",
-        "btn_explore": "Explore Map"
+        "btn_explore": "Explore Map",
+        "trending_now": "TRENDING NOW",
+        "trending_now_desc": "Most popular spots in Nakhon Pathom this week",
+        "view": "View",
+        "view_all": "View All",
+        "footer_desc": "The ultimate fitness companion for Nakhon Pathom residents. Compare prices, find deals, and reach your goals.",
+        "platform": "PLATFORM",
+        "search_gyms": "Search Gyms",
+        "interactive_map": "Interactive Map",
+        "company": "COMPANY",
+        "about_us": "About Us",
+        "contact_support": "Contact Support",
+        "privacy_policy": "Privacy Policy",
+        "social": "SOCIAL"
     },
     "cn": {
         "price": "价格",  "search": "搜索健身房...", "search_hero": "按名称或地区搜索...",
         "nav_home": "首页", "nav_map": "地图",
         "hero_sub": "在那空拍他姆找到理想的健身房",
-        "btn_explore": "探索地图"
+        "btn_explore": "探索地图",
+        "trending_now": "现在流行",
+        "trending_now_desc": "本周那空巴吞最受欢迎的景点",
+        "view": "查看",
+        "view_all": "查看全部",
+        "footer_desc": "那空巴吞居民的终极健身伴侣。比较价格、寻找优惠并实现您的目标。",
+        "platform": "平台",
+        "search_gyms": "搜索健身房",
+        "interactive_map": "互动地图",
+        "company": "公司",
+        "about_us": "关于我们",
+        "contact_support": "联系支持",
+        "privacy_policy": "隐私政策",
+        "social": "社交"
     }
 };
 let homepageData = [];
@@ -51,9 +90,18 @@ function resolveImageUrl(path) {
 }
 
 function getStartingFromLabel() {
-    if (currentLang === "th") return "\u0E40\u0E23\u0E34\u0E48\u0E21\u0E15\u0E49\u0E19\u0E17\u0E35\u0E48";
-    if (currentLang === "cn") return "\u8D77\u4EF7";
+    if (currentLang === "th") return "เริ่มต้นที่";
+    if (currentLang === "cn") return "起价";
     return "Starting from";
+}
+
+function applyTranslations(lang) {
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        if (dictionary[lang] && dictionary[lang][key]) {
+            element.innerText = dictionary[lang][key];
+        }
+    });
 }
 
 function changeLang(lang) {
@@ -83,6 +131,8 @@ function changeLang(lang) {
     const heroSub = document.getElementById('hero-sub');
     if (heroSub) heroSub.innerText = dictionary[lang].hero_sub;
 
+    applyTranslations(lang);
+
     if (homepageData.length > 0) {
         renderTrendingSection(homepageData);
     }
@@ -111,8 +161,8 @@ function getLangValue(value, lang) {
 function getLocationText(item) {
     const location = item.location || item.district || item.area || "Nakhon Pathom";
     if (location === "Muang, Nakhon Pathom") {
-        if (currentLang === "th") return "\u0E40\u0E21\u0E37\u0E2D\u0E07, \u0E19\u0E04\u0E23\u0E1B\u0E10\u0E21";
-        if (currentLang === "cn") return "\u4F5B\u7EDF\u5E9C\u5E02\u533A";
+        if (currentLang === "th") return "เมือง, นครปฐม";
+        if (currentLang === "cn") return "佛统府市区";
     }
     return location;
 }
@@ -138,6 +188,7 @@ function renderTrendingSection(data) {
         const rating = item.rating || item.score || "4.8";
         const mapUrl = new URL(buildUrl("map.html"));
         mapUrl.searchParams.set("q", getLangValue(item.name, "en") || name);
+        const viewText = dictionary[currentLang].view || "View";
 
         return `
             <div class="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
@@ -160,7 +211,7 @@ function renderTrendingSection(data) {
                             <p class="text-primary font-black text-xl">${price}</p>
                         </div>
                         <a href="${mapUrl.toString()}" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
-                            View
+                            ${viewText}
                         </a>
                     </div>
                 </div>
@@ -170,7 +221,7 @@ function renderTrendingSection(data) {
 }
 
 function loadHomepageData() {
-    const sources = ["data/data.json", "data/datahomepage.json"];
+    const sources = ["data/datahomepage.json", "data/data.json"];
     const trySource = (index) => {
         if (index >= sources.length) {
             throw new Error("Failed to load homepage data from all sources");
