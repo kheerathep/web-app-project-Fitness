@@ -40,6 +40,16 @@ const dictionary = {
 };
 let homepageData = [];
 
+function buildUrl(path) {
+    return new URL(path, window.location.href).toString();
+}
+
+function resolveImageUrl(path) {
+    if (!path) return "https://via.placeholder.com/800x500?text=No+Image";
+    if (/^https?:\/\//i.test(path)) return path;
+    return buildUrl(path.replace(/\\/g, "/"));
+}
+
 function getStartingFromLabel() {
     if (currentLang === "th") return "\u0E40\u0E23\u0E34\u0E48\u0E21\u0E15\u0E49\u0E19\u0E17\u0E35\u0E48";
     if (currentLang === "cn") return "\u8D77\u4EF7";
@@ -85,8 +95,7 @@ function setupExploreButton() {
     if (btn && heroSearch) {
         btn.addEventListener('click', () => {
             const query = heroSearch.value.trim();
-            const url = new URL(window.location.href);
-            url.pathname = 'map.html';
+            const url = new URL(buildUrl("map.html"));
             if (query) url.searchParams.set('q', query);
             window.location.href = url.toString();
         });
@@ -125,9 +134,10 @@ function renderTrendingSection(data) {
         const name = getLangValue(item.name, currentLang) || "Gym";
         const location = getLocationText(item);
         const price = getPriceText(item);
-        const image = item.image_url || "https://via.placeholder.com/800x500?text=No+Image";
+        const image = resolveImageUrl(item.image_url);
         const rating = item.rating || item.score || "4.8";
-        const query = encodeURIComponent(getLangValue(item.name, "en") || name);
+        const mapUrl = new URL(buildUrl("map.html"));
+        mapUrl.searchParams.set("q", getLangValue(item.name, "en") || name);
 
         return `
             <div class="group rounded-3xl bg-white border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
@@ -149,7 +159,7 @@ function renderTrendingSection(data) {
                             <p class="text-xs text-text-subtle font-medium mb-1">${getStartingFromLabel()}</p>
                             <p class="text-primary font-black text-xl">${price}</p>
                         </div>
-                        <a href="map.html?q=${query}" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
+                        <a href="${mapUrl.toString()}" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition">
                             View
                         </a>
                     </div>
@@ -160,21 +170,30 @@ function renderTrendingSection(data) {
 }
 
 function loadHomepageData() {
-    return fetch("data/datahomepage.json")
-        .then((response) => {
-            if (!response.ok) throw new Error("Failed to load data/datahomepage.json");
-            return response.json();
-        })
-        .then((data) => {
-            if (!Array.isArray(data) || data.length === 0) {
-                throw new Error("Empty data in data/datahomepage.json");
-            }
-            homepageData = data;
-            renderTrendingSection(homepageData);
-        })
-        .catch((error) => {
-            console.error("Homepage data load error:", error);
-        });
+    const sources = ["data/data.json", "data/datahomepage.json"];
+    const trySource = (index) => {
+        if (index >= sources.length) {
+            throw new Error("Failed to load homepage data from all sources");
+        }
+        const source = sources[index];
+        return fetch(buildUrl(source))
+            .then((response) => {
+                if (!response.ok) throw new Error(`Failed to load ${source}`);
+                return response.json();
+            })
+            .then((data) => {
+                if (!Array.isArray(data) || data.length === 0) {
+                    throw new Error(`Empty data in ${source}`);
+                }
+                homepageData = data;
+                renderTrendingSection(homepageData);
+            })
+            .catch(() => trySource(index + 1));
+    };
+
+    return trySource(0).catch((error) => {
+        console.error("Homepage data load error:", error);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

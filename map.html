@@ -9,8 +9,10 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/map.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     
+    <!-- Note: For production, use Tailwind CLI or PostCSS instead of CDN -->
     <script>
         tailwind.config = {
             theme: {
@@ -86,7 +88,7 @@
 
 </aside>
 
-        <main class="relative hidden lg:block flex-1 h-full bg-gray-200">
+        <main class="relative flex-1 h-full bg-gray-200">
             <button id="toggle-sidebar" class="absolute left-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white text-text-subtle shadow-md hover:text-primary hover:scale-110 transition cursor-pointer" title="Toggle Sidebar">
                 <span class="material-symbols-outlined">chevron_left</span>
             </button>
@@ -135,7 +137,8 @@
     </div>
 
     <script src="js/map.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyh9N7zJ4LPkW9aDAM-XiYdcR-WUDRy14&callback=initMap" async defer></script>
+    <script async
+src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=marker&callback=initMap&loading=async">
+</script>
 </body>
 </html>
