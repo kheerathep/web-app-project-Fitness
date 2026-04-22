@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Serve static files from the root directory
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '..')));
 
 // Route for root
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Helper to read JSON files
@@ -40,14 +40,14 @@ const writeJson = (filePath, data) => {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };
 
-const usersFile = path.join(__dirname, 'data', 'users.json');
-const dataFile = path.join(__dirname, 'data', 'data.json');
-const homepageFile = path.join(__dirname, 'data', 'datahomepage.json');
-const gymsFile = path.join(__dirname, 'data', 'gym-details.json');
+const usersFile = path.join(__dirname, '..', 'data', 'users.json');
+const dataFile = path.join(__dirname, '..', 'data', 'data.json');
+const homepageFile = path.join(__dirname, '..', 'data', 'datahomepage.json');
+const gymsFile = path.join(__dirname, '..', 'data', 'gym-details.json');
 
 // Ensure files exist
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-    fs.mkdirSync(path.join(__dirname, 'data'));
+if (!fs.existsSync(path.join(__dirname, '..', 'data'))) {
+    fs.mkdirSync(path.join(__dirname, '..', 'data'));
 }
 
 [usersFile, gymsFile, dataFile, homepageFile].forEach(file => {
@@ -59,7 +59,7 @@ if (!fs.existsSync(path.join(__dirname, 'data'))) {
 // Multer Setup for Image Uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadDir = path.join(__dirname, 'imagegymdetail');
+        const uploadDir = path.join(__dirname, '..', 'imagegymdetail');
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
         }

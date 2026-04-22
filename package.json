@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node api/index.js"
+  },
   "devDependencies": {
     "tailwindcss": "^4.2.1"
   },
