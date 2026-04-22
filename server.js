@@ -204,39 +204,52 @@ app.post('/api/admin/gyms', requireAdmin, upload.single('image'), async (req, re
             lat, lng, website, contact, location
         } = req.body;
 
+        // Default image if upload fails or is missing
         let imageUrl = 'https://placehold.co/600x400?text=Gym';
+        
         if (req.file) {
-            const blob = await put(`gyms/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
-                access: 'public',
-            });
-            imageUrl = blob.url;
+            try {
+                const blob = await put(`gyms/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
+                    access: 'public',
+                });
+                imageUrl = blob.url;
+            } catch (blobError) {
+                console.error('Blob Upload Error:', blobError);
+                // Continue with default image if blob fails, or handle as error
+            }
         }
 
-        const name = { en: nameEn, th: nameTh, cn: nameCn };
-        const price = { en: priceEn, th: priceTh, cn: priceCn };
-        const description = { en: descEn, th: descTh, cn: descCn };
-        const address = { en: addressEn, th: addressTh, cn: addressCn };
+        const name = { en: nameEn || '', th: nameTh || '', cn: nameCn || '' };
+        const price = { en: priceEn || '฿0', th: priceTh || '฿0', cn: priceCn || '0泰铢' };
+        const description = { en: descEn || '', th: descTh || '', cn: descCn || '' };
+        const address = { en: addressEn || '', th: addressTh || '', cn: addressCn || '' };
         const opening_hours = {
             status: { en: "Open", th: "เปิด", cn: "营业中" },
             days: [{ day: { en: "Mon - Sun", th: "จันทร์ - อาทิตย์", cn: "周一至周日" }, time: "08:00 - 22:00" }]
         };
 
+        // Ensure lat/lng are valid numbers
+        const latitude = parseFloat(lat) || 13.8;
+        const longitude = parseFloat(lng) || 100.0;
+
         await sql`
             INSERT INTO gyms (
                 name, lat, lng, price, website, updated_date, image_url, 
-                tags, contact, description, address, opening_hours, location
+                tags, contact, description, address, opening_hours, location,
+                rating, reviews_count, verified
             ) VALUES (
-                ${JSON.stringify(name)}, ${parseFloat(lat)}, ${parseFloat(lng)}, ${JSON.stringify(price)}, 
-                ${website}, ${new Date().toISOString().split('T')[0]}, ${imageUrl}, 
-                ${JSON.stringify(["cardio", "weight"])}, ${contact}, ${JSON.stringify(description)},
-                ${JSON.stringify(address)}, ${JSON.stringify(opening_hours)}, ${location}
+                ${name}, ${latitude}, ${longitude}, ${price}, 
+                ${website || ''}, ${new Date().toISOString().split('T')[0]}, ${imageUrl}, 
+                ${["cardio", "weight"]}, ${contact || ''}, ${description},
+                ${address}, ${opening_hours}, ${location || ''},
+                5.0, 0, true
             )
         `;
 
         res.json({ message: 'Gym added successfully!' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Server error' });
+        console.error('Database/Server Error:', error);
+        res.status(500).json({ error: 'Server error: ' + error.message });
     }
 });
 
