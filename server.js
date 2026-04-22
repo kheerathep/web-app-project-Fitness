@@ -196,9 +196,9 @@ app.delete('/api/admin/gyms/:id', requireAdmin, async (req, res) => {
 // Add New Gym
 app.post('/api/admin/gyms', requireAdmin, upload.single('image'), async (req, res) => {
     try {
-        const { 
-            nameEn, nameTh, nameCn, 
-            descEn, descTh, descCn, 
+        const {
+            nameEn, nameTh, nameCn,
+            descEn, descTh, descCn,
             addressEn, addressTh, addressCn,
             priceEn, priceTh, priceCn,
             lat, lng, website, contact, location
@@ -206,7 +206,7 @@ app.post('/api/admin/gyms', requireAdmin, upload.single('image'), async (req, re
 
         // Default image if upload fails or is missing
         let imageUrl = 'https://placehold.co/600x400?text=Gym';
-        
+
         if (req.file) {
             try {
                 const blob = await put(`gyms/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
@@ -238,10 +238,19 @@ app.post('/api/admin/gyms', requireAdmin, upload.single('image'), async (req, re
                 tags, contact, description, address, opening_hours, location,
                 rating, reviews_count, verified
             ) VALUES (
-                ${name}, ${latitude}, ${longitude}, ${price}, 
-                ${website || ''}, ${new Date().toISOString().split('T')[0]}, ${imageUrl}, 
-                ${["cardio", "weight"]}, ${contact || ''}, ${description},
-                ${address}, ${opening_hours}, ${location || ''},
+                ${JSON.stringify(name)}::jsonb, 
+                ${latitude}, 
+                ${longitude}, 
+                ${JSON.stringify(price)}::jsonb, 
+                ${website || ''}, 
+                ${new Date().toISOString().split('T')[0]}, 
+                ${imageUrl}, 
+                ${JSON.stringify(["cardio", "weight"])}::jsonb, 
+                ${contact || ''}, 
+                ${JSON.stringify(description)}::jsonb,
+                ${JSON.stringify(address)}::jsonb, 
+                ${JSON.stringify(opening_hours)}::jsonb, 
+                ${location || ''},
                 5.0, 0, true
             )
         `;
