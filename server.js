@@ -6,10 +6,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const { sql } = require('@vercel/postgres');
+const { put } = require('@vercel/blob');
 
 const app = express();
-const PORT = 3000;
-const JWT_SECRET = 'nakhonfit_super_secret_key_123'; // In a real app, use .env
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET || 'nakhonfit_super_secret_key_123';
 
 // Middlewares
 app.use(cors());
@@ -25,90 +27,87 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Helper to read JSON files
-const readJson = (filePath) => {
-    try {
-        const data = fs.readFileSync(filePath, 'utf8');
-        return JSON.parse(data);
-    } catch (e) {
-        return [];
-    }
-};
-
-// Helper to write JSON files
-const writeJson = (filePath, data) => {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-};
-
-const usersFile = path.join(__dirname, 'data', 'users.json');
-const dataFile = path.join(__dirname, 'data', 'data.json');
-const homepageFile = path.join(__dirname, 'data', 'datahomepage.json');
-const gymsFile = path.join(__dirname, 'data', 'gym-details.json');
-
-// Ensure files exist
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-    fs.mkdirSync(path.join(__dirname, 'data'));
-}
-
-[usersFile, gymsFile, dataFile, homepageFile].forEach(file => {
-    if (!fs.existsSync(file)) {
-        writeJson(file, []);
-    }
-});
-
-// Multer Setup for Image Uploads
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        const uploadDir = path.join(__dirname, 'imagegymdetail');
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir);
-        }
-        cb(null, 'imagegymdetail/');
-    },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
-});
+// Multer Setup for Image Uploads (Using Memory for Blob)
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+// Database Initialization (Create tables if not exist)
+async function initDb() {
+    try {
+        await sql`
+            CREATE TABLE IF NOT EXISTS users (
+                id BIGSERIAL PRIMARY KEY,
+                username TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                role TEXT DEFAULT 'user'
+            );
+        `;
+        await sql`
+            CREATE TABLE IF NOT EXISTS gyms (
+                id SERIAL PRIMARY KEY,
+                name JSONB NOT NULL,
+                lat DOUBLE PRECISION,
+                lng DOUBLE PRECISION,
+                price JSONB,
+                website TEXT,
+                updated_date TEXT,
+                image_url TEXT,
+                tags JSONB,
+                contact TEXT,
+                description JSONB,
+                rating DOUBLE PRECISION DEFAULT 5.0,
+                reviews_count INTEGER DEFAULT 0,
+                verified BOOLEAN DEFAULT FALSE,
+                plans JSONB,
+                amenities JSONB,
+                reviews JSONB,
+                address JSONB,
+                opening_hours JSONB,
+                location TEXT
+            );
+        `;
+        console.log('Database initialized');
+    } catch (e) {
+        console.error('Db Init Error:', e);
+    }
+}
+initDb();
 
 // --- API ENDPOINTS ---
 
-// Register (Default to 'user' role)
+// Register
 app.post('/api/auth/register', async (req, res) => {
-    const { username, password, role } = req.body;
+    const { username, password } = req.body;
     if (!username || !password) return res.status(400).json({ error: 'Username and password required' });
 
-    let users = readJson(usersFile);
-    if (users.find(u => u.username === username)) {
-        return res.status(400).json({ error: 'Username already exists' });
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await sql`INSERT INTO users (username, password, role) VALUES (${username}, ${hashedPassword}, 'user')`;
+        res.json({ message: 'User registered successfully' });
+    } catch (e) {
+        if (e.code === '23505') return res.status(400).json({ error: 'Username already exists' });
+        res.status(500).json({ error: 'Registration failed' });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    // Registration always defaults to 'user'. Admin must be set manually in users.json.
-    const userRole = 'user';
-    
-    users.push({ id: Date.now(), username, password: hashedPassword, role: userRole });
-    writeJson(usersFile, users);
-
-    res.json({ message: 'User registered successfully' });
 });
 
 // Login
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
-    const users = readJson(usersFile);
-    const user = users.find(u => u.username === username);
+    try {
+        const { rows } = await sql`SELECT * FROM users WHERE username = ${username}`;
+        const user = rows[0];
 
-    if (!user) return res.status(400).json({ error: 'Invalid credentials' });
+        if (!user) return res.status(400).json({ error: 'Invalid credentials' });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
-    res.cookie('token', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-    res.json({ message: 'Login successful', role: user.role });
+        const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 24 * 60 * 60 * 1000 });
+        res.json({ message: 'Login successful', role: user.role });
+    } catch (e) {
+        res.status(500).json({ error: 'Login failed' });
+    }
 });
 
 // Logout
@@ -117,20 +116,7 @@ app.post('/api/auth/logout', (req, res) => {
     res.json({ message: 'Logged out successfully' });
 });
 
-// Auth Middleware Check
-const requireAuth = (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json({ error: 'Unauthorized' });
-
-    try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        req.user = decoded;
-        next();
-    } catch (e) {
-        res.status(401).json({ error: 'Invalid token' });
-    }
-};
-
+// Admin Middleware
 const requireAdmin = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) return res.status(401).json({ error: 'Unauthorized' });
@@ -157,119 +143,154 @@ app.get('/api/auth/me', (req, res) => {
     }
 });
 
-// List all gyms (Admin only)
-app.get('/api/admin/gyms', requireAdmin, (req, res) => {
-    const gyms = readJson(dataFile);
-    res.json(gyms);
+// List all gyms
+app.get('/api/admin/gyms', async (req, res) => {
+    try {
+        const { rows } = await sql`SELECT * FROM gyms ORDER BY id DESC`;
+        res.json(rows);
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to fetch gyms' });
+    }
 });
 
-// Delete a gym (Admin only)
-app.delete('/api/admin/gyms/:id', requireAdmin, (req, res) => {
-    const id = parseInt(req.params.id);
-    
-    // Remove from data.json
-    let data = readJson(dataFile);
-    data = data.filter(g => g.id !== id);
-    writeJson(dataFile, data);
-
-    // Remove from gym-details.json
-    let details = readJson(gymsFile);
-    details = details.filter(g => g.id !== id);
-    writeJson(gymsFile, details);
-
-    // Remove from datahomepage.json
-    let homepage = readJson(homepageFile);
-    homepage = homepage.filter(g => g.id !== id);
-    writeJson(homepageFile, homepage);
-
-    res.json({ message: 'Gym deleted successfully' });
+// Public: Get Map Data (data.json replacement)
+app.get('/data/data.json', async (req, res) => {
+    try {
+        const { rows } = await sql`SELECT id, name, lat, lng, price, website, updated_date, image_url, tags, contact FROM gyms`;
+        res.json(rows);
+    } catch (e) {
+        res.status(500).json({ error: 'Error' });
+    }
 });
 
-// Add New Gym Information (Requires Admin)
-app.post('/api/admin/gyms', requireAdmin, upload.single('image'), (req, res) => {
+// Public: Get Homepage Data (datahomepage.json replacement)
+app.get('/data/datahomepage.json', async (req, res) => {
+    try {
+        const { rows } = await sql`SELECT id, name, price, location, rating, image_url, lat, lng FROM gyms LIMIT 6`;
+        res.json(rows);
+    } catch (e) {
+        res.status(500).json({ error: 'Error' });
+    }
+});
+
+// Public: Get Specific Gym Detail (gym-details.json replacement)
+app.get('/data/gym-details.json', async (req, res) => {
+    try {
+        const { rows } = await sql`SELECT * FROM gyms`;
+        res.json(rows);
+    } catch (e) {
+        res.status(500).json({ error: 'Error' });
+    }
+});
+
+// Delete a gym
+app.delete('/api/admin/gyms/:id', requireAdmin, async (req, res) => {
+    try {
+        await sql`DELETE FROM gyms WHERE id = ${req.params.id}`;
+        res.json({ message: 'Gym deleted successfully' });
+    } catch (e) {
+        res.status(500).json({ error: 'Delete failed' });
+    }
+});
+
+// Add New Gym
+app.post('/api/admin/gyms', requireAdmin, upload.single('image'), async (req, res) => {
     try {
         const { 
             nameEn, nameTh, nameCn, 
             descEn, descTh, descCn, 
             addressEn, addressTh, addressCn,
             priceEn, priceTh, priceCn,
-            lat, lng, website, contact,
-            location // for homepage
+            lat, lng, website, contact, location
         } = req.body;
 
-        const gymsDetails = readJson(gymsFile);
-        const gymsData = readJson(dataFile);
-        const gymsHomepage = readJson(homepageFile);
+        let imageUrl = 'https://placehold.co/600x400?text=Gym';
+        if (req.file) {
+            const blob = await put(`gyms/${Date.now()}-${req.file.originalname}`, req.file.buffer, {
+                access: 'public',
+            });
+            imageUrl = blob.url;
+        }
 
-        const newId = gymsDetails.length > 0 ? Math.max(...gymsDetails.map(g => g.id || 0)) + 1 : 1;
-        const imageUrl = req.file ? 'imagegymdetail/' + req.file.filename : 'imagegymdetail/placeholder.jpg';
-
-        // 1. Update gym-details.json
-        const newGymDetail = {
-            id: newId,
-            description: { en: descEn || '', th: descTh || '', cn: descCn || '' },
-            rating: 5.0,
-            reviews_count: 0,
-            verified: true,
-            plans: [
-                {
-                    name: { en: "Monthly", th: "รายเดือน", cn: "月度会员" },
-                    price: { en: priceEn || '฿0', th: priceTh || '฿0', cn: priceCn || '0泰铢' },
-                    perks: [{ en: "Full gym access", th: "เข้าใช้ยิมได้เต็มรูปแบบ", cn: "完全健身房通行证" }]
-                }
-            ],
-            amenities: [{ icon: "fitness_center", name: { en: "Standard Equipment", th: "อุปกรณ์มาตรฐาน", cn: "标准设备" } }],
-            reviews: { breakdown: { "5_star": 0, "4_star": 0, "3_star": 0, "2_star": 0, "1_star": 0 } },
-            address: { en: addressEn || '', th: addressTh || '', cn: addressCn || '' },
-            opening_hours: {
-                status: { en: "Open", th: "เปิด", cn: "营业中" },
-                days: [{ day: { en: "Mon - Sun", th: "จันทร์ - อาทิตย์", cn: "周一至周日" }, time: "08:00 - 22:00" }]
-            },
-            image_url: imageUrl
+        const name = { en: nameEn, th: nameTh, cn: nameCn };
+        const price = { en: priceEn, th: priceTh, cn: priceCn };
+        const description = { en: descEn, th: descTh, cn: descCn };
+        const address = { en: addressEn, th: addressTh, cn: addressCn };
+        const opening_hours = {
+            status: { en: "Open", th: "เปิด", cn: "营业中" },
+            days: [{ day: { en: "Mon - Sun", th: "จันทร์ - อาทิตย์", cn: "周一至周日" }, time: "08:00 - 22:00" }]
         };
 
-        // 2. Update data.json
-        const newGymData = {
-            id: newId,
-            name: { en: nameEn, th: nameTh, cn: nameCn },
-            lat: parseFloat(lat) || 13.8,
-            lng: parseFloat(lng) || 100.0,
-            price: { th: priceTh, en: priceEn, cn: priceCn },
-            website: website || '',
-            updated_date: new Date().toISOString().split('T')[0],
-            image_url: imageUrl,
-            tags: ["cardio", "weight", "aircon"],
-            contact: contact || '-'
-        };
+        await sql`
+            INSERT INTO gyms (
+                name, lat, lng, price, website, updated_date, image_url, 
+                tags, contact, description, address, opening_hours, location
+            ) VALUES (
+                ${JSON.stringify(name)}, ${parseFloat(lat)}, ${parseFloat(lng)}, ${JSON.stringify(price)}, 
+                ${website}, ${new Date().toISOString().split('T')[0]}, ${imageUrl}, 
+                ${JSON.stringify(["cardio", "weight"])}, ${contact}, ${JSON.stringify(description)},
+                ${JSON.stringify(address)}, ${JSON.stringify(opening_hours)}, ${location}
+            )
+        `;
 
-        // 3. Update datahomepage.json (Optional: as it usually only has 3 items)
-        const newGymHomepage = {
-            id: newId,
-            name: { th: nameTh, en: nameEn, cn: nameCn },
-            price: { th: priceTh, en: priceEn, cn: priceCn },
-            location: location || "Muang, Nakhon Pathom",
-            rating: "5.0",
-            image_url: imageUrl,
-            lat: parseFloat(lat) || 13.8,
-            lng: parseFloat(lng) || 100.0
-        };
-
-        gymsDetails.push(newGymDetail);
-        gymsData.push(newGymData);
-        // Only keep top 3 on homepage if you want, but I'll add it normally here
-        gymsHomepage.push(newGymHomepage);
-
-        writeJson(gymsFile, gymsDetails);
-        writeJson(dataFile, gymsData);
-        writeJson(homepageFile, gymsHomepage);
-
-        res.json({ message: 'Gym added successfully!', gym: newGymData });
+        res.json({ message: 'Gym added successfully!' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Server error adding gym' });
+        res.status(500).json({ error: 'Server error' });
     }
 });
 
+// Migration Tool (Run once to import JSON data to DB)
+app.get('/api/migrate', async (req, res) => {
+    try {
+        // 1. Migrate Gyms
+        const gymsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'gym-details.json'), 'utf8'));
+        const homepageData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'data.json'), 'utf8'));
+
+        for (const g of gymsData) {
+            const extra = homepageData.find(h => h.id === g.id) || {};
+            await sql`
+                INSERT INTO gyms (
+                    id, name, lat, lng, price, website, updated_date, image_url, 
+                    tags, contact, description, rating, reviews_count, verified,
+                    plans, amenities, reviews, address, opening_hours, location
+                ) VALUES (
+                    ${g.id}, ${JSON.stringify(extra.name || {})}, ${extra.lat || 0}, ${extra.lng || 0}, 
+                    ${JSON.stringify(extra.price || {})}, ${extra.website || ''}, ${extra.updated_date || ''}, 
+                    ${g.image_url}, ${JSON.stringify(extra.tags || [])}, ${extra.contact || ''},
+                    ${JSON.stringify(g.description)}, ${g.rating}, ${g.reviews_count}, ${g.verified},
+                    ${JSON.stringify(g.plans)}, ${JSON.stringify(g.amenities)}, ${JSON.stringify(g.reviews)},
+                    ${JSON.stringify(g.address)}, ${JSON.stringify(g.opening_hours)}, ${extra.location || ''}
+                ) ON CONFLICT (id) DO UPDATE SET
+                    name = EXCLUDED.name,
+                    lat = EXCLUDED.lat,
+                    lng = EXCLUDED.lng,
+                    price = EXCLUDED.price,
+                    image_url = EXCLUDED.image_url,
+                    description = EXCLUDED.description,
+                    plans = EXCLUDED.plans,
+                    amenities = EXCLUDED.amenities;
+            `;
+        }
+
+        // 2. Migrate Users
+        const usersData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'users.json'), 'utf8'));
+        for (const u of usersData) {
+            await sql`
+                INSERT INTO users (username, password, role) 
+                VALUES (${u.username}, ${u.password}, ${u.role})
+                ON CONFLICT (username) DO NOTHING
+            `;
+        }
+
+        res.json({ message: 'Migration complete! Gyms and Users imported.' });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// Only listen locally
 if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log(`Server is running at http://localhost:${PORT}`);
