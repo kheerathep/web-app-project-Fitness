@@ -215,8 +215,10 @@ app.post('/api/admin/gyms', requireAdmin, upload.single('image'), async (req, re
                 imageUrl = blob.url;
             } catch (blobError) {
                 console.error('Blob Upload Error:', blobError);
-                // Continue with default image if blob fails, or handle as error
+                return res.status(500).json({ error: 'Image upload failed: ' + blobError.message });
             }
+        } else {
+            return res.status(400).json({ error: 'Please upload an image' });
         }
 
         const name = { en: nameEn || '', th: nameTh || '', cn: nameCn || '' };
