@@ -1,0 +1,15 @@
+/* Map Page Styles */
+#map {
+    height: 100%;
+    width: 100%;
+    background-color: #f3f4f6;
+}
+
+.custom-marker {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.custom-marker:hover {
+    transform: scale(1.1);
+}
