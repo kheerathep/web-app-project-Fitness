@@ -6,17 +6,22 @@
       "en": "Jetts 24 Hour Fitness - Central Nakhon Pathom",
       "cn": "Jetts 24小时健身 (尚泰佛统店)"
     },
-    "lat": 13.80607210362295,  
+    "lat": 13.80607210362295,
     "lng": 100.04886413872049,
     "price": {
       "th": "1,600 บาท/เดือน ",
       "en": "1,600 THB/Month ",
       "cn": "1,600 泰铢/月"
     },
-    "website":"https://www.jetts.co.th/memberships/?utm_source=Google&utm_medium=Internet&utm_campaign=LQ-Jetts_SEM_202408&utm_name=Member_Focus_Jun_Location&utm_term=jetts&utm_content=767776019179&utm_device=c_&utm_network=g&utm_placement=&gad_source=6&gad_campaignid=21571053490&gbraid=0AAAAApN59FS6V0GCYTk3EgUT2Ejvr-X0M&gclid=Cj0KCQiA7rDMBhCjARIsAGDBuEBJ2HXVHE14j7MrpGnfxQAJb0kQ1fJPOYg6ricAfgamq1wF7fRZbH8aAkVnEALw_wcB",
+    "website": "https://www.jetts.co.th/memberships/?utm_source=Google&utm_medium=Internet&utm_campaign=LQ-Jetts_SEM_202408&utm_name=Member_Focus_Jun_Location&utm_term=jetts&utm_content=767776019179&utm_device=c_&utm_network=g&utm_placement=&gad_source=6&gad_campaignid=21571053490&gbraid=0AAAAApN59FS6V0GCYTk3EgUT2Ejvr-X0M&gclid=Cj0KCQiA7rDMBhCjARIsAGDBuEBJ2HXVHE14j7MrpGnfxQAJb0kQ1fJPOYg6ricAfgamq1wF7fRZbH8aAkVnEALw_wcB",
     "updated_date": "2026-02-05",
     "image_url": "image/jettsCentral.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "tags": [
+      "24hr",
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "02 123 4567"
   },
   {
@@ -27,16 +32,20 @@
       "cn": "BAAM 健身 (佛统店)"
     },
     "lat": 13.813865868398533,
-    "lng":  100.03799849356542,
+    "lng": 100.03799849356542,
     "price": {
       "th": "999 บาท/เดือน (ราคาเริ่มต้น)",
       "en": "999 THB/Month (Starting)",
       "cn": "999 泰铢/月 (起)"
     },
-    "website":"https://www.facebook.com/BAAMnakphonpathom/",
+    "website": "https://www.facebook.com/BAAMnakphonpathom/",
     "updated_date": "2026-02-05",
     "image_url": "image/baam.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "02 123 4567"
   },
   {
@@ -46,17 +55,21 @@
       "en": "GOOD’s GYM Nakhon Pathom",
       "cn": "GOOD’s GYM 佛统"
     },
-    "lat": 13.820194487220911, 
-    "lng":  100.07923934796686,
+    "lat": 13.820194487220911,
+    "lng": 100.07923934796686,
     "price": {
       "th": "1,200 บาท/เดือน",
       "en": "1,200 THB/Month",
       "cn": "1,200 泰铢/月"
     },
-     "website":"https://www.facebook.com/Goodsgymnakhonpathom/?locale=th_TH",
+    "website": "https://www.facebook.com/Goodsgymnakhonpathom/?locale=th_TH",
     "updated_date": "2026-02-15",
-     "image_url": "image/goodgym.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/goodgym.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": " 086 366 6464"
   },
   {
@@ -66,17 +79,21 @@
       "en": "Kaofang’z FIT Camp GarageGYM",
       "cn": "Kaofang’z FIT Camp 健身车库"
     },
-    "lat": 13.812687922435952, 
+    "lat": 13.812687922435952,
     "lng": 100.00378799254233,
     "price": {
       "th": "150 บาท/ครั้ง",
       "en": "150 THB/Visit",
       "cn": "150 泰铢/次"
     },
-     "website":"https://www.instagram.com/kaofang_fitcamp.garagegym/",
+    "website": "https://www.instagram.com/kaofang_fitcamp.garagegym/",
     "updated_date": "2026-02-12",
-     "image_url": "image/Kaofang.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/Kaofang.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "080 0759 515"
   },
   {
@@ -86,17 +103,21 @@
       "en": "FITNESS 21 Tawarawadee",
       "cn": "FITNESS 21 (Tawarawadee Rd.)"
     },
-    "lat":13.812907108735937, 
-    "lng":  100.06943451123196,
-   "price": {
+    "lat": 13.812907108735937,
+    "lng": 100.06943451123196,
+    "price": {
       "th": "990 บาท/เดือน",
       "en": "990 THB/Month",
       "cn": "990 泰铢/月"
     },
-     "website":"https://www.facebook.com/profile.php?id=100063608259595#",
+    "website": "https://www.facebook.com/profile.php?id=100063608259595#",
     "updated_date": "2026-02-10",
-     "image_url": "image/fitness21.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/fitness21.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "034 106 321"
   },
   {
@@ -107,16 +128,20 @@
       "cn": "艺术大学健身中心"
     },
     "lat": 13.817913909751494,
-    "lng":   100.04411973801298,
+    "lng": 100.04411973801298,
     "price": {
       "th": "50 บาท/ครั้ง (นศ.)",
       "en": "50 THB/Visit (Student)",
       "cn": "50 泰铢/次 (学生)"
     },
-     "website":"https://www.facebook.com/profile.php?id=100057117413749&rdid=UdMOyFj7nUO84O2E&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Wmce6aPpg%2F#",
+    "website": "https://www.facebook.com/profile.php?id=100057117413749&rdid=UdMOyFj7nUO84O2E&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Wmce6aPpg%2F#",
     "updated_date": "2026-02-18",
-     "image_url": "image/silpakorn.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/silpakorn.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "034 241 240 "
   },
   {
@@ -127,16 +152,20 @@
       "cn": "Me Fitness (萨拉亚)"
     },
     "lat": 13.803854294601376,
-    "lng":  100.3203620049765,
+    "lng": 100.3203620049765,
     "price": {
       "th": "1,390 บาท/เดือน",
       "en": "1,390 THB/Month",
       "cn": "1,390 泰铢/月"
     },
-     "website":"https://www.facebook.com/memaithesalaya/posts/me-fitness-salayafitness-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A2%E0%B8%B2-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%AD%E0%B8%94%E0%B8%A3%E0%B8%96-400-%E0%B8%84%E0%B8%B1%E0%B8%99%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%88/1229335767467255/",
+    "website": "https://www.facebook.com/memaithesalaya/posts/me-fitness-salayafitness-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A2%E0%B8%B2-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%AD%E0%B8%94%E0%B8%A3%E0%B8%96-400-%E0%B8%84%E0%B8%B1%E0%B8%99%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%88/1229335767467255/",
     "updated_date": "2026-02-14",
-     "image_url": "image/mefitness.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/mefitness.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "092 252 0490"
   },
   {
@@ -146,17 +175,21 @@
       "en": "Boostfitz GYM Rai Khing",
       "cn": "Boostfitz 健身房"
     },
-    "lat": 13.751177665764272,  
+    "lat": 13.751177665764272,
     "lng": 100.29856385012425,
     "price": {
       "th": "80 บาท/วัน",
       "en": "80 THB/Day",
       "cn": "80 泰铢/天"
     },
-     "website":"https://www.facebook.com/profile.php?id=61557511665777",
+    "website": "https://www.facebook.com/profile.php?id=61557511665777",
     "updated_date": "2026-02-11",
-     "image_url": "image/bootsfitgym.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/bootsfitgym.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "082 974 1710"
   },
   {
@@ -166,17 +199,21 @@
       "en": "Health Club Fitness Nakhon Chai Si",
       "cn": "Health Club 健身 (那空猜西分店)"
     },
-    "lat": 13.79673493730269, 
-    "lng":  100.17514149980002,
+    "lat": 13.79673493730269,
+    "lng": 100.17514149980002,
     "price": {
       "th": "1,200 บาท/เดือน",
       "en": "1,200 THB/Month",
       "cn": "1,200 泰铢/月"
     },
-     "website":"https://www.facebook.com/healthclubnakronchaisri/?locale=th_TH",
+    "website": "https://www.facebook.com/healthclubnakronchaisri/?locale=th_TH",
     "updated_date": "2026-02-09",
-     "image_url": "image/healthclub.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/healthclub.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": " 061 579 4191"
   },
   {
@@ -187,16 +224,20 @@
       "cn": "FIT & Co. 健身中心"
     },
     "lat": 13.773649899962766,
-    "lng":  100.1785513803899,
+    "lng": 100.1785513803899,
     "price": {
       "th": "1,000 บาท/เดือน",
       "en": "1,000 THB/Month",
       "cn": "1,000 泰铢/月"
     },
-     "website":"https://www.facebook.com/fitandcofitness/?_rdr",
+    "website": "https://www.facebook.com/fitandcofitness/?_rdr",
     "updated_date": "2026-02-15",
-     "image_url": "image/fitandco.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/fitandco.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "095 918 6318"
   },
   {
@@ -206,17 +247,21 @@
       "en": "PES Fitness Kamphaeng Saen",
       "cn": "PES 健身房"
     },
-    "lat": 14.020310980183659, 
+    "lat": 14.020310980183659,
     "lng": 99.9759227196651,
     "price": {
       "th": "900 บาท/เดือน",
       "en": "900 THB/Month",
       "cn": "900 泰铢/月"
     },
-     "website":"https://www.edu.kps.ku.ac.th/fitness/",
+    "website": "https://www.edu.kps.ku.ac.th/fitness/",
     "updated_date": "2026-02-01",
-     "image_url": "image/pes.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/pes.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "034 351 898"
   },
   {
@@ -226,17 +271,22 @@
       "en": "Jetts 24 Hour Fitness - The Fourth",
       "cn": "Jetts 24小时健身 (The Fourth)"
     },
-    "lat": 13.75931528053623, 
-    "lng": 100.32912741676277 ,
+    "lat": 13.75931528053623,
+    "lng": 100.32912741676277,
     "price": {
       "th": "1,600 บาท/เดือน",
       "en": "1,600 THB/Month",
       "cn": "1,600 泰铢/月"
     },
-     "website":"https://www.jetts.co.th/the-fourth/",
+    "website": "https://www.jetts.co.th/the-fourth/",
     "updated_date": "2026-02-16",
-     "image_url": "image/jetts4.jpg",
-    "tags": ["24hr", "cardio", "weight", "aircon"],
+    "image_url": "image/jetts4.jpg",
+    "tags": [
+      "24hr",
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "095 536 9869"
   },
   {
@@ -246,17 +296,20 @@
       "en": "KOTR FIT GYM Salaya",
       "cn": "KOTR FIT 健身房"
     },
-    "lat": 13.795524723158882, 
+    "lat": 13.795524723158882,
     "lng": 100.33719630317033,
     "price": {
       "th": "1,290 บาท/เดือน",
       "en": "1,290 THB/Month",
       "cn": "1,290 泰铢/月"
     },
-    
     "updated_date": "2026-02-13",
-     "image_url": "image/kortfitgym.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/kortfitgym.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "-"
   },
   {
@@ -266,17 +319,21 @@
       "en": "FitClub Health and Fitness",
       "cn": "FitClub 健康健身 (Don Tum)"
     },
-    "lat": 13.960132196429234, 
+    "lat": 13.960132196429234,
     "lng": 100.08074132152545,
     "price": {
       "th": "800 บาท/เดือน",
       "en": "800 THB/Month",
       "cn": "800 泰铢/月"
     },
-     "website":"https://www.facebook.com/fitclubdontum/?locale=th_TH",
+    "website": "https://www.facebook.com/fitclubdontum/?locale=th_TH",
     "updated_date": "2026-02-05",
-     "image_url": "image/fitclub.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/fitclub.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "099 261 4256"
   },
   {
@@ -286,17 +343,21 @@
       "en": "Fits Gym Ying Pao Rd.",
       "cn": "Fits Gym (Ying Pao)"
     },
-    "lat": 13.807559610783974, 
-    "lng": 100.04681769336145 ,
+    "lat": 13.807559610783974,
+    "lng": 100.04681769336145,
     "price": {
       "th": "1,100 บาท/เดือน",
       "en": "1,100 THB/Month",
       "cn": "1,100 泰铢/月"
     },
-     "website":"https://www.facebook.com/fitsgym2/?locale=th_TH/",
+    "website": "https://www.facebook.com/fitsgym2/?locale=th_TH/",
     "updated_date": "2026-02-14",
-     "image_url": "image/fitgym.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/fitgym.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "097 147 9995"
   },
   {
@@ -306,18 +367,21 @@
       "en": "Strong Fitness Nakhon Pathom",
       "cn": "Strong 健身房"
     },
-    "lat": 13.808221246604225, 
-    "lng":  100.04378577085868,
+    "lat": 13.808221246604225,
+    "lng": 100.04378577085868,
     "price": {
       "th": "900 บาท/เดือน",
       "en": "900 THB/Month",
       "cn": "900 泰铢/月"
     },
-     "website":"https://www.facebook.com/strongfitnessnakornpathom/?locale=th_TH",
+    "website": "https://www.facebook.com/strongfitnessnakornpathom/?locale=th_TH",
     "updated_date": "2026-02-12",
-     "image_url": "image/strongfitness.jpg",
-    "tags": ["cardio", "weight", "aircon"],
+    "image_url": "image/strongfitness.jpg",
+    "tags": [
+      "cardio",
+      "weight",
+      "aircon"
+    ],
     "contact": "098 827 4191"
   }
-
 ]

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NakhonFit - Admin Dashboard</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        'text-main': '#111827',
+                        'text-subtle': '#6B7280',
+                        'background-off': '#F9FAFB'
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .hidden-auth {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-text-main font-display antialiased min-h-screen">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-8">
+            <a class="flex items-center gap-2 shrink-0 hover:opacity-80 transition-opacity" href="index.html">
+                <div class="flex items-center justify-center size-10 rounded-full bg-black text-white">
+                    <span class="material-symbols-outlined text-2xl fill-1">fitness_center</span>
+                </div>
+                <h1 class="text-2xl font-black tracking-tighter text-black">NakhonFit <span
+                        class="text-primary/70 font-medium"></span></h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-sm font-bold text-gray-500 hover:text-black">Back to Home</a>
+                <button id="logoutBtn"
+                    class="hidden-auth px-4 py-2 bg-red-50 text-red-600 font-bold rounded-lg hover:bg-red-100 transition text-sm flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">logout</span> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-28 pb-20 px-6 max-w-7xl mx-auto w-full">
+
+        <!-- Dashboard Section -->
+        <section id="dashboardSection" class="w-full">
+            <div class="mb-8 flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl font-black mb-2">Gym Management</h2>
+                    <p class="text-gray-500 font-medium">Add a new gym location to the database.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl">
+                <form id="addGymForm" class="space-y-8">
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Gym Name (EN)</label>
+                            <input type="text" id="nameEn" required
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Gym Name (TH)</label>
+                            <input type="text" id="nameTh" required
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Gym Name (CN)</label>
+                            <input type="text" id="nameCn" required
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Short Description (EN)</label>
+                            <textarea id="descEn" rows="2"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Short Description (TH)</label>
+                            <textarea id="descTh" rows="2"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Short Description (CN)</label>
+                            <textarea id="descCn" rows="2"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Address/Location (EN)</label>
+                            <input type="text" id="addressEn"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Address/Location (TH)</label>
+                            <input type="text" id="addressTh"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Address/Location (CN)</label>
+                            <input type="text" id="addressCn"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Monthly Plan Price (EN, e.g.
+                                ฿990)</label>
+                            <input type="text" id="priceEn"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Monthly Plan Price (TH, e.g.
+                                ฿990)</label>
+                            <input type="text" id="priceTh"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Monthly Plan Price (CN, e.g.
+                                990泰铢)</label>
+                            <input type="text" id="priceCn"
+                                class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Latitude</label>
+                            <input type="number" step="any" id="lat" placeholder="13.8123" class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Longitude</label>
+                            <input type="number" step="any" id="lng" placeholder="100.0456" class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Website URL</label>
+                            <input type="url" id="website" placeholder="https://..." class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Contact Phone</label>
+                            <input type="text" id="contact" placeholder="08x-xxxxxxx" class="w-full px-4 py-3 rounded-xl border-gray-200 bg-gray-50">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Cover Image (Required)</label>
+                        <div class="flex items-center justify-center w-full">
+                            <label for="imageUpload"
+                                class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-2xl cursor-pointer bg-gray-50 hover:bg-gray-100/50 transition">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <span
+                                        class="material-symbols-outlined text-4xl text-gray-400 mb-3">cloud_upload</span>
+                                    <p class="mb-2 text-sm text-gray-500 font-bold"><span class="text-black">Click to
+                                            upload</span> or drag and drop</p>
+                                    <p class="text-xs text-gray-500">JPG, PNG or WEBP (Max 5MB)</p>
+                                </div>
+                                <input id="imageUpload" type="file" class="hidden" accept="image/*" required />
+                            </label>
+                        </div>
+                        <p id="fileName" class="text-sm font-bold text-gray-600 mt-2 text-center"></p>
+                    </div>
+
+                    <div id="formMessage" class="hidden p-4 rounded-xl text-sm font-bold text-center"></div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button type="submit" id="addGymSubmit"
+                            class="px-8 py-3.5 bg-black text-white font-bold rounded-xl hover:opacity-90 transition shadow-lg shadow-black/20 flex items-center gap-2">
+                            <span class="material-symbols-outlined">add_circle</span> Add Gym to Database
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-16 mb-8">
+                <h2 class="text-3xl font-black mb-2">Existing Gyms</h2>
+                <p class="text-gray-500 font-medium">Manage and remove gyms from the database.</p>
+            </div>
+
+            <div class="glass-panel overflow-hidden rounded-3xl">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 border-b border-gray-200">
+                            <th class="p-4 font-black text-sm uppercase tracking-wider">Gym</th>
+                            <th class="p-4 font-black text-sm uppercase tracking-wider">Location</th>
+                            <th class="p-4 font-black text-sm uppercase tracking-wider">Status</th>
+                            <th class="p-4 font-black text-sm uppercase tracking-wider text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gymListTable">
+                        <!-- Gym entries will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const dashboardSection = document.getElementById('dashboardSection');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const formMessage = document.getElementById('formMessage');
+
+        // Check authentication state on page load
+        async function checkAuth() {
+            try {
+                const res = await fetch('/api/auth/me');
+                const data = await res.json();
+                
+                if (data.user && data.user.role === 'admin') {
+                    showDashboard();
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } catch (e) {
+                window.location.href = 'login.html';
+            }
+        }
+        checkAuth();
+
+        function showDashboard() {
+            dashboardSection.style.display = 'block';
+            logoutBtn.classList.remove('hidden-auth');
+            logoutBtn.style.display = 'flex';
+            loadGymList();
+        }
+
+        async function loadGymList() {
+            const res = await fetch('/api/admin/gyms');
+            if (res.ok) {
+                const gyms = await res.json();
+                const table = document.getElementById('gymListTable');
+                table.innerHTML = gyms.map(gym => `
+                    <tr class="border-b border-gray-100 hover:bg-gray-50/50 transition">
+                        <td class="p-4">
+                            <div class="flex items-center gap-3">
+                                <img src="${gym.image_url}" class="size-10 rounded-lg object-cover">
+                                <span class="font-bold">${gym.name.en}</span>
+                            </div>
+                        </td>
+                        <td class="p-4 text-sm text-gray-500 font-medium">${gym.lat.toFixed(4)}, ${gym.lng.toFixed(4)}</td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 bg-green-50 text-green-600 text-[10px] font-black uppercase rounded-md border border-green-100">Live</span>
+                        </td>
+                        <td class="p-4 text-right">
+                            <button onclick="deleteGym(${gym.id})" class="text-red-400 hover:text-red-600 transition">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('') || '<tr><td colspan="4" class="p-8 text-center text-gray-400">No gyms found</td></tr>';
+            }
+        }
+
+        async function deleteGym(id) {
+            if (!confirm('Are you sure you want to delete this gym? This will remove it from Map and Homepage search.')) return;
+            const res = await fetch(`/api/admin/gyms/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                loadGymList();
+            } else {
+                alert('Failed to delete gym');
+            }
+        }
+
+        logoutBtn.addEventListener('click', async () => {
+            await fetch('/api/auth/logout', { method: 'POST' });
+            window.location.href = 'index.html';
+        });
+
+        // Image upload UI update
+        const imageUpload = document.getElementById('imageUpload');
+        const fileNameUI = document.getElementById('fileName');
+        imageUpload.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                fileNameUI.textContent = "Selected: " + e.target.files[0].name;
+            } else {
+                fileNameUI.textContent = "";
+            }
+        });
+
+        // Add Gym Form Submission
+        document.getElementById('addGymForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('addGymSubmit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-xl">refresh</span> Uploading...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('nameEn', document.getElementById('nameEn').value);
+            formData.append('nameTh', document.getElementById('nameTh').value);
+            formData.append('nameCn', document.getElementById('nameCn').value);
+            formData.append('descEn', document.getElementById('descEn').value);
+            formData.append('descTh', document.getElementById('descTh').value);
+            formData.append('descCn', document.getElementById('descCn').value);
+            formData.append('addressEn', document.getElementById('addressEn').value);
+            formData.append('addressTh', document.getElementById('addressTh').value);
+            formData.append('addressCn', document.getElementById('addressCn').value);
+            formData.append('priceEn', document.getElementById('priceEn').value);
+            formData.append('priceTh', document.getElementById('priceTh').value);
+            formData.append('priceCn', document.getElementById('priceCn').value);
+            formData.append('lat', document.getElementById('lat').value);
+            formData.append('lng', document.getElementById('lng').value);
+            formData.append('website', document.getElementById('website').value);
+            formData.append('contact', document.getElementById('contact').value);
+
+            const file = imageUpload.files[0];
+            if (file) {
+                formData.append('image', file);
+            }
+
+            try {
+                const res = await fetch('/api/admin/gyms', {
+                    method: 'POST',
+                    body: formData // No Content-Type header so browser sets multipart boundary
+                });
+
+                const data = await res.json();
+
+                formMessage.classList.remove('hidden', 'bg-red-50', 'text-red-600', 'bg-green-50', 'text-green-600');
+                if (!res.ok) {
+                    formMessage.textContent = data.error || 'Failed to add gym';
+                    formMessage.classList.add('bg-red-50', 'text-red-600');
+                } else {
+                    formMessage.textContent = 'Gym successfully added to data.json!';
+                    formMessage.classList.add('bg-green-50', 'text-green-700');
+                    document.getElementById('addGymForm').reset();
+                    fileNameUI.textContent = '';
+                    loadGymList();
+                }
+            } catch (e) {
+                formMessage.classList.remove('hidden');
+                formMessage.textContent = 'Server connection error';
+                formMessage.classList.add('bg-red-50', 'text-red-600');
+            }
+
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+
+    </script>
+</body>
+
+</html>

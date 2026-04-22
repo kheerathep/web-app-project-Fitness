@@ -48,7 +48,8 @@
                 </div>
             </div>
 
-            <div class="flex items-center shrink-0">
+            <div class="flex items-center shrink-0 gap-4">
+
                 <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200">
                     <button id="btn-en" onclick="changeLang('en')"
                         class="lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-black shadow-sm">
@@ -62,6 +63,14 @@
                         class="lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle">
                         <span>CN</span>
                     </button>
+                </div>
+                <div id="auth-container" class="flex items-center gap-2">
+                    <a href="login.html" id="nav-login-btn"
+                        class="px-4 py-2 bg-black text-white text-xs font-bold rounded-full hover:bg-gray-800 transition shadow-sm hidden">Login</a>
+                    <a href="admin.html" id="nav-admin-btn"
+                        class="px-4 py-2 bg-black text-white text-xs font-bold rounded-full hover:bg-gray-800 transition shadow-sm hidden">Dashboard</a>
+                    <button id="nav-logout-btn"
+                        class="px-4 py-2 bg-red-50 text-red-600 text-xs font-bold rounded-full hover:bg-red-100 transition shadow-sm hidden">Logout</button>
                 </div>
             </div>
         </div>
@@ -103,8 +112,10 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex justify-between items-end mb-10">
                     <div>
-                        <h2 data-lang="trending_now" class="text-3xl font-black text-black mb-2 uppercase tracking-tight">Trending Now</h2>
-                        <p data-lang="trending_now_desc" class="text-text-subtle font-medium">Most popular spots in Nakhon Pathom this week</p>
+                        <h2 data-lang="trending_now"
+                            class="text-3xl font-black text-black mb-2 uppercase tracking-tight">Trending Now</h2>
+                        <p data-lang="trending_now_desc" class="text-text-subtle font-medium">Most popular spots in
+                            Nakhon Pathom this week</p>
                     </div>
                     <a class="flex items-center gap-2 text-primary font-bold text-sm hover:opacity-80 transition-opacity"
                         href="map.html">
@@ -112,7 +123,7 @@
                     </a>
                 </div>
                 <div id="trending-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
+
                 </div>
             </div>
         </section>
@@ -133,27 +144,35 @@
                     </p>
                 </div>
                 <div>
-                    <h5 data-lang="platform" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Platform</h5>
+                    <h5 data-lang="platform" class="font-black text-black mb-6 uppercase tracking-widest text-xs">
+                        Platform</h5>
                     <ul class="space-y-4">
-                        <li><a data-lang="search_gyms" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="search_gyms"
+                                class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Search Gyms</a></li>
-                        <li><a data-lang="interactive_map" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="interactive_map"
+                                class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="map.html">Interactive Map</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 data-lang="company" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Company</h5>
+                    <h5 data-lang="company" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Company
+                    </h5>
                     <ul class="space-y-4">
-                        <li><a data-lang="about_us" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="about_us"
+                                class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">About Us</a></li>
-                        <li><a data-lang="contact_support" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="contact_support"
+                                class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Contact Support</a></li>
-                        <li><a data-lang="privacy_policy" class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
+                        <li><a data-lang="privacy_policy"
+                                class="text-text-subtle hover:text-primary transition-colors text-sm font-bold"
                                 href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 data-lang="social" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Social</h5>
+                    <h5 data-lang="social" class="font-black text-black mb-6 uppercase tracking-widest text-xs">Social
+                    </h5>
                     <div class="flex gap-4">
                         <a class="size-10 rounded-full bg-gray-50 flex items-center justify-center text-black hover:bg-primary hover:text-white transition-all"
                             href="#">
@@ -171,7 +190,8 @@
                 </div>
             </div>
             <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-text-subtle text-xs font-bold">© 2024 FitFind Nakhon Pathom. All rights reserved. (v2)</p>
+                <p class="text-text-subtle text-xs font-bold">© 2024 FitFind Nakhon Pathom. All rights reserved. (v2)
+                </p>
                 <div class="flex gap-6">
                     <span
                         class="text-text-subtle text-xs font-bold cursor-pointer hover:text-black transition-colors">Terms

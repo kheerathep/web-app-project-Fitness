@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NakhonFit - Login</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-display antialiased min-h-screen flex flex-col">
+
+    <header class="bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a class="flex items-center gap-2" href="index.html">
+                <div class="flex items-center justify-center size-10 rounded-full bg-black text-white">
+                    <span class="material-symbols-outlined text-2xl fill-1">fitness_center</span>
+                </div>
+                <h1 class="text-2xl font-black tracking-tighter text-black">NakhonFit</h1>
+            </a>
+            <a href="index.html" class="text-sm font-bold text-gray-500 hover:text-black transition">Back to Home</a>
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center p-6">
+        <div class="w-full max-w-md">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="text-center mb-8">
+                    <div class="flex justify-center mb-4">
+                        <div class="size-16 rounded-2xl bg-black text-white flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl" id="headerIcon">login</span>
+                        </div>
+                    </div>
+                    <h2 class="text-3xl font-black mb-2" id="authTitle">Login</h2>
+                    <p class="text-gray-500 text-sm font-medium" id="authSubtitle">Enter your details to continue</p>
+                </div>
+
+                <form id="authForm" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Username</label>
+                        <input type="text" id="username" required
+                            class="w-full px-4 py-3 rounded-xl border-gray-200 focus:ring-black focus:border-black bg-gray-50 transition"
+                            placeholder="Enter username">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Password</label>
+                        <input type="password" id="password" required
+                            class="w-full px-4 py-3 rounded-xl border-gray-200 focus:ring-black focus:border-black bg-gray-50 transition"
+                            placeholder="Enter password">
+                    </div>
+
+                    <div id="authError" class="text-red-500 text-sm font-bold hidden bg-red-50 p-3 rounded-lg text-center"></div>
+
+                    <button type="submit" id="authSubmit"
+                        class="w-full py-4 bg-black text-white font-bold rounded-xl hover:opacity-90 transition shadow-lg shadow-black/20 flex items-center justify-center gap-2">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                    <button id="toggleAuth" class="text-sm font-bold text-gray-400 hover:text-black transition">
+                        Need an account? <span class="text-black">Register</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-8 text-center text-gray-400 text-sm font-medium">
+        © 2024 NakhonFit. All rights reserved.
+    </footer>
+
+    <script>
+        let isLoginMode = true;
+        const authForm = document.getElementById('authForm');
+        const authTitle = document.getElementById('authTitle');
+        const authSubtitle = document.getElementById('authSubtitle');
+        const authSubmit = document.getElementById('authSubmit');
+        const toggleAuthBtn = document.getElementById('toggleAuth');
+        const authError = document.getElementById('authError');
+        const headerIcon = document.getElementById('headerIcon');
+
+        toggleAuthBtn.addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            authTitle.textContent = isLoginMode ? 'Login' : 'Create Account';
+            authSubtitle.textContent = isLoginMode ? 'Enter your details to continue' : 'Join NakhonFit community today';
+            authSubmit.textContent = isLoginMode ? 'Sign In' : 'Create Account';
+            toggleAuthBtn.innerHTML = isLoginMode ? 'Need an account? <span class="text-black">Register</span>' : 'Already have an account? <span class="text-black">Login</span>';
+            headerIcon.textContent = isLoginMode ? 'login' : 'person_add';
+            authError.classList.add('hidden');
+        });
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            authError.classList.add('hidden');
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/register';
+            const body = { username, password };
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    authError.textContent = data.error || 'Authentication failed';
+                    authError.classList.remove('hidden');
+                } else {
+                    if (isLoginMode) {
+                        // Redirect based on role
+                        if (data.role === 'admin') {
+                            window.location.href = 'admin.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    } else {
+                        // Successfully registered, toggle to login
+                        isLoginMode = false;
+                        toggleAuthBtn.click();
+                        authError.textContent = 'Account created! You can now log in.';
+                        authError.classList.remove('hidden', 'text-red-500', 'bg-red-50');
+                        authError.classList.add('text-green-600', 'bg-green-50');
+                        setTimeout(() => {
+                            authError.classList.add('hidden');
+                            authError.classList.add('text-red-500', 'bg-red-50');
+                            authError.classList.remove('text-green-600', 'bg-green-50');
+                        }, 5000);
+                    }
+                }
+            } catch (err) {
+                authError.textContent = 'Connection error. Please try again.';
+                authError.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

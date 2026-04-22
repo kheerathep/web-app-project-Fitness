@@ -60,7 +60,8 @@ const translations = {
 function initGymMap() {
     const params = new URLSearchParams(window.location.search);
     const gymId = params.get('id');
-    const lang = params.get('lang') || 'th';
+    const lang = params.get('lang') || localStorage.getItem('lang') || 'th';
+    localStorage.setItem('lang', lang);
 
     if (gymId) {
         Promise.all([
@@ -313,6 +314,7 @@ function setupLangButtons(gymId, currentLang) {
     langs.forEach(lang => {
         const button = document.createElement('a');
         button.href = `gymdetail.html?id=${gymId}&lang=${lang}`;
+        button.onclick = () => localStorage.setItem('lang', lang);
         button.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold transition ';
         if (lang === currentLang) {
             button.classList.add('bg-white', 'text-black', 'shadow-sm');
@@ -322,4 +324,43 @@ function setupLangButtons(gymId, currentLang) {
         button.innerHTML = `<span>${lang.toUpperCase()}</span>`;
         langContainer.appendChild(button);
     });
+}
+
+document.addEventListener("DOMContentLoaded", checkAuthStatus);
+
+async function checkAuthStatus() {
+    try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        
+        const loginBtn = document.getElementById('nav-login-btn');
+        const adminBtn = document.getElementById('nav-admin-btn');
+        const logoutBtn = document.getElementById('nav-logout-btn');
+        
+        if (data.user) {
+            if(loginBtn) loginBtn.classList.add('hidden');
+            if(logoutBtn) logoutBtn.classList.remove('hidden');
+            
+            // Show dashboard ONLY for admins
+            if (data.user.role === 'admin') {
+                if(adminBtn) adminBtn.classList.remove('hidden');
+            } else {
+                if(adminBtn) adminBtn.classList.add('hidden');
+            }
+        } else {
+            if(loginBtn) loginBtn.classList.remove('hidden');
+            if(adminBtn) adminBtn.classList.add('hidden');
+            if(logoutBtn) logoutBtn.classList.add('hidden');
+        }
+        
+        if(logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                await fetch('/api/auth/logout', { method: 'POST' });
+                window.location.reload();
+            });
+        }
+    } catch (e) {
+        const loginBtn = document.getElementById('nav-login-btn');
+        if(loginBtn) loginBtn.classList.remove('hidden');
+    }
 }

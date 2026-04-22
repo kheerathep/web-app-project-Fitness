@@ -13,13 +13,13 @@
     },
     "location": "Muang, Nakhon Pathom",
     "rating": "4.4",
-   "image_url": "image/jettsCentral.jpg",
+    "image_url": "image/jettsCentral.jpg",
     "lat": 13.80607210362295,
     "lng": 100.04886413872049
   },
   {
     "id": 2,
-   "name": {
+    "name": {
       "th": "แบม ฟิตเนส นครปฐม",
       "en": "BAAM Fitness Nakhon Pathom",
       "cn": "BAAM 健身 (佛统店)"
@@ -32,8 +32,8 @@
     "location": "Muang, Nakhon Pathom",
     "rating": "4.2",
     "image_url": "image/baam.jpg",
-     "lat": 13.813865868398533,
-    "lng":  100.03799849356542
+    "lat": 13.813865868398533,
+    "lng": 100.03799849356542
   },
   {
     "id": 3,
@@ -42,7 +42,7 @@
       "en": "Strong Fitness Nakhon Pathom",
       "cn": "Strong 健身房"
     },
-      "price": {
+    "price": {
       "th": "900 บาท/เดือน",
       "en": "900 THB/Month",
       "cn": "900 泰铢/月"
@@ -51,6 +51,6 @@
     "rating": "4.7",
     "image_url": "image/strongfitness.jpg",
     "lat": 13.808221246604225,
-    "lng":  100.04378577085868
+    "lng": 100.04378577085868
   }
 ]

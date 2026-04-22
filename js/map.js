@@ -2,7 +2,7 @@
 let map;
 let markers = [];
 let fitnessData = [];
-let currentLang = 'th';
+let currentLang = localStorage.getItem('lang') || 'th';
 let currentDetailItem = null;
 
 function buildUrl(path) {
@@ -165,6 +165,7 @@ function renderSidePanel(data) {
 
 function changeLang(lang) {
     currentLang = lang;
+    localStorage.setItem('lang', lang);
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.className = "lang-btn flex items-center gap-1.5 px-3 py-1 rounded-full hover:bg-gray-200 transition text-[11px] font-bold text-text-subtle";
@@ -380,4 +381,43 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    checkAuthStatus();
 });
+
+async function checkAuthStatus() {
+    try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        
+        const loginBtn = document.getElementById('nav-login-btn');
+        const adminBtn = document.getElementById('nav-admin-btn');
+        const logoutBtn = document.getElementById('nav-logout-btn');
+        
+        if (data.user) {
+            if(loginBtn) loginBtn.classList.add('hidden');
+            if(logoutBtn) logoutBtn.classList.remove('hidden');
+            
+            // Show dashboard ONLY for admins
+            if (data.user.role === 'admin') {
+                if(adminBtn) adminBtn.classList.remove('hidden');
+            } else {
+                if(adminBtn) adminBtn.classList.add('hidden');
+            }
+        } else {
+            if(loginBtn) loginBtn.classList.remove('hidden');
+            if(adminBtn) adminBtn.classList.add('hidden');
+            if(logoutBtn) logoutBtn.classList.add('hidden');
+        }
+        
+        if(logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                await fetch('/api/auth/logout', { method: 'POST' });
+                window.location.reload();
+            });
+        }
+    } catch (e) {
+        const loginBtn = document.getElementById('nav-login-btn');
+        if(loginBtn) loginBtn.classList.remove('hidden');
+    }
+}
